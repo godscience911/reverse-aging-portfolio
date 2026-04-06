@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>구건우 — 할머니를 1년 젊게 해드리기 프로젝트</title>
+<meta name="description" content="의료 AI · 역노화 리서처 구건우의 포트폴리오. 70대 할머니의 생체나이를 되돌리기 위한 여정.">
+<meta property="og:title" content="구건우 — 할머니를 1년 젊게 해드리기 프로젝트">
+<meta property="og:description" content="의료 AI · 역노화 리서처. 비전공자가 AI와 함께 만든 연구 포트폴리오.">
+<meta property="og:type" content="website">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;900&family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+:root{
+  --bg:#04060e;--surface:rgba(12,18,36,.65);--surface-solid:#0a1020;--glass:rgba(14,20,40,.55);
+  --border:rgba(255,255,255,.06);--border-light:rgba(255,255,255,.1);
+  --text:#f0f2f8;--muted:#8899b8;--dim:#4a5a78;
+  --blue:#3b82f6;--cyan:#06b6d4;--purple:#8b5cf6;--green:#10b981;
+  --orange:#f59e0b;--red:#ef4444;--pink:#ec4899;--indigo:#6366f1;
+  --glow-green:rgba(16,185,129,.15);--glow-purple:rgba(139,92,246,.12);--glow-blue:rgba(59,130,246,.1);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Noto Sans KR','Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+::selection{background:rgba(139,92,246,.3);color:#fff}
+
+/* ===== CANVAS BG ===== */
+#particleCanvas{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none}
+
+/* ===== NAV ===== */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1rem 2.5rem;display:flex;align-items:center;justify-content:space-between;transition:all .4s}
+.nav.scrolled{padding:.6rem 2.5rem;background:rgba(4,6,14,.85);backdrop-filter:blur(24px) saturate(1.4);border-bottom:1px solid var(--border)}
+.nav-logo{font-family:'Space Grotesk','Inter',sans-serif;font-weight:700;font-size:1rem;display:flex;align-items:center;gap:.6rem;position:relative;z-index:1}
+.nav-logo .dot{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 12px var(--green);animation:glow 2s infinite}
+@keyframes glow{0%,100%{box-shadow:0 0 8px rgba(16,185,129,.4)}50%{box-shadow:0 0 20px rgba(16,185,129,.6)}}
+.nav-links{display:flex;align-items:center;gap:2rem;position:relative;z-index:1}
+.nav-links a{color:var(--muted);font-size:.82rem;font-weight:500;transition:color .3s;position:relative}
+.nav-links a:hover{color:var(--text)}
+.nav-links a::after{content:'';position:absolute;bottom:-3px;left:0;width:0;height:1.5px;background:var(--purple);transition:width .3s}
+.nav-links a:hover::after{width:100%}
+.nav-cta{display:inline-flex;align-items:center;gap:.5rem;padding:8px 20px;background:linear-gradient(135deg,#0077B5,#005fa3);color:#fff!important;border-radius:100px;font-size:.78rem;font-weight:600;transition:all .3s;box-shadow:0 2px 15px rgba(0,119,181,.2);border:1px solid rgba(255,255,255,.08)}
+.nav-cta:hover{transform:translateY(-1px);box-shadow:0 6px 25px rgba(0,119,181,.35)}
+.nav-cta::after{display:none!important}
+.nav-cta svg{width:14px;height:14px;fill:#fff}
+
+/* ===== HERO ===== */
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:8rem 2rem 5rem;z-index:1}
+.hero-inner{max-width:860px;position:relative}
+.hero-tag{display:inline-flex;align-items:center;gap:.5rem;padding:7px 22px;border-radius:100px;background:rgba(16,185,129,.06);border:1px solid rgba(16,185,129,.15);color:var(--green);font-size:.76rem;font-weight:600;letter-spacing:.5px;margin-bottom:2.5rem;backdrop-filter:blur(10px)}
+.hero-tag .tdot{width:5px;height:5px;border-radius:50%;background:var(--green);box-shadow:0 0 8px var(--green)}
+.hero h1{font-family:'Space Grotesk','Noto Sans KR',sans-serif;font-size:clamp(2.6rem,6vw,4.8rem);font-weight:700;line-height:1.1;margin-bottom:1.8rem;letter-spacing:-.02em}
+.hero h1 .l1{display:block;color:var(--muted);font-weight:400;font-size:.38em;letter-spacing:.02em;margin-bottom:.4rem}
+.hero h1 .l2{display:block;background:linear-gradient(135deg,#fff 20%,var(--green) 50%,var(--cyan) 80%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;background-size:200% 200%;animation:gradShift 8s ease infinite}
+@keyframes gradShift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+.hero h1 .l3{display:block;color:var(--muted);font-weight:400;font-size:.28em;letter-spacing:0;margin-top:.6rem;-webkit-text-fill-color:var(--muted)}
+.hero-p{font-size:1.08rem;color:var(--muted);max-width:580px;margin:0 auto 3rem;line-height:2}
+.hero-p em{color:var(--text);font-style:normal;font-weight:500}
+.hero-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.btn-g{display:inline-flex;align-items:center;gap:.5rem;padding:14px 34px;border-radius:100px;font-weight:600;font-size:.92rem;transition:all .35s;cursor:pointer;border:none;position:relative;overflow:hidden}
+.btn-g.primary{background:linear-gradient(135deg,var(--green),var(--cyan));color:#fff;box-shadow:0 4px 25px rgba(16,185,129,.25)}
+.btn-g.primary:hover{transform:translateY(-2px);box-shadow:0 8px 40px rgba(16,185,129,.35)}
+.btn-g.secondary{background:var(--glass);color:var(--text);border:1px solid var(--border-light);backdrop-filter:blur(12px)}
+.btn-g.secondary:hover{border-color:rgba(139,92,246,.3);transform:translateY(-2px);box-shadow:0 8px 30px rgba(139,92,246,.1)}
+
+/* Stats */
+.stats-bar{display:flex;justify-content:center;gap:3.5rem;flex-wrap:wrap;margin-top:4rem;padding-top:2.5rem;border-top:1px solid var(--border)}
+.stat{text-align:center}
+.stat .sv{font-family:'Space Grotesk','Inter';font-size:2.4rem;font-weight:700;display:block;line-height:1}
+.stat:nth-child(1) .sv{color:var(--green)}
+.stat:nth-child(2) .sv{color:var(--purple)}
+.stat:nth-child(3) .sv{color:var(--cyan)}
+.stat:nth-child(4) .sv{color:var(--orange)}
+.stat .sl{font-size:.72rem;color:var(--dim);margin-top:.4rem;line-height:1.4}
+
+/* ===== SECTION ===== */
+.sec{max-width:1180px;margin:0 auto;padding:7rem 2rem;position:relative;z-index:1}
+.sec-eye{font-family:'Space Grotesk';font-size:.68rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--purple);margin-bottom:.7rem;display:inline-block}
+.sec h2{font-family:'Space Grotesk','Noto Sans KR';font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:700;margin-bottom:.6rem;line-height:1.2;letter-spacing:-.01em}
+.sec .lead{font-size:.98rem;color:var(--muted);max-width:640px;margin-bottom:3.5rem;line-height:1.9}
+
+/* ===== MISSION ===== */
+.m-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
+.m-card{background:var(--glass);backdrop-filter:blur(16px) saturate(1.3);border:1px solid var(--border);border-radius:24px;padding:2.2rem 1.8rem;transition:all .4s;position:relative;overflow:hidden}
+.m-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px}
+.m-card:nth-child(1)::before{background:linear-gradient(90deg,transparent,var(--green),transparent)}
+.m-card:nth-child(2)::before{background:linear-gradient(90deg,transparent,var(--purple),transparent)}
+.m-card:nth-child(3)::before{background:linear-gradient(90deg,transparent,var(--cyan),transparent)}
+.m-card:hover{transform:translateY(-6px);border-color:var(--border-light);box-shadow:0 20px 60px rgba(0,0,0,.3)}
+.m-card .mc-i{width:52px;height:52px;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:1.6rem;margin-bottom:1.2rem}
+.m-card:nth-child(1) .mc-i{background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.15)}
+.m-card:nth-child(2) .mc-i{background:rgba(139,92,246,.08);border:1px solid rgba(139,92,246,.15)}
+.m-card:nth-child(3) .mc-i{background:rgba(6,182,212,.08);border:1px solid rgba(6,182,212,.15)}
+.m-card h3{font-size:1.05rem;font-weight:700;margin-bottom:.5rem}
+.m-card p{font-size:.85rem;color:var(--muted);line-height:1.8}
+
+/* ===== PROJECTS ===== */
+.p-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(350px,1fr));gap:1.5rem}
+.p-card{background:var(--glass);backdrop-filter:blur(16px);border:1px solid var(--border);border-radius:24px;overflow:hidden;transition:all .4s;display:flex;flex-direction:column}
+.p-card:hover{transform:translateY(-6px);border-color:var(--border-light);box-shadow:0 24px 60px rgba(0,0,0,.3)}
+.p-hero{height:210px;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.p-hero .p-bg{position:absolute;inset:0;opacity:.1}
+.p-card:nth-child(1) .p-bg{background:linear-gradient(135deg,var(--blue),var(--cyan))}
+.p-card:nth-child(2) .p-bg{background:linear-gradient(135deg,var(--purple),var(--green))}
+.p-card:nth-child(3) .p-bg{background:linear-gradient(135deg,var(--orange),var(--pink))}
+.p-hero .p-icon{font-size:4.5rem;position:relative;z-index:1;filter:drop-shadow(0 8px 30px rgba(0,0,0,.4))}
+.p-hero .p-num{position:absolute;top:1rem;left:1.2rem;font-family:'Space Grotesk';font-size:.68rem;font-weight:700;color:var(--dim);background:rgba(4,6,14,.5);backdrop-filter:blur(8px);padding:4px 12px;border-radius:100px;z-index:1;border:1px solid var(--border)}
+.p-body{padding:1.6rem 1.8rem 2rem;flex:1;display:flex;flex-direction:column}
+.p-body h3{font-family:'Space Grotesk','Noto Sans KR';font-size:1.12rem;font-weight:700;margin-bottom:.3rem}
+.p-body .p-sub{font-size:.78rem;color:var(--cyan);font-weight:600;margin-bottom:.8rem}
+.p-body .p-desc{font-size:.84rem;color:var(--muted);line-height:1.7;flex:1}
+.p-tags{display:flex;flex-wrap:wrap;gap:.35rem;margin-top:1rem}
+.p-tag{font-size:.62rem;padding:3px 9px;border-radius:100px;background:rgba(255,255,255,.03);border:1px solid var(--border);color:var(--dim);font-weight:500}
+.p-foot{display:flex;justify-content:space-between;align-items:center;margin-top:1.2rem;padding-top:1rem;border-top:1px solid var(--border)}
+.p-status{font-size:.7rem;font-weight:700;padding:4px 12px;border-radius:100px}
+.st-live{background:rgba(16,185,129,.08);color:var(--green);border:1px solid rgba(16,185,129,.15)}
+.st-soon{background:rgba(245,158,11,.08);color:var(--orange);border:1px solid rgba(245,158,11,.15)}
+.p-link{font-size:.82rem;font-weight:600;color:var(--blue);display:flex;align-items:center;gap:.3rem;transition:all .3s}
+.p-link:hover{gap:.6rem;color:var(--cyan)}
+
+/* ===== WORKFLOW ===== */
+.wf-list{display:flex;flex-direction:column;gap:0;position:relative}
+.wf-list::before{content:'';position:absolute;left:31px;top:2.5rem;bottom:2.5rem;width:2px;background:linear-gradient(180deg,var(--purple),var(--blue),var(--cyan),var(--green));border-radius:2px;opacity:.3}
+.wf-item{display:flex;gap:2rem;padding:2.2rem 0;position:relative}
+.wf-dot{width:64px;height:64px;border-radius:20px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;flex-shrink:0;position:relative;z-index:2;backdrop-filter:blur(10px)}
+.wf-item:nth-child(1) .wf-dot{background:rgba(139,92,246,.08);border:1px solid rgba(139,92,246,.2)}
+.wf-item:nth-child(2) .wf-dot{background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.2)}
+.wf-item:nth-child(3) .wf-dot{background:rgba(6,182,212,.08);border:1px solid rgba(6,182,212,.2)}
+.wf-item:nth-child(4) .wf-dot{background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.2)}
+.wf-text{flex:1}
+.wf-text .wf-label{font-family:'Space Grotesk';font-size:.7rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:.3rem}
+.wf-item:nth-child(1) .wf-label{color:var(--purple)}
+.wf-item:nth-child(2) .wf-label{color:var(--blue)}
+.wf-item:nth-child(3) .wf-label{color:var(--cyan)}
+.wf-item:nth-child(4) .wf-label{color:var(--green)}
+.wf-text h3{font-size:1.05rem;font-weight:700;margin-bottom:.4rem}
+.wf-text p{font-size:.86rem;color:var(--muted);line-height:1.8}
+.wf-ex{margin-top:.8rem;padding:.8rem 1rem;background:rgba(255,255,255,.02);border:1px solid var(--border);border-radius:12px;font-size:.78rem;color:var(--muted);line-height:1.6;font-family:'Inter','Noto Sans KR'}
+.wf-ex strong{color:var(--cyan)}
+
+/* ===== QUOTE ===== */
+.quote-sec{text-align:center;padding:6rem 2rem;position:relative;z-index:1}
+.quote-sec::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(139,92,246,.03),rgba(16,185,129,.03));z-index:0}
+.quote-inner{position:relative;z-index:1;max-width:700px;margin:0 auto}
+.q-mark{font-size:5rem;line-height:1;background:linear-gradient(135deg,var(--purple),var(--green));-webkit-background-clip:text;-webkit-text-fill-color:transparent;opacity:.3;font-family:Georgia,serif}
+.q-text{font-family:'Space Grotesk','Noto Sans KR';font-size:1.5rem;font-weight:600;line-height:1.6;margin:.3rem 0 1.5rem}
+.q-author{font-size:.85rem;color:var(--dim)}
+
+/* ===== CONTACT ===== */
+.contact-wrap{text-align:center}
+.contact-card{background:var(--glass);backdrop-filter:blur(20px) saturate(1.3);border:1px solid var(--border);border-radius:32px;padding:4rem 3rem;max-width:700px;margin:0 auto;position:relative;overflow:hidden}
+.contact-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--green),var(--purple),transparent)}
+.contact-card h3{font-family:'Space Grotesk';font-size:1.6rem;font-weight:700;margin-bottom:.6rem}
+.contact-card .c-sub{font-size:.98rem;color:var(--muted);margin-bottom:2.5rem;line-height:1.8}
+.c-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-bottom:1.5rem}
+.c-btn{display:inline-flex;align-items:center;gap:.5rem;padding:14px 28px;border-radius:100px;font-weight:600;font-size:.9rem;transition:all .35s}
+.c-linkedin{background:linear-gradient(135deg,#0077B5,#005fa3);color:#fff;box-shadow:0 4px 20px rgba(0,119,181,.25);border:1px solid rgba(255,255,255,.08)}
+.c-linkedin:hover{transform:translateY(-2px);box-shadow:0 8px 35px rgba(0,119,181,.4)}
+.c-linkedin svg{width:18px;height:18px;fill:#fff}
+.c-email{background:transparent;border:1px solid var(--border-light);color:var(--text)}
+.c-email:hover{border-color:var(--purple);color:var(--purple);transform:translateY(-2px)}
+.c-note{font-size:.78rem;color:var(--dim);line-height:1.7;font-style:italic}
+
+/* ===== FOOTER ===== */
+.footer{text-align:center;padding:3rem 2rem;border-top:1px solid var(--border);position:relative;z-index:1}
+.footer p{font-size:.72rem;color:var(--dim)}
+.footer a{color:var(--blue)}
+
+/* ===== MOBILE ===== */
+@media(max-width:768px){
+  .nav{padding:.8rem 1.2rem}
+  .nav-links a:not(.nav-cta){display:none}
+  .m-grid{grid-template-columns:1fr}
+  .p-grid{grid-template-columns:1fr}
+  .wf-item{flex-direction:column;gap:1rem}
+  .wf-list::before{display:none}
+  .stats-bar{gap:1.5rem}
+  .stat .sv{font-size:1.8rem}
+  .contact-card{padding:2.5rem 1.5rem}
+  .sec{padding:4rem 1.2rem}
+}
+
+/* ===== SCROLL ANIM ===== */
+.rv{opacity:0;transform:translateY(30px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1)}
+.rv.vis{opacity:1;transform:translateY(0)}
+.rv-d1{transition-delay:.1s}.rv-d2{transition-delay:.2s}.rv-d3{transition-delay:.3s}
+
+/* ===== CURSOR GLOW (desktop) ===== */
+.cursor-glow{position:fixed;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(139,92,246,.06),transparent 70%);pointer-events:none;z-index:0;transform:translate(-50%,-50%);transition:opacity .3s}
+</style>
+</head>
+<body>
+
+<!-- CURSOR GLOW -->
+<div class="cursor-glow" id="cursorGlow"></div>
+
+<!-- PARTICLE CANVAS -->
+<canvas id="particleCanvas"></canvas>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <div class="nav-logo"><span class="dot"></span>구건우</div>
+  <div class="nav-links">
+    <a href="#mission">미션</a>
+    <a href="#projects">연구</a>
+    <a href="#workflow">방법론</a>
+    <a href="#contact">연락</a>
+    <a class="nav-cta" href="https://www.linkedin.com/in/%EA%B1%B4%EC%9A%B0-%EA%B5%AC-5aa559341/" target="_blank">
+      <svg viewBox="0 0 24 24"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.3 6.5a1.78 1.78 0 01-1.8 1.75zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0013 14.19a.66.66 0 000 .14V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.36.86 3.36 3.66z"/></svg>
+      1촌 신청
+    </a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-inner">
+    <div class="hero-tag"><span class="tdot"></span>Medical AI · Reverse-Aging · Researcher</div>
+    <h1>
+      <span class="l1">구건우의</span>
+      <span class="l2">할머니를 1년 젊게 해드리기</span>
+      <span class="l3">프로젝트</span>
+    </h1>
+    <p class="hero-p">
+      70대 할머니의 생체나이를 되돌리고 싶은 <em>간절한 마음</em> 하나로 시작했습니다.<br>
+      AI를 연구 동료로 활용하여, 의료 AI 산업과 역노화 과학을 독학합니다.<br>
+      이 사이트는 그 여정의 기록이자, <em>함께 일하고 싶다는 제안</em>입니다.
+    </p>
+    <div class="hero-btns">
+      <a class="btn-g primary" href="#projects">연구 프로젝트 보기 ↓</a>
+      <a class="btn-g secondary" href="https://www.linkedin.com/in/%EA%B1%B4%EC%9A%B0-%EA%B5%AC-5aa559341/" target="_blank">LinkedIn 연결하기</a>
+    </div>
+    <div class="stats-bar">
+      <div class="stat"><span class="sv" data-t="2">0</span><span class="sl">리서치<br>프로젝트</span></div>
+      <div class="stat"><span class="sv" data-t="24">0</span><span class="sl">분석한<br>기업 수</span></div>
+      <div class="stat"><span class="sv" data-t="15">0</span><span class="sl">역노화<br>후보물질</span></div>
+      <div class="stat"><span class="sv" data-t="47">0</span><span class="sl">참고<br>논문 수</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- MISSION -->
+<section class="sec" id="mission">
+  <span class="sec-eye">Mission</span>
+  <h2>왜 이것을 하는가</h2>
+  <p class="lead">기술은 배울 수 있습니다. 하지만 의학과 환자를 향한 진심은 가르칠 수 없습니다.</p>
+  <div class="m-grid">
+    <div class="m-card rv">
+      <div class="mc-i">👵</div>
+      <h3>출발점: 할머니</h3>
+      <p>70대 할머니의 건강이 걱정되기 시작한 그 날, 저는 처음으로 "역노화"를 검색했습니다. 비전공자이지만, 가족을 위해 과학을 읽기 시작했습니다.</p>
+    </div>
+    <div class="m-card rv rv-d1">
+      <div class="mc-i">🤖</div>
+      <h3>방법: AI와 함께 연구</h3>
+      <p>AI를 연구 동료로 활용하여, 비전공자도 논문을 읽고, 산업을 분석하고, 후보물질을 평가할 수 있다는 것을 직접 증명하고 있습니다.</p>
+    </div>
+    <div class="m-card rv rv-d2">
+      <div class="mc-i">🚀</div>
+      <h3>목표: 함께 일하기</h3>
+      <p>이 연구를 혼자 하는 것보다, 의료 AI·역노화 스타트업에서 함께 하면 100배 빠릅니다. 도메인 이해도 + AI 활용 실행력을 가진 팀원이 되고 싶습니다.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section class="sec" id="projects">
+  <span class="sec-eye">Research Projects</span>
+  <h2>연구 프로젝트</h2>
+  <p class="lead">각 프로젝트는 독립된 리서치이면서, 도메인 지식과 AI 활용 능력의 증거입니다.</p>
+  <div class="p-grid">
+    <div class="p-card rv">
+      <div class="p-hero"><div class="p-bg"></div><span class="p-num">#01</span><span class="p-icon">🗺️</span></div>
+      <div class="p-body">
+        <h3>AI 의료기기 글로벌 인허가 지형도 2026</h3>
+        <div class="p-sub">Medical AI · FDA · MFDS · CE Mark</div>
+        <div class="p-desc">FDA(1,451개)·식약처(62개)·EU 3대 규제기관의 AI 의료기기 인허가 경로를 비교. 한국 5사의 실제 인허가 현황 매핑. 2026년 규제 변화 타임라인.</div>
+        <div class="p-tags">
+          <span class="p-tag">FDA 510(k)</span><span class="p-tag">MFDS</span><span class="p-tag">EU AI Act</span><span class="p-tag">SaMD</span><span class="p-tag">PCCP</span>
+        </div>
+        <div class="p-foot">
+          <span class="p-status st-live">LIVE</span>
+          <a class="p-link" href="medical_ai_regulatory_map.html">자세히 보기 →</a>
+        </div>
+      </div>
+    </div>
+    <div class="p-card rv rv-d1">
+      <div class="p-hero"><div class="p-bg"></div><span class="p-num">#02</span><span class="p-icon">🧬</span></div>
+      <div class="p-body">
+        <h3>역노화 후보물질 연구: 12 Hallmarks × 15 Candidates</h3>
+        <div class="p-sub">Reverse-Aging · Hallmarks · Protocol Design</div>
+        <div class="p-desc">노화의 12가지 hallmarks에 대응하는 15가지 후보물질을 S~C 등급으로 평가. 70대 할머니 맞춤 3단계 프로토콜 설계.</div>
+        <div class="p-tags">
+          <span class="p-tag">Hallmarks of Aging</span><span class="p-tag">GLP-1RA</span><span class="p-tag">Rapamycin</span><span class="p-tag">Senolytics</span>
+        </div>
+        <div class="p-foot">
+          <span class="p-status st-live">LIVE</span>
+          <a class="p-link" href="reverse_aging_candidates.html">자세히 보기 →</a>
+        </div>
+      </div>
+    </div>
+    <div class="p-card rv rv-d2" style="opacity:.5">
+      <div class="p-hero"><div class="p-bg"></div><span class="p-num">#03</span><span class="p-icon">📊</span></div>
+      <div class="p-body">
+        <h3>한국 의료 AI · 역노화 스타트업 시장 지도</h3>
+        <div class="p-sub">Startup Analysis · Financial · Strategy</div>
+        <div class="p-desc">루닛·뷰노·하플사이언스 등 9개 기업의 기술·재무·전략 종합 분석. VUNO 감사보고서 해석, GLP-1RA 시장 기회 분석.</div>
+        <div class="p-tags">
+          <span class="p-tag">Lunit</span><span class="p-tag">VUNO</span><span class="p-tag">HaplnScience</span><span class="p-tag">K-IFRS</span>
+        </div>
+        <div class="p-foot">
+          <span class="p-status st-soon">COMING SOON</span>
+          <span class="p-link" style="color:var(--dim)">준비 중</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUOTE -->
+<section class="quote-sec">
+  <div class="quote-inner rv">
+    <div class="q-mark">&ldquo;</div>
+    <div class="q-text">기술은 가르칠 수 있지만,<br>의학과 환자에 대한 집착은 가르칠 수 없다.</div>
+    <div class="q-author">&mdash; 의료 AI 스타트업 대표들이 공통으로 하는 말</div>
+  </div>
+</section>
+
+<!-- WORKFLOW -->
+<section class="sec" id="workflow">
+  <span class="sec-eye">AI Workflow</span>
+  <h2>비전공자의 AI 리서치 방법론</h2>
+  <p class="lead">이 사이트의 모든 연구는 아래 4단계로 만들어졌습니다. 누구나 재현할 수 있습니다.</p>
+  <div class="wf-list">
+    <div class="wf-item rv">
+      <div class="wf-dot">🎯</div>
+      <div class="wf-text">
+        <div class="wf-label">Step 1</div>
+        <h3>거대한 질문을 작은 질문으로 분해</h3>
+        <p>"한국 의료 AI 시장은?"이라는 거대한 질문을 12개의 작은 질문으로 쪼갭니다. 질문을 잘 쪼개는 능력이 AI 활용의 80%입니다.</p>
+        <div class="wf-ex"><strong>예시:</strong> "역노화 후보물질" → "hallmarks는 몇 개?" + "각 hallmark별 후보물질은?" + "70대 여성에게 안전한가?" + "임상 근거 수준은?"</div>
+      </div>
+    </div>
+    <div class="wf-item rv">
+      <div class="wf-dot">🤖</div>
+      <div class="wf-text">
+        <div class="wf-label">Step 2</div>
+        <h3>AI를 "연구 동료"로 활용</h3>
+        <p>AI에게 역할을 부여합니다. "너는 FDA 규제 전문가야" — 역할 + 맥락 + 구체적 요청 = 전문가급 출력.</p>
+        <div class="wf-ex"><strong>프롬프트:</strong> "2023 Cell 논문 기준 12 hallmarks에 대응하는 후보물질을 매핑해줘. 물질별로 (1) 메커니즘 (2) 임상 근거 (3) 70대 여성 안전성 포함."</div>
+      </div>
+    </div>
+    <div class="wf-item rv">
+      <div class="wf-dot">✅</div>
+      <div class="wf-text">
+        <div class="wf-label">Step 3</div>
+        <h3>3중 교차검증</h3>
+        <p>AI 출력을 3개 독립 출처에서 확인합니다. (1) 정부 공식 사이트 (2) 기업 공시자료 (3) 학술 논문. 불일치 시 가장 권위 있는 출처를 채택.</p>
+        <div class="wf-ex"><strong>실제 사례:</strong> VUNO "왜 적자?" → 감사보고서 ZIP 직접 분석 → K-IFRS 5년치 영업손실(-176억→-46억) 직접 확인.</div>
+      </div>
+    </div>
+    <div class="wf-item rv">
+      <div class="wf-dot">🎨</div>
+      <div class="wf-text">
+        <div class="wf-label">Step 4</div>
+        <h3>시각화 + 공개 발행</h3>
+        <p>검증된 데이터를 인터랙티브 웹으로 시각화. "조사했다"가 아니라 "이것을 만들었다"는 결과물. 이 사이트 자체가 Step 4의 산출물입니다.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="sec" id="contact">
+  <div class="contact-wrap">
+    <div class="contact-card rv">
+      <h3>함께 일하고 싶습니다</h3>
+      <div class="c-sub">의료 AI·역노화 분야에서 도메인 이해도와 AI 활용 실행력을<br>갖춘 팀원을 찾고 계시다면, 연결해주세요.</div>
+      <div class="c-btns">
+        <a class="c-btn c-linkedin" href="https://www.linkedin.com/in/%EA%B1%B4%EC%9A%B0-%EA%B5%AC-5aa559341/" target="_blank">
+          <svg viewBox="0 0 24 24"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.3 6.5a1.78 1.78 0 01-1.8 1.75zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0013 14.19a.66.66 0 000 .14V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.36.86 3.36 3.66z"/></svg>
+          LinkedIn 1촌 신청하기
+        </a>
+        <a class="c-btn c-email" href="mailto:godscience2024@gmail.com">godscience2024@gmail.com</a>
+      </div>
+      <div class="c-note">"귀사에 대해 제가 이렇게 이해했습니다. 틀린 부분이 있다면 알려주세요."<br>— 부탁이 아니라 기여로 시작하겠습니다.</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <p>구건우 — 할머니를 1년 젊게 해드리기 프로젝트 &copy; 2026</p>
+  <p style="margin-top:.4rem">Built with AI-assisted research workflow · <a href="https://www.linkedin.com/in/%EA%B1%B4%EC%9A%B0-%EA%B5%AC-5aa559341/" target="_blank">LinkedIn</a></p>
+</footer>
+
+<script>
+// ===== PARTICLE CANVAS =====
+const canvas=document.getElementById('particleCanvas');
+const ctx=canvas.getContext('2d');
+let particles=[];
+let w,h;
+
+function resize(){w=canvas.width=window.innerWidth;h=canvas.height=window.innerHeight}
+resize();
+window.addEventListener('resize',resize);
+
+class Particle{
+  constructor(){this.reset()}
+  reset(){
+    this.x=Math.random()*w;this.y=Math.random()*h;
+    this.size=Math.random()*1.5+.5;
+    this.speedX=(Math.random()-.5)*.15;
+    this.speedY=(Math.random()-.5)*.15;
+    this.opacity=Math.random()*.3+.05;
+    this.color=Math.random()>.5?'139,92,246':'16,185,129';
+  }
+  update(){
+    this.x+=this.speedX;this.y+=this.speedY;
+    if(this.x<0||this.x>w||this.y<0||this.y>h)this.reset();
+  }
+  draw(){
+    ctx.beginPath();
+    ctx.arc(this.x,this.y,this.size,0,Math.PI*2);
+    ctx.fillStyle=`rgba(${this.color},${this.opacity})`;
+    ctx.fill();
+  }
+}
+
+for(let i=0;i<80;i++)particles.push(new Particle());
+
+function animateParticles(){
+  ctx.clearRect(0,0,w,h);
+  particles.forEach(p=>{p.update();p.draw()});
+  // Draw connections
+  for(let i=0;i<particles.length;i++){
+    for(let j=i+1;j<particles.length;j++){
+      const dx=particles[i].x-particles[j].x;
+      const dy=particles[i].y-particles[j].y;
+      const dist=Math.sqrt(dx*dx+dy*dy);
+      if(dist<120){
+        ctx.beginPath();
+        ctx.moveTo(particles[i].x,particles[i].y);
+        ctx.lineTo(particles[j].x,particles[j].y);
+        ctx.strokeStyle=`rgba(139,92,246,${.03*(1-dist/120)})`;
+        ctx.lineWidth=.5;
+        ctx.stroke();
+      }
+    }
+  }
+  requestAnimationFrame(animateParticles);
+}
+animateParticles();
+
+// ===== CURSOR GLOW =====
+const glow=document.getElementById('cursorGlow');
+let mouseX=0,mouseY=0,glowX=0,glowY=0;
+document.addEventListener('mousemove',e=>{mouseX=e.clientX;mouseY=e.clientY});
+function updateGlow(){
+  glowX+=(mouseX-glowX)*.08;
+  glowY+=(mouseY-glowY)*.08;
+  glow.style.left=glowX+'px';
+  glow.style.top=glowY+'px';
+  requestAnimationFrame(updateGlow);
+}
+updateGlow();
+
+// ===== NAV SCROLL =====
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>60));
+
+// ===== SCROLL REVEAL =====
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('vis')})
+},{threshold:.12});
+document.querySelectorAll('.rv').forEach(el=>obs.observe(el));
+
+// ===== COUNTER =====
+function animNum(el,target,dur=2000){
+  const start=performance.now();
+  (function tick(now){
+    const p=Math.min((now-start)/dur,1);
+    el.textContent=Math.round(target*(1-Math.pow(1-p,3)));
+    if(p<1)requestAnimationFrame(tick);
+  })(start);
+}
+const sObs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.querySelectorAll('.sv').forEach(s=>animNum(s,+s.dataset.t,1800));
+      sObs.disconnect();
+    }
+  });
+},{threshold:.3});
+sObs.observe(document.querySelector('.stats-bar'));
+
+// ===== SMOOTH NAV =====
+document.querySelectorAll('.nav-links a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    e.preventDefault();
+    document.querySelector(a.getAttribute('href')).scrollIntoView({behavior:'smooth'});
+  });
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,1147 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 의료기기 글로벌 인허가 지형도 2026 | 구건우</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;900&family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+  :root {
+    --bg: #0a0e1a;
+    --surface: #111827;
+    --surface2: #1a2235;
+    --border: #1e293b;
+    --text: #e2e8f0;
+    --text-muted: #94a3b8;
+    --accent-blue: #3b82f6;
+    --accent-cyan: #06b6d4;
+    --accent-purple: #8b5cf6;
+    --accent-green: #10b981;
+    --accent-orange: #f59e0b;
+    --accent-red: #ef4444;
+    --accent-pink: #ec4899;
+    --glow-blue: rgba(59,130,246,0.15);
+    --glow-cyan: rgba(6,182,212,0.15);
+    --glow-purple: rgba(139,92,246,0.15);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Noto Sans KR', 'Inter', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ===== HOME LINK ===== */
+  .home-link {
+    color: var(--accent-cyan);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    padding: 5px 14px;
+    border-radius: 100px;
+    border: 1px solid rgba(6,182,212,0.2);
+    background: rgba(6,182,212,0.06);
+    transition: all 0.3s;
+    white-space: nowrap;
+  }
+  .home-link:hover {
+    background: rgba(6,182,212,0.15);
+    border-color: rgba(6,182,212,0.4);
+    transform: translateX(-2px);
+  }
+
+  /* ===== FLOATING TOP BAR ===== */
+  .top-bar {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.6rem 2rem;
+    background: rgba(10,14,26,0.85);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(59,130,246,0.15);
+    transition: transform 0.3s;
+  }
+  .top-bar .author-name {
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--text);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .top-bar .author-name .dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--accent-green);
+    display: inline-block;
+    animation: pulse-dot 2s infinite;
+  }
+  @keyframes pulse-dot {
+    0%,100% { opacity: 1; box-shadow: 0 0 0 0 rgba(16,185,129,0.4); }
+    50% { opacity: 0.8; box-shadow: 0 0 0 6px rgba(16,185,129,0); }
+  }
+  .linkedin-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 7px 20px;
+    background: linear-gradient(135deg, #0077B5, #0a66c2);
+    color: white;
+    text-decoration: none;
+    border-radius: 100px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    transition: transform 0.3s, box-shadow 0.3s;
+    box-shadow: 0 2px 12px rgba(0,119,181,0.3);
+  }
+  .linkedin-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 24px rgba(0,119,181,0.5);
+  }
+  .linkedin-btn svg { width: 16px; height: 16px; fill: white; }
+
+  /* ===== HERO ===== */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 2rem;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -50%; left: -50%;
+    width: 200%; height: 200%;
+    background: radial-gradient(ellipse at 30% 20%, rgba(59,130,246,0.08) 0%, transparent 50%),
+                radial-gradient(ellipse at 70% 80%, rgba(139,92,246,0.06) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 50%, rgba(6,182,212,0.04) 0%, transparent 60%);
+    animation: bgShift 20s ease-in-out infinite alternate;
+  }
+  @keyframes bgShift {
+    0% { transform: translate(0,0) rotate(0deg); }
+    100% { transform: translate(-3%,2%) rotate(2deg); }
+  }
+  .hero-content { position: relative; z-index: 1; max-width: 900px; }
+  .hero-badge {
+    display: inline-block;
+    padding: 6px 18px;
+    border-radius: 100px;
+    background: rgba(59,130,246,0.12);
+    border: 1px solid rgba(59,130,246,0.25);
+    color: var(--accent-blue);
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    margin-bottom: 2rem;
+    backdrop-filter: blur(10px);
+  }
+  .hero h1 {
+    font-size: clamp(2.2rem, 5vw, 3.8rem);
+    font-weight: 900;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(135deg, #e2e8f0, #3b82f6, #8b5cf6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .hero p {
+    font-size: 1.15rem;
+    color: var(--text-muted);
+    max-width: 650px;
+    margin: 0 auto 2.5rem;
+    line-height: 1.8;
+  }
+  .hero-stats {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+  }
+  .hero-stat {
+    text-align: center;
+    padding: 1.5rem 2rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    backdrop-filter: blur(10px);
+    min-width: 160px;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .hero-stat:hover { transform: translateY(-4px); box-shadow: 0 8px 30px rgba(59,130,246,0.15); }
+  .hero-stat .number {
+    font-family: 'Inter', sans-serif;
+    font-size: 2.4rem;
+    font-weight: 800;
+    display: block;
+    margin-bottom: 0.3rem;
+  }
+  .hero-stat:nth-child(1) .number { color: var(--accent-blue); }
+  .hero-stat:nth-child(2) .number { color: var(--accent-cyan); }
+  .hero-stat:nth-child(3) .number { color: var(--accent-purple); }
+  .hero-stat:nth-child(4) .number { color: var(--accent-green); }
+  .hero-stat .label { font-size: 0.82rem; color: var(--text-muted); font-weight: 400; }
+
+  /* ===== SCROLL INDICATOR ===== */
+  .scroll-indicator {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    animation: bounce 2s infinite;
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    text-align: center;
+  }
+  .scroll-indicator svg { display: block; margin: 0.5rem auto 0; width: 24px; }
+  @keyframes bounce { 0%,100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(8px); } }
+
+  /* ===== SECTIONS ===== */
+  .section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 5rem 2rem;
+  }
+  .section-label {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent-blue);
+    margin-bottom: 0.8rem;
+  }
+  .section h2 {
+    font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+    font-weight: 800;
+    margin-bottom: 1rem;
+    line-height: 1.3;
+  }
+  .section .subtitle {
+    font-size: 1.05rem;
+    color: var(--text-muted);
+    max-width: 700px;
+    margin-bottom: 3rem;
+    line-height: 1.8;
+  }
+
+  /* ===== REGULATORY COMPARISON CARDS ===== */
+  .reg-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+  .reg-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .reg-card:hover { transform: translateY(-4px); }
+  .reg-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    border-radius: 20px 20px 0 0;
+  }
+  .reg-card.fda::before { background: linear-gradient(90deg, var(--accent-blue), var(--accent-cyan)); }
+  .reg-card.fda:hover { box-shadow: 0 8px 40px rgba(59,130,246,0.12); }
+  .reg-card.mfds::before { background: linear-gradient(90deg, var(--accent-purple), var(--accent-pink)); }
+  .reg-card.mfds:hover { box-shadow: 0 8px 40px rgba(139,92,246,0.12); }
+  .reg-card.ce::before { background: linear-gradient(90deg, var(--accent-green), var(--accent-cyan)); }
+  .reg-card.ce:hover { box-shadow: 0 8px 40px rgba(16,185,129,0.12); }
+
+  .reg-card .flag { font-size: 2.5rem; margin-bottom: 0.8rem; }
+  .reg-card h3 { font-size: 1.3rem; font-weight: 700; margin-bottom: 0.3rem; }
+  .reg-card .agency { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.5rem; }
+
+  .pathway {
+    background: var(--surface2);
+    border-radius: 12px;
+    padding: 1rem 1.2rem;
+    margin-bottom: 0.8rem;
+    border-left: 3px solid transparent;
+    transition: border-color 0.3s;
+  }
+  .reg-card.fda .pathway { border-left-color: var(--accent-blue); }
+  .reg-card.mfds .pathway { border-left-color: var(--accent-purple); }
+  .reg-card.ce .pathway { border-left-color: var(--accent-green); }
+  .pathway .pw-name {
+    font-weight: 700;
+    font-size: 0.95rem;
+    margin-bottom: 0.3rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .pathway .pw-name .risk-tag {
+    font-size: 0.65rem;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 100px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .risk-low { background: rgba(16,185,129,0.15); color: var(--accent-green); }
+  .risk-mid { background: rgba(245,158,11,0.15); color: var(--accent-orange); }
+  .risk-high { background: rgba(239,68,68,0.15); color: var(--accent-red); }
+  .pathway .pw-desc { font-size: 0.82rem; color: var(--text-muted); line-height: 1.6; }
+  .pathway .pw-time { font-size: 0.78rem; color: var(--accent-cyan); margin-top: 0.4rem; font-weight: 500; }
+
+  .reg-card .stat-row {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1.5rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--border);
+  }
+  .reg-card .stat-item { text-align: center; }
+  .reg-card .stat-item .val { font-family: 'Inter'; font-weight: 800; font-size: 1.5rem; }
+  .reg-card.fda .stat-item .val { color: var(--accent-blue); }
+  .reg-card.mfds .stat-item .val { color: var(--accent-purple); }
+  .reg-card.ce .stat-item .val { color: var(--accent-green); }
+  .reg-card .stat-item .stat-label { font-size: 0.72rem; color: var(--text-muted); margin-top: 0.2rem; }
+
+  /* ===== FLOW DIAGRAM ===== */
+  .flow-section { background: var(--surface); border-radius: 24px; padding: 3rem 2rem; margin-top: 3rem; border: 1px solid var(--border); }
+  .flow-title { font-size: 1.3rem; font-weight: 700; margin-bottom: 2rem; text-align: center; }
+  .flow-container { display: flex; align-items: center; justify-content: center; gap: 0; flex-wrap: wrap; padding: 1rem 0; }
+  .flow-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    min-width: 130px;
+    max-width: 160px;
+  }
+  .flow-step .circle {
+    width: 64px; height: 64px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.6rem;
+    margin-bottom: 0.8rem;
+    position: relative;
+    z-index: 1;
+  }
+  .flow-step .circle.blue { background: rgba(59,130,246,0.15); border: 2px solid var(--accent-blue); }
+  .flow-step .circle.purple { background: rgba(139,92,246,0.15); border: 2px solid var(--accent-purple); }
+  .flow-step .circle.cyan { background: rgba(6,182,212,0.15); border: 2px solid var(--accent-cyan); }
+  .flow-step .circle.green { background: rgba(16,185,129,0.15); border: 2px solid var(--accent-green); }
+  .flow-step .circle.orange { background: rgba(245,158,11,0.15); border: 2px solid var(--accent-orange); }
+  .flow-step .step-title { font-size: 0.82rem; font-weight: 600; margin-bottom: 0.3rem; }
+  .flow-step .step-desc { font-size: 0.72rem; color: var(--text-muted); line-height: 1.5; }
+  .flow-arrow {
+    font-size: 1.5rem;
+    color: var(--text-muted);
+    margin: 0 0.3rem;
+    opacity: 0.4;
+    flex-shrink: 0;
+  }
+
+  /* ===== COMPANY MAPPING ===== */
+  .company-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+  .company-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 1.8rem;
+    transition: transform 0.3s, box-shadow 0.3s;
+    position: relative;
+  }
+  .company-card:hover { transform: translateY(-3px); box-shadow: 0 8px 30px rgba(59,130,246,0.08); }
+  .company-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem; }
+  .company-name { font-size: 1.2rem; font-weight: 700; }
+  .company-ticker { font-size: 0.75rem; color: var(--accent-cyan); background: rgba(6,182,212,0.1); padding: 3px 10px; border-radius: 100px; font-weight: 500; }
+  .company-focus { font-size: 0.82rem; color: var(--text-muted); margin-bottom: 1.2rem; line-height: 1.6; }
+  .approval-list { list-style: none; }
+  .approval-list li {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid rgba(30,41,59,0.5);
+    font-size: 0.85rem;
+  }
+  .approval-list li:last-child { border-bottom: none; }
+  .approval-flag { font-size: 1rem; flex-shrink: 0; }
+  .approval-badge {
+    font-size: 0.65rem;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 100px;
+    flex-shrink: 0;
+  }
+  .badge-510k { background: rgba(59,130,246,0.15); color: var(--accent-blue); }
+  .badge-denovo { background: rgba(139,92,246,0.15); color: var(--accent-purple); }
+  .badge-ce { background: rgba(16,185,129,0.15); color: var(--accent-green); }
+  .badge-mfds { background: rgba(236,72,153,0.15); color: var(--accent-pink); }
+  .badge-pma { background: rgba(239,68,68,0.15); color: var(--accent-red); }
+  .approval-text { color: var(--text-muted); font-size: 0.82rem; }
+  .company-revenue {
+    margin-top: 1rem; padding-top: 1rem;
+    border-top: 1px solid var(--border);
+    display: flex; justify-content: space-between;
+  }
+  .revenue-item { text-align: center; }
+  .revenue-item .rv { font-family: 'Inter'; font-weight: 700; font-size: 1.1rem; color: var(--accent-blue); }
+  .revenue-item .rl { font-size: 0.7rem; color: var(--text-muted); margin-top: 0.15rem; }
+
+  /* ===== TIMELINE ===== */
+  .timeline { margin-top: 3rem; position: relative; padding-left: 2rem; }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 8px; top: 0; bottom: 0;
+    width: 2px;
+    background: linear-gradient(180deg, var(--accent-blue), var(--accent-purple), var(--accent-green));
+    border-radius: 2px;
+  }
+  .tl-item { position: relative; margin-bottom: 2rem; padding-left: 1.5rem; }
+  .tl-item::before {
+    content: '';
+    position: absolute;
+    left: -1.55rem; top: 0.5rem;
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    background: var(--accent-blue);
+    border: 3px solid var(--bg);
+  }
+  .tl-item:nth-child(2)::before { background: var(--accent-cyan); }
+  .tl-item:nth-child(3)::before { background: var(--accent-purple); }
+  .tl-item:nth-child(4)::before { background: var(--accent-green); }
+  .tl-item:nth-child(5)::before { background: var(--accent-orange); }
+  .tl-date { font-size: 0.78rem; font-weight: 600; color: var(--accent-cyan); margin-bottom: 0.3rem; }
+  .tl-title { font-size: 1rem; font-weight: 600; margin-bottom: 0.3rem; }
+  .tl-desc { font-size: 0.85rem; color: var(--text-muted); line-height: 1.6; }
+
+  /* ===== INSIGHT BOX ===== */
+  .insight-box {
+    background: linear-gradient(135deg, rgba(59,130,246,0.08), rgba(139,92,246,0.08));
+    border: 1px solid rgba(59,130,246,0.2);
+    border-radius: 20px;
+    padding: 2.5rem;
+    margin-top: 3rem;
+  }
+  .insight-box h3 {
+    font-size: 1.2rem; font-weight: 700;
+    margin-bottom: 1rem;
+    display: flex; align-items: center; gap: 0.5rem;
+  }
+  .insight-box p { font-size: 0.95rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 0.8rem; }
+  .insight-box .highlight { color: var(--accent-blue); font-weight: 600; }
+
+  /* ===== METHODOLOGY ===== */
+  .method-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.2rem;
+    margin-top: 2rem;
+  }
+  .method-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.5rem;
+    text-align: center;
+    transition: transform 0.3s;
+  }
+  .method-card:hover { transform: translateY(-3px); }
+  .method-card .m-icon { font-size: 2rem; margin-bottom: 0.8rem; }
+  .method-card .m-title { font-weight: 600; font-size: 0.95rem; margin-bottom: 0.4rem; }
+  .method-card .m-desc { font-size: 0.8rem; color: var(--text-muted); line-height: 1.6; }
+
+  /* ===== AUTHOR ===== */
+  .author-section {
+    background: linear-gradient(135deg, var(--surface), var(--surface2));
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    padding: 3rem;
+    margin-top: 4rem;
+    text-align: center;
+  }
+  .author-section h3 { font-size: 1.4rem; font-weight: 700; margin-bottom: 1rem; }
+  .author-section .author-story {
+    font-size: 1rem;
+    color: var(--text-muted);
+    max-width: 700px;
+    margin: 0 auto 1.5rem;
+    line-height: 2;
+  }
+  .author-section .author-story em {
+    color: var(--text);
+    font-style: normal;
+    font-weight: 500;
+  }
+  .author-cta {
+    display: inline-block;
+    padding: 12px 32px;
+    background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+    color: white;
+    text-decoration: none;
+    border-radius: 100px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .author-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(59,130,246,0.3); }
+
+  /* ===== FOOTER ===== */
+  .footer {
+    text-align: center;
+    padding: 3rem 2rem;
+    color: var(--text-muted);
+    font-size: 0.78rem;
+    border-top: 1px solid var(--border);
+    margin-top: 3rem;
+  }
+  .footer a { color: var(--accent-blue); text-decoration: none; }
+
+  /* ===== CHART ===== */
+  .chart-container {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 2rem;
+    margin-top: 2rem;
+  }
+  .chart-title { font-size: 1.05rem; font-weight: 600; margin-bottom: 1.5rem; text-align: center; }
+  .bar-chart { display: flex; align-items: flex-end; justify-content: center; gap: 1.2rem; height: 220px; padding: 0 1rem; }
+  .bar-group { display: flex; flex-direction: column; align-items: center; gap: 0.4rem; flex: 1; max-width: 80px; }
+  .bar {
+    width: 100%;
+    border-radius: 8px 8px 4px 4px;
+    min-height: 4px;
+    transition: height 1s ease-out;
+    position: relative;
+  }
+  .bar.fda-bar { background: linear-gradient(180deg, var(--accent-blue), rgba(59,130,246,0.4)); }
+  .bar.mfds-bar { background: linear-gradient(180deg, var(--accent-purple), rgba(139,92,246,0.4)); }
+  .bar-val { font-family: 'Inter'; font-size: 0.72rem; font-weight: 700; color: var(--text); }
+  .bar-year { font-size: 0.72rem; color: var(--text-muted); font-weight: 500; }
+  .chart-legend { display: flex; justify-content: center; gap: 2rem; margin-top: 1.5rem; }
+  .legend-item { display: flex; align-items: center; gap: 0.4rem; font-size: 0.78rem; color: var(--text-muted); }
+  .legend-dot { width: 10px; height: 10px; border-radius: 3px; }
+  .legend-dot.blue { background: var(--accent-blue); }
+  .legend-dot.purple { background: var(--accent-purple); }
+
+  /* ===== TABS ===== */
+  .tab-container { margin-top: 2rem; }
+  .tab-buttons { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
+  .tab-btn {
+    padding: 8px 20px;
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    background: transparent;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-family: 'Noto Sans KR', sans-serif;
+  }
+  .tab-btn:hover { border-color: var(--accent-blue); color: var(--text); }
+  .tab-btn.active { background: var(--accent-blue); border-color: var(--accent-blue); color: white; }
+  .tab-content { display: none; }
+  .tab-content.active { display: block; animation: fadeIn 0.4s ease; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 768px) {
+    .hero-stats { gap: 1rem; }
+    .hero-stat { min-width: 140px; padding: 1rem 1.2rem; }
+    .hero-stat .number { font-size: 1.8rem; }
+    .reg-grid, .company-grid { grid-template-columns: 1fr; }
+    .flow-container { flex-direction: column; gap: 0.5rem; }
+    .flow-arrow { transform: rotate(90deg); }
+    .bar-chart { height: 160px; gap: 0.6rem; }
+    .section { padding: 3rem 1.2rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== FLOATING TOP BAR ===== -->
+<div class="top-bar">
+  <a href="index.html" class="home-link">&larr; 포트폴리오 홈</a>
+  <div class="author-name">
+    <span class="dot"></span> 구건우 &mdash; AI &times; Medical Domain Research
+  </div>
+  <a class="linkedin-btn" href="https://www.linkedin.com/in/%EA%B1%B4%EC%9A%B0-%EA%B5%AC-5aa559341/" target="_blank">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.3 6.5a1.78 1.78 0 01-1.8 1.75zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0013 14.19a.66.66 0 000 .14V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.36.86 3.36 3.66z"/></svg>
+    1촌 신청하기
+  </a>
+</div>
+
+<!-- ===== HERO ===== -->
+<div class="hero" style="padding-top:5rem;">
+  <div class="hero-content">
+    <span class="hero-badge">Portfolio Piece #1 &mdash; 구건우 &middot; Domain Knowledge &times; AI</span>
+    <h1>AI 의료기기<br>글로벌 인허가 지형도 2026</h1>
+    <p>
+      FDA&middot;식약처&middot;CE 3대 규제 기관의 AI 의료기기 인허가 경로를 비교하고,<br>
+      한국 기업들이 어디서 어떤 경로로 승인을 받고 있는지를 한눈에 읽는 지도.
+    </p>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <span class="number" id="counter1">0</span>
+        <span class="label">FDA 누적 승인<br>(2025년 말 기준)</span>
+      </div>
+      <div class="hero-stat">
+        <span class="number" id="counter2">0</span>
+        <span class="label">2025년 신규 승인<br>(FDA 단년)</span>
+      </div>
+      <div class="hero-stat">
+        <span class="number" id="counter3">0</span>
+        <span class="label">한국 식약처<br>혁신의료기기 허가</span>
+      </div>
+      <div class="hero-stat">
+        <span class="number" id="counter4">0</span>
+        <span class="label">SaMD 비율<br>(FDA 승인 중)</span>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-indicator">
+    아래로 스크롤
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M19 14l-7 7m0 0l-7-7m7 7V3"/></svg>
+  </div>
+</div>
+
+<!-- ===== SECTION 1: 3대 규제기관 비교 ===== -->
+<div class="section" id="regulatory">
+  <span class="section-label">Section 01</span>
+  <h2>3대 규제기관, 무엇이 다른가</h2>
+  <p class="subtitle">
+    같은 AI 의료기기라도 미국&middot;한국&middot;유럽에서 요구하는 인허가 경로가 전혀 다릅니다.
+    각 기관의 핵심 경로와 소요 시간, 2025년 현황을 비교합니다.
+  </p>
+
+  <div class="reg-grid">
+    <!-- FDA -->
+    <div class="reg-card fda">
+      <div class="flag">🇺🇸</div>
+      <h3>FDA</h3>
+      <div class="agency">Food and Drug Administration &middot; 미국</div>
+
+      <div class="pathway">
+        <div class="pw-name">510(k) <span class="risk-tag risk-low">중&middot;저위험</span></div>
+        <div class="pw-desc">기존에 승인된 유사 의료기기(predicate)와 "실질적 동등성"을 입증하는 경로. AI 의료기기의 96% 이상이 이 경로로 승인됩니다.</div>
+        <div class="pw-time">⏱ 평균 3~6개월 | 비용 $12,000~$20,000</div>
+      </div>
+      <div class="pathway">
+        <div class="pw-name">De Novo <span class="risk-tag risk-mid">신규&middot;저위험</span></div>
+        <div class="pw-desc">기존 유사 제품이 없는 새로운 유형의 의료기기를 위한 경로. 위험도가 낮~중간일 때 사용합니다. 승인 후 다른 기기의 predicate가 될 수 있습니다.</div>
+        <div class="pw-time">⏱ 평균 6~12개월 | 비용 $30,000+</div>
+      </div>
+      <div class="pathway">
+        <div class="pw-name">PMA <span class="risk-tag risk-high">고위험</span></div>
+        <div class="pw-desc">생명에 직접 영향을 미치는 고위험 의료기기를 위한 가장 엄격한 경로. 대규모 임상시험 데이터가 필요합니다.</div>
+        <div class="pw-time">⏱ 평균 1~3년 | 비용 $300,000+</div>
+      </div>
+
+      <div class="stat-row">
+        <div class="stat-item"><div class="val">1,451</div><div class="stat-label">누적 승인</div></div>
+        <div class="stat-item"><div class="val">295</div><div class="stat-label">2025 신규</div></div>
+        <div class="stat-item"><div class="val">96%</div><div class="stat-label">510(k) 비율</div></div>
+      </div>
+    </div>
+
+    <!-- MFDS -->
+    <div class="reg-card mfds">
+      <div class="flag">🇰🇷</div>
+      <h3>MFDS (식약처)</h3>
+      <div class="agency">식품의약품안전처 &middot; 한국</div>
+
+      <div class="pathway">
+        <div class="pw-name">인증 <span class="risk-tag risk-low">1&middot;2등급</span></div>
+        <div class="pw-desc">위험도가 낮은 의료기기. 지정된 인증기관에서 기술문서 심사로 인증받습니다. 건강 모니터링 앱 등이 해당됩니다.</div>
+        <div class="pw-time">⏱ 평균 1~3개월</div>
+      </div>
+      <div class="pathway">
+        <div class="pw-name">허가 <span class="risk-tag risk-mid">3&middot;4등급</span></div>
+        <div class="pw-desc">식약처에서 직접 심사하는 경로. 대부분의 AI 진단 소프트웨어가 3등급으로 분류됩니다. 임상 성능 데이터가 필요합니다.</div>
+        <div class="pw-time">⏱ 평균 6~12개월</div>
+      </div>
+      <div class="pathway">
+        <div class="pw-name">혁신의료기기 <span class="risk-tag risk-mid">패스트트랙</span></div>
+        <div class="pw-desc">첨단 기술을 적용한 혁신적 의료기기에 부여하는 지정 제도. 심사 기간 단축(30%), 전담 심사관 배정 등의 혜택을 받습니다.</div>
+        <div class="pw-time">⏱ 심사 기간 30% 단축</div>
+      </div>
+
+      <div class="stat-row">
+        <div class="stat-item"><div class="val">62</div><div class="stat-label">누적 허가</div></div>
+        <div class="stat-item"><div class="val">45</div><div class="stat-label">2025 혁신지정</div></div>
+        <div class="stat-item"><div class="val">세계 최초</div><div class="stat-label" style="font-size:0.65rem">생성형AI 가이드</div></div>
+      </div>
+    </div>
+
+    <!-- CE -->
+    <div class="reg-card ce">
+      <div class="flag">🇪🇺</div>
+      <h3>CE / EU MDR</h3>
+      <div class="agency">European Commission &middot; 유럽연합</div>
+
+      <div class="pathway">
+        <div class="pw-name">Class I <span class="risk-tag risk-low">저위험</span></div>
+        <div class="pw-desc">자가 적합성 선언으로 가능한 최저 위험 등급. 인증기관(Notified Body) 심사 불필요. 단순 의료 소프트웨어 일부가 해당됩니다.</div>
+        <div class="pw-time">⏱ 평균 3~6개월</div>
+      </div>
+      <div class="pathway">
+        <div class="pw-name">Class IIa / IIb <span class="risk-tag risk-mid">중위험</span></div>
+        <div class="pw-desc">대부분의 AI 진단 소프트웨어가 해당. MDR(Medical Device Regulation) 2017/745에 따라 인증기관의 적합성 평가가 필요합니다.</div>
+        <div class="pw-time">⏱ 평균 6~18개월</div>
+      </div>
+      <div class="pathway">
+        <div class="pw-name">EU AI Act <span class="risk-tag risk-high">2026 시행</span></div>
+        <div class="pw-desc">2026년 1월 발효. 의료 AI를 "고위험"으로 분류하여 학습 데이터 편향 점검, 설명 가능성(XAI), 사후감시를 추가로 요구합니다. 2026년 8월 규제 샌드박스 운영 시작.</div>
+        <div class="pw-time">⏱ MDR + AI Act 이중 규제</div>
+      </div>
+
+      <div class="stat-row">
+        <div class="stat-item"><div class="val">MDR</div><div class="stat-label">2021 시행</div></div>
+        <div class="stat-item"><div class="val">AI Act</div><div class="stat-label">2026 시행</div></div>
+        <div class="stat-item"><div class="val">이중</div><div class="stat-label">규제 구조</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SECTION 2: 인허가 플로우 ===== -->
+<div class="section">
+  <span class="section-label">Section 02</span>
+  <h2>AI 의료기기, 허가까지의 여정</h2>
+  <p class="subtitle">개발부터 시장 출시까지 — 모든 의료 AI 스타트업이 거치는 5단계.</p>
+
+  <div class="flow-section">
+    <div class="flow-title">510(k) 경로 기준 &mdash; 가장 일반적인 AI 의료기기 인허가 플로우</div>
+    <div class="flow-container">
+      <div class="flow-step">
+        <div class="circle blue">🧬</div>
+        <div class="step-title">1. 데이터 수집</div>
+        <div class="step-desc">의료 영상/병리/ECG 등 학습용 데이터셋 구축. IRB 승인, 환자 동의 필요</div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">
+        <div class="circle purple">🤖</div>
+        <div class="step-title">2. AI 모델 개발</div>
+        <div class="step-desc">딥러닝 모델 설계·학습·검증. 정확도(AUC), 민감도, 특이도 측정</div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">
+        <div class="circle cyan">🏥</div>
+        <div class="step-title">3. 임상 검증</div>
+        <div class="step-desc">다기관 임상시험으로 실제 환경에서의 성능 입증. 논문 발표</div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">
+        <div class="circle green">📋</div>
+        <div class="step-title">4. 규제 심사</div>
+        <div class="step-desc">510(k)/허가 신청서 제출. Predicate 비교, QMS(품질관리시스템) 구축</div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">
+        <div class="circle orange">🚀</div>
+        <div class="step-title">5. 시장 출시</div>
+        <div class="step-desc">병원 도입, 보험 수가 적용, 사후관리(PCCP). 지속적 모델 업데이트</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SECTION 3: 한국 기업 매핑 ===== -->
+<div class="section" id="companies">
+  <span class="section-label">Section 03</span>
+  <h2>한국 기업들은 어디에 있는가</h2>
+  <p class="subtitle">
+    한국의 주요 의료 AI 기업들이 어떤 규제 경로를 통해 어느 시장에서 승인을 받았는지,
+    실제 데이터로 매핑합니다.
+  </p>
+
+  <div class="tab-container">
+    <div class="tab-buttons">
+      <button class="tab-btn active" onclick="switchTab('all')">전체 보기</button>
+      <button class="tab-btn" onclick="switchTab('imaging')">의료영상 AI</button>
+      <button class="tab-btn" onclick="switchTab('pathology')">병리 AI</button>
+      <button class="tab-btn" onclick="switchTab('biosignal')">바이오시그널</button>
+    </div>
+
+    <div class="tab-content active" id="tab-all">
+      <div class="company-grid">
+        <!-- Lunit -->
+        <div class="company-card" data-category="imaging pathology">
+          <div class="company-header">
+            <div class="company-name">루닛 (Lunit)</div>
+            <div class="company-ticker">KOSDAQ: 328130</div>
+          </div>
+          <div class="company-focus">AI 기반 의료 영상 분석 &middot; 바이오마커 분석. 흉부 X-ray, 유방 촬영, 병리 슬라이드 AI 진단.</div>
+          <ul class="approval-list">
+            <li><span class="approval-flag">🇺🇸</span> <span class="approval-badge badge-510k">510(k)</span> <span class="approval-text">Lunit INSIGHT CXR &mdash; 흉부 X-ray AI</span></li>
+            <li><span class="approval-flag">🇺🇸</span> <span class="approval-badge badge-510k">510(k)</span> <span class="approval-text">Lunit INSIGHT MMG &mdash; 유방촬영 AI</span></li>
+            <li><span class="approval-flag">🇰🇷</span> <span class="approval-badge badge-mfds">혁신</span> <span class="approval-text">다수 제품 혁신의료기기 지정</span></li>
+            <li><span class="approval-flag">🇪🇺</span> <span class="approval-badge badge-ce">CE</span> <span class="approval-text">유럽 CE 마크 다수 취득</span></li>
+          </ul>
+          <div class="company-revenue">
+            <div class="revenue-item"><div class="rv">3,039억</div><div class="rl">2025 매출</div></div>
+            <div class="revenue-item"><div class="rv">+163%</div><div class="rl">YoY 성장률</div></div>
+            <div class="revenue-item"><div class="rv">60+</div><div class="rl">진출 국가</div></div>
+          </div>
+        </div>
+
+        <!-- VUNO -->
+        <div class="company-card" data-category="imaging biosignal">
+          <div class="company-header">
+            <div class="company-name">뷰노 (VUNO)</div>
+            <div class="company-ticker">KOSDAQ: 338220</div>
+          </div>
+          <div class="company-focus">의료 영상 + 바이오시그널(ECG/Vital Signs) AI 진단. 흉부 X-ray, 골연령, 심전도 분석.</div>
+          <ul class="approval-list">
+            <li><span class="approval-flag">🇺🇸</span> <span class="approval-badge badge-510k">510(k)</span> <span class="approval-text">VUNO Med-Chest X-ray &mdash; 흉부 이상 탐지</span></li>
+            <li><span class="approval-flag">🇰🇷</span> <span class="approval-badge badge-mfds">허가</span> <span class="approval-text">VUNO Med-BoneAge 등 5개+ 허가</span></li>
+            <li><span class="approval-flag">🇰🇷</span> <span class="approval-badge badge-mfds">혁신</span> <span class="approval-text">DeepECG 심전도 AI</span></li>
+          </ul>
+          <div class="company-revenue">
+            <div class="revenue-item"><div class="rv">348.5억</div><div class="rl">2025 매출</div></div>
+            <div class="revenue-item"><div class="rv">+34.7%</div><div class="rl">YoY 성장률</div></div>
+            <div class="revenue-item"><div class="rv">-46.1억</div><div class="rl">영업손실(축소중)</div></div>
+          </div>
+        </div>
+
+        <!-- JLK -->
+        <div class="company-card" data-category="imaging">
+          <div class="company-header">
+            <div class="company-name">제이엘케이 (JLK)</div>
+            <div class="company-ticker">KOSDAQ: 322510</div>
+          </div>
+          <div class="company-focus">뇌졸중 AI 진단 특화. 뇌 CT/MRI 기반 허혈성 뇌졸중 자동 분석. 일본 시장 직접 판매 허가 획득.</div>
+          <ul class="approval-list">
+            <li><span class="approval-flag">🇺🇸</span> <span class="approval-badge badge-510k">510(k)</span> <span class="approval-text">JBS-01K &mdash; 뇌졸중 AI 진단</span></li>
+            <li><span class="approval-flag">🇰🇷</span> <span class="approval-badge badge-mfds">허가</span> <span class="approval-text">37개 의료 영상 제품</span></li>
+            <li><span class="approval-flag">🇯🇵</span> <span class="approval-badge badge-ce">PMDA</span> <span class="approval-text">2026 일본 직접 판매 허가</span></li>
+          </ul>
+          <div class="company-revenue">
+            <div class="revenue-item"><div class="rv">+135%</div><div class="rl">2025 매출 성장</div></div>
+            <div class="revenue-item"><div class="rv">구독형</div><div class="rl">수익 모델 전환</div></div>
+            <div class="revenue-item"><div class="rv">37</div><div class="rl">AI 제품 수</div></div>
+          </div>
+        </div>
+
+        <!-- Coreline Soft -->
+        <div class="company-card" data-category="imaging">
+          <div class="company-header">
+            <div class="company-name">코어라인소프트</div>
+            <div class="company-ticker">KOSDAQ: 440650</div>
+          </div>
+          <div class="company-focus">폐 CT AI 분석 1위. 국가 폐암검진 AI 5년 연속 독점 공급. AVIEW 플랫폼.</div>
+          <ul class="approval-list">
+            <li><span class="approval-flag">🇺🇸</span> <span class="approval-badge badge-510k">510(k)</span> <span class="approval-text">AVIEW LCS &mdash; 폐결절 분석</span></li>
+            <li><span class="approval-flag">🇰🇷</span> <span class="approval-badge badge-mfds">허가</span> <span class="approval-text">국가 폐암검진 독점 공급</span></li>
+            <li><span class="approval-flag">🇪🇺</span> <span class="approval-badge badge-ce">CE</span> <span class="approval-text">영국/독일/이탈리아 진출</span></li>
+          </ul>
+          <div class="company-revenue">
+            <div class="revenue-item"><div class="rv">5년</div><div class="rl">연속 독점공급</div></div>
+            <div class="revenue-item"><div class="rv">유럽</div><div class="rl">시장 확장중</div></div>
+            <div class="revenue-item"><div class="rv">99명</div><div class="rl">임직원</div></div>
+          </div>
+        </div>
+
+        <!-- Deepnoid -->
+        <div class="company-card" data-category="imaging">
+          <div class="company-header">
+            <div class="company-name">딥노이드 (Deepnoid)</div>
+            <div class="company-ticker">KOSDAQ: 315640</div>
+          </div>
+          <div class="company-focus">노코드 의료 AI 플랫폼 DEEP:PHI. 비개발자(의사)도 직접 AI 모델을 만들 수 있는 플랫폼.</div>
+          <ul class="approval-list">
+            <li><span class="approval-flag">🇰🇷</span> <span class="approval-badge badge-mfds">허가</span> <span class="approval-text">다수 의료 영상 AI 허가</span></li>
+            <li><span class="approval-flag">🇰🇷</span> <span class="approval-badge badge-mfds">혁신</span> <span class="approval-text">DEEP:PHI 노코드 AI 플랫폼</span></li>
+          </ul>
+          <div class="company-revenue">
+            <div class="revenue-item"><div class="rv">~108억</div><div class="rl">2024 매출</div></div>
+            <div class="revenue-item"><div class="rv">노코드</div><div class="rl">핵심 전략</div></div>
+            <div class="revenue-item"><div class="rv">공공AI</div><div class="rl">2025 키워드</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SECTION 4: 성장 추이 차트 ===== -->
+<div class="section" id="trends">
+  <span class="section-label">Section 04</span>
+  <h2>폭발하는 인허가 — 숫자로 보는 성장</h2>
+  <p class="subtitle">FDA AI 의료기기 승인 건수는 매년 가속하고 있고, 한국 식약처도 빠르게 뒤따르고 있습니다.</p>
+
+  <div class="chart-container">
+    <div class="chart-title">FDA AI/ML 의료기기 연간 승인 건수 추이</div>
+    <div class="bar-chart" id="fdaChart">
+      <!-- Bars injected by JS -->
+    </div>
+    <div class="chart-legend">
+      <div class="legend-item"><div class="legend-dot blue"></div> FDA 연간 승인</div>
+      <div class="legend-item"><div class="legend-dot purple"></div> 한국 식약처 혁신지정</div>
+    </div>
+  </div>
+
+  <!-- Timeline -->
+  <div style="margin-top:3rem">
+    <h3 style="font-size:1.15rem; font-weight:700; margin-bottom:1.5rem;">2025~2026 규제 환경 주요 이벤트</h3>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-date">2025.01</div>
+        <div class="tl-title">🇰🇷 한국 식약처, 세계 최초 생성형 AI 의료기기 가이드라인 발표</div>
+        <div class="tl-desc">ChatGPT 같은 생성형 AI를 의료기기에 적용할 때의 안전성&middot;유효성 평가 기준을 세계 최초로 제시. 데이터 편향, 환각(hallucination), 윤리 쟁점까지 포괄.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">2025.02</div>
+        <div class="tl-title">🇺🇸 FDA, 최초 파운데이션 모델 기반 의료 AI 승인 (Aidoc CARE1)</div>
+        <div class="tl-desc">단일 질환이 아닌 범용 파운데이션 모델이 최초로 FDA 승인. 의료 AI의 패러다임 전환 신호. 하나의 AI가 여러 질환을 동시에 분석하는 시대 개막.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">2026.01</div>
+        <div class="tl-title">🇪🇺 EU AI Act 발효 — 의료 AI "고위험" 분류 시작</div>
+        <div class="tl-desc">유럽에서 의료 AI는 공식적으로 "고위험 AI"로 분류. 학습 데이터 편향 점검, 설명 가능성(XAI), 인간 감독 의무화. MDR과 이중 규제 구조 시작.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">2026.02</div>
+        <div class="tl-title">🇺🇸 FDA QMSR 발효 — ISO 13485 정렬</div>
+        <div class="tl-desc">FDA의 품질관리시스템 규정(Part 820)이 국제표준 ISO 13485와 정렬. 글로벌 의료기기 업체의 규제 부담 경감, 한국 기업에게도 기회.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">2026.08</div>
+        <div class="tl-title">🇪🇺 EU AI Act 규제 샌드박스 운영 개시</div>
+        <div class="tl-desc">통제된 환경에서 AI 의료기기를 사전 테스트&middot;검증할 수 있는 규제 샌드박스 운영 시작. 스타트업의 유럽 진출 장벽을 낮추는 핵심 제도.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SECTION 5: 인사이트 ===== -->
+<div class="section" id="insights">
+  <span class="section-label">Section 05</span>
+  <h2>이 지형도에서 읽어낸 3가지</h2>
+
+  <div class="insight-box">
+    <h3>💡 인사이트 1 — 한국은 "규제 속도"에서 미국을 앞서고 있다</h3>
+    <p>
+      한국 식약처는 <span class="highlight">세계 최초로 생성형 AI 의료기기 가이드라인</span>을 발표했습니다(2025.01).
+      FDA보다 먼저. EU보다 먼저. 이건 한국 의료 AI 스타트업에게 엄청난 선점 기회입니다.
+      한국에서 먼저 허가를 받고, 그 데이터를 가지고 FDA에 510(k)를 신청하는 "한국 → 미국" 역수출 경로가 현실화되고 있습니다.
+    </p>
+  </div>
+
+  <div class="insight-box" style="margin-top:1.5rem">
+    <h3>💡 인사이트 2 — "허가 = 해자(Moat)"가 된 시대</h3>
+    <p>
+      AI 모델은 논문 공개 몇 달이면 누구나 따라 만들 수 있습니다. 하지만 <span class="highlight">FDA 510(k) 승인은 3~6개월, PMA는 1~3년</span>이 걸립니다.
+      루닛의 매출 3,039억원(2025)은 AI 기술력이 아니라 <span class="highlight">60개국 인허가 포트폴리오</span>에서 나옵니다.
+      의료 AI에서 진짜 경쟁력은 "AI를 잘 만드는 것"이 아니라 "허가를 먼저 받는 것"입니다.
+    </p>
+  </div>
+
+  <div class="insight-box" style="margin-top:1.5rem">
+    <h3>💡 인사이트 3 — 2026년, "이중 규제 시대"가 열린다</h3>
+    <p>
+      유럽은 2026년부터 <span class="highlight">MDR(의료기기법) + AI Act(AI법)</span> 이중 규제를 적용합니다.
+      같은 AI 의료기기가 의료기기 규제와 AI 규제를 동시에 만족해야 합니다.
+      이건 위협이기도 하지만 기회이기도 합니다 — 이 이중 규제를 이해하고 대응할 수 있는 인재가 극소수이기 때문입니다.
+      <span class="highlight">규제를 읽을 수 있는 사람이 의료 AI 스타트업에서 가장 비싼 인재</span>가 되는 이유입니다.
+    </p>
+  </div>
+</div>
+
+<!-- ===== SECTION 6: 방법론 ===== -->
+<div class="section" id="methodology">
+  <span class="section-label">Section 06</span>
+  <h2>이 지형도를 만든 방법</h2>
+  <p class="subtitle">
+    비전공자인 저는 이 리포트를 AI를 연구 동료로 활용하여 작성했습니다.
+    아래는 제가 사용한 워크플로우입니다 — 누구나 재현할 수 있습니다.
+  </p>
+
+  <div class="method-grid">
+    <div class="method-card">
+      <div class="m-icon">🔍</div>
+      <div class="m-title">1단계: 질문 분해</div>
+      <div class="m-desc">"AI 의료기기 인허가"라는 거대한 주제를 "3대 기관별 경로는?", "한국 기업 현황은?", "2026년 변화는?" 등 12개 작은 질문으로 쪼갰습니다.</div>
+    </div>
+    <div class="method-card">
+      <div class="m-icon">🤖</div>
+      <div class="m-title">2단계: AI 리서치</div>
+      <div class="m-desc">Claude에게 각 질문을 맡기고, FDA 공식 페이지, 식약처 보도자료, 학술 논문, 기업 IR 자료를 교차 수집했습니다.</div>
+    </div>
+    <div class="method-card">
+      <div class="m-icon">✅</div>
+      <div class="m-title">3단계: 3중 검증</div>
+      <div class="m-desc">AI가 가져온 정보를 (1) 정부 공식 사이트 (2) 기업 공시자료 (3) 학술 논문에서 교차 확인. 불일치 시 가장 권위 있는 출처를 우선했습니다.</div>
+    </div>
+    <div class="method-card">
+      <div class="m-icon">🎨</div>
+      <div class="m-title">4단계: 시각화</div>
+      <div class="m-desc">검증된 데이터를 인터랙티브 웹페이지로 구현. 코드 작성도 AI와 협업하여 비전공자도 읽기 쉬운 형태로 완성했습니다.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== AUTHOR SECTION ===== -->
+<div class="section">
+  <div class="author-section">
+    <h3>이 지형도를 만든 사람</h3>
+    <div class="author-story">
+      저는 IT 비전공자 <em>구건우</em>입니다.<br><br>
+      70대 할머니의 생체나이를 되돌리고 싶다는 간절한 마음에서 시작해,<br>
+      한국의 의료 AI와 역노화 생태계를 독학으로 조사하기 시작했습니다.<br><br>
+      그 과정에서 깨달았습니다 — <em>의료 AI의 진짜 병목은 기술이 아니라 규제</em>라는 것을.<br>
+      그래서 이 지형도를 만들었습니다.<br><br>
+      저는 "가족의 건강을 걱정하지 않아도 되는 시대"를 앞당기는 데 기여하고 싶습니다.<br>
+      그 여정의 첫 번째 조각이 이 페이지입니다.
+    </div>
+    <a class="author-cta" href="https://www.linkedin.com/in/%EA%B1%B4%EC%9A%B0-%EA%B5%AC-5aa559341/" target="_blank">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" style="width:18px;height:18px;vertical-align:middle;margin-right:6px"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.3 6.5a1.78 1.78 0 01-1.8 1.75zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0013 14.19a.66.66 0 000 .14V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.36.86 3.36 3.66z"/></svg>
+      LinkedIn에서 구건우와 연결하기 →
+    </a>
+  </div>
+</div>
+
+<!-- ===== FOOTER ===== -->
+<div class="footer">
+  <p>AI 의료기기 글로벌 인허가 지형도 2026 &mdash; 구건우 제작</p>
+  <p style="margin-top:0.5rem">
+    데이터 출처: <a href="https://www.fda.gov/medical-devices/software-medical-device-samd/artificial-intelligence-enabled-medical-devices" target="_blank">FDA AI/ML Medical Devices</a> &middot;
+    <a href="https://www.mfds.go.kr/" target="_blank">식품의약품안전처</a> &middot;
+    기업 공시자료 &middot; 학술 논문
+  </p>
+  <p style="margin-top:0.3rem; opacity:0.5">Last updated: April 2026 &middot; Built with AI-assisted research workflow</p>
+</div>
+
+<script>
+// ===== COUNTER ANIMATION =====
+function animateCounter(el, target, suffix='', duration=2000) {
+  const isPercent = suffix === '%';
+  const start = 0;
+  const startTime = performance.now();
+
+  function update(currentTime) {
+    const elapsed = currentTime - startTime;
+    const progress = Math.min(elapsed / duration, 1);
+    const eased = 1 - Math.pow(1 - progress, 3);
+    const current = Math.round(start + (target - start) * eased);
+
+    if (target >= 1000) {
+      el.textContent = current.toLocaleString() + suffix;
+    } else {
+      el.textContent = current + suffix;
+    }
+
+    if (progress < 1) requestAnimationFrame(update);
+  }
+  requestAnimationFrame(update);
+}
+
+// Intersection Observer for counter animation
+const heroObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      animateCounter(document.getElementById('counter1'), 1451, '', 2500);
+      animateCounter(document.getElementById('counter2'), 295, '', 2000);
+      animateCounter(document.getElementById('counter3'), 62, '', 1800);
+      animateCounter(document.getElementById('counter4'), 62, '%', 2000);
+      heroObserver.disconnect();
+    }
+  });
+}, { threshold: 0.3 });
+heroObserver.observe(document.querySelector('.hero-stats'));
+
+// ===== BAR CHART =====
+const fdaData = [
+  { year: '2018', fda: 46, kr: 3 },
+  { year: '2019', fda: 76, kr: 5 },
+  { year: '2020', fda: 115, kr: 8 },
+  { year: '2021', fda: 151, kr: 12 },
+  { year: '2022', fda: 191, kr: 15 },
+  { year: '2023', fda: 221, kr: 22 },
+  { year: '2024', fda: 261, kr: 29 },
+  { year: '2025', fda: 295, kr: 45 }
+];
+
+const maxVal = Math.max(...fdaData.map(d => d.fda));
+const chartEl = document.getElementById('fdaChart');
+
+fdaData.forEach(d => {
+  const group = document.createElement('div');
+  group.className = 'bar-group';
+
+  const fdaHeight = (d.fda / maxVal) * 190;
+  const krHeight = (d.kr / maxVal) * 190;
+
+  group.innerHTML = `
+    <div class="bar-val">${d.fda}</div>
+    <div style="display:flex;gap:3px;align-items:flex-end;width:100%;height:200px;">
+      <div class="bar fda-bar" style="height:${fdaHeight}px;flex:1"></div>
+      <div class="bar mfds-bar" style="height:${krHeight}px;flex:1"></div>
+    </div>
+    <div class="bar-year">${d.year}</div>
+  `;
+  chartEl.appendChild(group);
+});
+
+// ===== TAB FUNCTIONALITY =====
+function switchTab(category) {
+  document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+  event.target.classList.add('active');
+
+  const cards = document.querySelectorAll('.company-card');
+  cards.forEach(card => {
+    if (category === 'all') {
+      card.style.display = 'block';
+    } else {
+      const cats = card.getAttribute('data-category');
+      card.style.display = cats.includes(category) ? 'block' : 'none';
+    }
+  });
+}
+
+// ===== SCROLL ANIMATIONS =====
+const scrollObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.style.opacity = '1';
+      entry.target.style.transform = 'translateY(0)';
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.reg-card, .company-card, .insight-box, .method-card, .tl-item, .flow-section').forEach(el => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(20px)';
+  el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+  scrollObserver.observe(el);
+});
+</script>
+
+</body>
+</html>

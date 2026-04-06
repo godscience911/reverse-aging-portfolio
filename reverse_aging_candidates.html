@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>역노화 후보물질 연구 — 12 Hallmarks × 15 Candidates | 구건우</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;900&family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+:root {
+  --bg:#080c18; --surface:#0f1629; --surface2:#151d33; --border:#1c2744;
+  --text:#e2e8f0; --muted:#8896b3; --dim:#5a6a8a;
+  --blue:#3b82f6; --cyan:#06b6d4; --purple:#8b5cf6; --green:#10b981;
+  --orange:#f59e0b; --red:#ef4444; --pink:#ec4899; --lime:#84cc16;
+  --teal:#14b8a6; --indigo:#6366f1; --rose:#f43f5e; --amber:#f59e0b;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Noto Sans KR','Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;overflow-x:hidden}
+
+/* HOME LINK */
+.home-link{color:var(--cyan);text-decoration:none;font-size:.85rem;font-weight:500;padding:5px 14px;border-radius:100px;border:1px solid rgba(6,182,212,.2);background:rgba(6,182,212,.06);transition:all .3s;white-space:nowrap}
+.home-link:hover{background:rgba(6,182,212,.15);border-color:rgba(6,182,212,.4);transform:translateX(-2px)}
+
+/* TOP BAR */
+.top-bar{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:.6rem 2rem;background:rgba(8,12,24,.88);backdrop-filter:blur(20px);border-bottom:1px solid rgba(59,130,246,.12)}
+.top-bar .name{font-weight:600;font-size:.88rem;display:flex;align-items:center;gap:.5rem}
+.top-bar .name .dot{width:8px;height:8px;border-radius:50%;background:var(--green);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(16,185,129,.4)}50%{box-shadow:0 0 0 6px rgba(16,185,129,0)}}
+.li-btn{display:inline-flex;align-items:center;gap:.5rem;padding:7px 20px;background:linear-gradient(135deg,#0077B5,#0a66c2);color:#fff;text-decoration:none;border-radius:100px;font-size:.82rem;font-weight:600;transition:transform .3s,box-shadow .3s;box-shadow:0 2px 12px rgba(0,119,181,.3)}
+.li-btn:hover{transform:translateY(-2px);box-shadow:0 6px 24px rgba(0,119,181,.5)}
+.li-btn svg{width:16px;height:16px;fill:#fff}
+
+/* HERO */
+.hero{position:relative;min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:6rem 2rem 3rem;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(ellipse at 30% 20%,rgba(139,92,246,.07)0%,transparent 50%),radial-gradient(ellipse at 70% 80%,rgba(16,185,129,.05)0%,transparent 50%);animation:bgmove 25s ease-in-out infinite alternate}
+@keyframes bgmove{0%{transform:translate(0) rotate(0)}100%{transform:translate(-2%,1%) rotate(1deg)}}
+.hero-content{position:relative;z-index:1;max-width:920px}
+.badge{display:inline-block;padding:5px 16px;border-radius:100px;background:rgba(139,92,246,.12);border:1px solid rgba(139,92,246,.25);color:var(--purple);font-size:.78rem;font-weight:500;letter-spacing:.5px;margin-bottom:1.8rem}
+.hero h1{font-size:clamp(2rem,5vw,3.6rem);font-weight:900;line-height:1.2;margin-bottom:1.2rem;background:linear-gradient(135deg,#e2e8f0,#8b5cf6,#10b981);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero p{font-size:1.1rem;color:var(--muted);max-width:680px;margin:0 auto 2.5rem;line-height:1.9}
+.hero-nums{display:flex;gap:1.5rem;justify-content:center;flex-wrap:wrap}
+.hero-num{text-align:center;padding:1.3rem 1.8rem;background:var(--surface);border:1px solid var(--border);border-radius:16px;min-width:145px;transition:transform .3s}
+.hero-num:hover{transform:translateY(-3px)}
+.hero-num .n{font-family:'Inter';font-size:2.2rem;font-weight:800;display:block;margin-bottom:.2rem}
+.hero-num:nth-child(1) .n{color:var(--purple)}
+.hero-num:nth-child(2) .n{color:var(--green)}
+.hero-num:nth-child(3) .n{color:var(--cyan)}
+.hero-num:nth-child(4) .n{color:var(--orange)}
+.hero-num .l{font-size:.75rem;color:var(--muted)}
+
+/* SECTIONS */
+.sec{max-width:1240px;margin:0 auto;padding:5rem 2rem}
+.sec-label{display:inline-block;font-size:.72rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--purple);margin-bottom:.7rem}
+.sec h2{font-size:clamp(1.7rem,3.5vw,2.5rem);font-weight:800;margin-bottom:.8rem;line-height:1.3}
+.sec .sub{font-size:1rem;color:var(--muted);max-width:720px;margin-bottom:2.5rem;line-height:1.8}
+
+/* HALLMARK WHEEL */
+.wheel-wrap{display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;margin-top:2rem}
+.hm-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:1.3rem 1.1rem;width:185px;text-align:center;transition:transform .3s,box-shadow .3s;cursor:pointer;position:relative;overflow:hidden}
+.hm-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
+.hm-card:hover{transform:translateY(-4px);box-shadow:0 8px 30px rgba(139,92,246,.1)}
+.hm-card .icon{font-size:1.8rem;margin-bottom:.5rem}
+.hm-card .hm-name{font-size:.82rem;font-weight:700;margin-bottom:.3rem;line-height:1.4}
+.hm-card .hm-kr{font-size:.72rem;color:var(--muted)}
+.hm-card .hm-count{position:absolute;top:.7rem;right:.7rem;background:rgba(139,92,246,.15);color:var(--purple);font-size:.65rem;font-weight:700;padding:2px 7px;border-radius:100px}
+
+/* COLOR CODING for hallmark categories */
+.hm-primary::before{background:linear-gradient(90deg,var(--red),var(--orange))}
+.hm-antagonistic::before{background:linear-gradient(90deg,var(--blue),var(--cyan))}
+.hm-integrative::before{background:linear-gradient(90deg,var(--purple),var(--pink))}
+
+/* CANDIDATE TABLE */
+.cand-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(360px,1fr));gap:1.5rem;margin-top:2rem}
+.cand-card{background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:1.8rem;transition:transform .3s,box-shadow .3s;position:relative;overflow:hidden}
+.cand-card:hover{transform:translateY(-3px);box-shadow:0 8px 30px rgba(59,130,246,.08)}
+.cand-card .top-row{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.8rem}
+.cand-card .cand-name{font-size:1.15rem;font-weight:700}
+.cand-card .cand-name-kr{font-size:.82rem;color:var(--muted);margin-top:.15rem}
+.cand-card .tier{font-size:.65rem;font-weight:700;padding:3px 10px;border-radius:100px;letter-spacing:.5px;flex-shrink:0}
+.tier-s{background:rgba(16,185,129,.15);color:var(--green);border:1px solid rgba(16,185,129,.25)}
+.tier-a{background:rgba(59,130,246,.15);color:var(--blue);border:1px solid rgba(59,130,246,.25)}
+.tier-b{background:rgba(245,158,11,.15);color:var(--orange);border:1px solid rgba(245,158,11,.25)}
+.tier-c{background:rgba(139,92,246,.15);color:var(--purple);border:1px solid rgba(139,92,246,.25)}
+.cand-desc{font-size:.85rem;color:var(--muted);line-height:1.7;margin-bottom:1rem}
+.cand-tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:1rem}
+.cand-tag{font-size:.68rem;padding:3px 9px;border-radius:100px;background:var(--surface2);border:1px solid var(--border);color:var(--muted)}
+.cand-tag.active{background:rgba(139,92,246,.1);border-color:rgba(139,92,246,.3);color:var(--purple)}
+.cand-meters{display:grid;grid-template-columns:1fr 1fr;gap:.6rem;margin-bottom:1rem}
+.meter{background:var(--surface2);border-radius:10px;padding:.6rem .8rem}
+.meter .meter-label{font-size:.68rem;color:var(--dim);margin-bottom:.3rem;display:flex;justify-content:space-between}
+.meter .meter-bar{height:5px;border-radius:5px;background:var(--border)}
+.meter .meter-fill{height:100%;border-radius:5px;transition:width 1s ease}
+.fill-green{background:linear-gradient(90deg,var(--green),var(--teal))}
+.fill-blue{background:linear-gradient(90deg,var(--blue),var(--cyan))}
+.fill-orange{background:linear-gradient(90deg,var(--orange),var(--amber))}
+.fill-purple{background:linear-gradient(90deg,var(--purple),var(--indigo))}
+.cand-evidence{font-size:.78rem;padding:.8rem;background:var(--surface2);border-radius:10px;border-left:3px solid var(--cyan);color:var(--muted);line-height:1.6}
+.cand-evidence strong{color:var(--text);font-weight:600}
+.cand-grandma{margin-top:.8rem;padding:.7rem;background:rgba(16,185,129,.06);border:1px solid rgba(16,185,129,.15);border-radius:10px;font-size:.78rem;line-height:1.6}
+.cand-grandma .gm-label{color:var(--green);font-weight:700;font-size:.72rem;margin-bottom:.2rem;display:flex;align-items:center;gap:.3rem}
+
+/* PROTOCOL SECTION */
+.protocol-box{background:linear-gradient(135deg,rgba(16,185,129,.06),rgba(6,182,212,.06));border:1px solid rgba(16,185,129,.15);border-radius:24px;padding:2.5rem;margin-top:2rem}
+.protocol-box h3{font-size:1.2rem;font-weight:700;margin-bottom:.5rem}
+.protocol-box .prot-sub{font-size:.9rem;color:var(--muted);margin-bottom:1.5rem}
+.prot-tier{margin-bottom:2rem}
+.prot-tier-header{display:flex;align-items:center;gap:.8rem;margin-bottom:1rem}
+.prot-tier-header .tier-badge{font-size:.75rem;font-weight:700;padding:4px 14px;border-radius:100px}
+.prot-tier-header .tier-title{font-weight:600;font-size:1rem}
+.prot-items{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:.8rem}
+.prot-item{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1rem 1.2rem}
+.prot-item .pi-name{font-weight:600;font-size:.9rem;margin-bottom:.2rem}
+.prot-item .pi-dose{font-size:.78rem;color:var(--cyan);margin-bottom:.2rem}
+.prot-item .pi-cost{font-size:.72rem;color:var(--muted)}
+
+/* FILTER BUTTONS */
+.filters{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1.5rem}
+.f-btn{padding:7px 18px;border:1px solid var(--border);border-radius:100px;background:transparent;color:var(--muted);font-size:.82rem;font-weight:500;cursor:pointer;transition:all .3s;font-family:'Noto Sans KR'}
+.f-btn:hover{border-color:var(--purple);color:var(--text)}
+.f-btn.active{background:var(--purple);border-color:var(--purple);color:#fff}
+
+/* INSIGHT BOX */
+.ins-box{background:linear-gradient(135deg,rgba(139,92,246,.07),rgba(59,130,246,.07));border:1px solid rgba(139,92,246,.18);border-radius:18px;padding:2rem;margin-top:1.5rem}
+.ins-box h3{font-size:1.1rem;font-weight:700;margin-bottom:.8rem;display:flex;align-items:center;gap:.5rem}
+.ins-box p{font-size:.92rem;color:var(--muted);line-height:1.8;margin-bottom:.6rem}
+.ins-box .hl{color:var(--purple);font-weight:600}
+
+/* AUTHOR */
+.author{background:linear-gradient(135deg,var(--surface),var(--surface2));border:1px solid var(--border);border-radius:24px;padding:3rem;margin-top:4rem;text-align:center}
+.author h3{font-size:1.3rem;font-weight:700;margin-bottom:1rem}
+.author .story{font-size:.95rem;color:var(--muted);max-width:700px;margin:0 auto 1.5rem;line-height:2}
+.author .story em{color:var(--text);font-style:normal;font-weight:500}
+.author-cta{display:inline-block;padding:12px 30px;background:linear-gradient(135deg,var(--purple),var(--blue));color:#fff;text-decoration:none;border-radius:100px;font-weight:600;font-size:.92rem;transition:transform .3s,box-shadow .3s}
+.author-cta:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(139,92,246,.3)}
+
+/* FOOTER */
+.footer{text-align:center;padding:3rem 2rem;color:var(--dim);font-size:.75rem;border-top:1px solid var(--border);margin-top:3rem}
+.footer a{color:var(--blue);text-decoration:none}
+
+/* RESPONSIVE */
+@media(max-width:768px){.hero-nums{gap:.8rem}.hero-num{min-width:130px;padding:1rem}.cand-grid{grid-template-columns:1fr}.hm-card{width:calc(50% - .5rem)}.sec{padding:3rem 1.2rem}.cand-meters{grid-template-columns:1fr}}
+
+/* SCROLL ANIM */
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .6s,transform .6s}
+.reveal.visible{opacity:1;transform:translateY(0)}
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="top-bar">
+  <a href="index.html" class="home-link">&larr; 포트폴리오 홈</a>
+  <div class="name"><span class="dot"></span> 구건우 — Reverse-Aging Candidate Research</div>
+  <a class="li-btn" href="https://www.linkedin.com/in/%EA%B1%B4%EC%9A%B0-%EA%B5%AC-5aa559341/" target="_blank">
+    <svg viewBox="0 0 24 24"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.3 6.5a1.78 1.78 0 01-1.8 1.75zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0013 14.19a.66.66 0 000 .14V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.36.86 3.36 3.66z"/></svg>
+    1촌 신청
+  </a>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-content">
+    <span class="badge">Portfolio Piece #2 — 구건우 · Domain Knowledge × AI Research</span>
+    <h1>역노화 후보물질 연구<br>12 Hallmarks × 15 Candidates</h1>
+    <p>노화의 12가지 특징(Hallmarks)에 대응하는 15가지 후보물질을 조사하고,<br>70대 할머니에게 실제 적용 가능한 프로토콜까지 설계한 연구 리포트.</p>
+    <div class="hero-nums">
+      <div class="hero-num"><span class="n">12</span><span class="l">노화 Hallmarks<br>(2023 업데이트)</span></div>
+      <div class="hero-num"><span class="n">15</span><span class="l">후보물질<br>분석 완료</span></div>
+      <div class="hero-num"><span class="n">47</span><span class="l">참고 논문<br>& 임상시험</span></div>
+      <div class="hero-num"><span class="n">1</span><span class="l">할머니 맞춤<br>프로토콜</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 1: 12 HALLMARKS -->
+<div class="sec" id="hallmarks">
+  <span class="sec-label">Section 01</span>
+  <h2>노화의 12가지 특징 (Hallmarks of Aging)</h2>
+  <p class="sub">2023년 Cell 저널에 발표된 Lopez-Otin et al.의 업데이트 논문 기준. 노화는 단일 원인이 아니라 12가지 메커니즘이 서로 얽혀서 발생합니다. 각 hallmark를 이해해야 "어떤 물질이 왜 효과가 있는지"를 읽을 수 있습니다.</p>
+
+  <p style="font-size:.82rem;color:var(--muted);margin-bottom:1rem">
+    <span style="display:inline-block;width:12px;height:3px;background:linear-gradient(90deg,var(--red),var(--orange));border-radius:2px;margin-right:4px;vertical-align:middle"></span> 1차 원인 (Primary)
+    <span style="margin:0 .8rem">|</span>
+    <span style="display:inline-block;width:12px;height:3px;background:linear-gradient(90deg,var(--blue),var(--cyan));border-radius:2px;margin-right:4px;vertical-align:middle"></span> 길항 반응 (Antagonistic)
+    <span style="margin:0 .8rem">|</span>
+    <span style="display:inline-block;width:12px;height:3px;background:linear-gradient(90deg,var(--purple),var(--pink));border-radius:2px;margin-right:4px;vertical-align:middle"></span> 통합 표현형 (Integrative)
+  </p>
+
+  <div class="wheel-wrap">
+    <div class="hm-card hm-primary reveal"><div class="hm-count">5개</div><div class="icon">🧬</div><div class="hm-name">Genomic Instability</div><div class="hm-kr">유전체 불안정성</div></div>
+    <div class="hm-card hm-primary reveal"><div class="hm-count">3개</div><div class="icon">🔚</div><div class="hm-name">Telomere Attrition</div><div class="hm-kr">텔로미어 단축</div></div>
+    <div class="hm-card hm-primary reveal"><div class="hm-count">7개</div><div class="icon">🧪</div><div class="hm-name">Epigenetic Alterations</div><div class="hm-kr">후성유전학적 변화</div></div>
+    <div class="hm-card hm-primary reveal"><div class="hm-count">4개</div><div class="icon">🔬</div><div class="hm-name">Loss of Proteostasis</div><div class="hm-kr">단백질 항상성 손실</div></div>
+    <div class="hm-card hm-primary reveal"><div class="hm-count">5개</div><div class="icon">♻️</div><div class="hm-name">Disabled Macroautophagy</div><div class="hm-kr">자가포식 기능 저하</div></div>
+    <div class="hm-card hm-antagonistic reveal"><div class="hm-count">6개</div><div class="icon">🍽️</div><div class="hm-name">Deregulated Nutrient Sensing</div><div class="hm-kr">영양소 감지 이상</div></div>
+    <div class="hm-card hm-antagonistic reveal"><div class="hm-count">6개</div><div class="icon">⚡</div><div class="hm-name">Mitochondrial Dysfunction</div><div class="hm-kr">미토콘드리아 기능장애</div></div>
+    <div class="hm-card hm-antagonistic reveal"><div class="hm-count">8개</div><div class="icon">🛑</div><div class="hm-name">Cellular Senescence</div><div class="hm-kr">세포 노화</div></div>
+    <div class="hm-card hm-integrative reveal"><div class="hm-count">4개</div><div class="icon">🌱</div><div class="hm-name">Stem Cell Exhaustion</div><div class="hm-kr">줄기세포 고갈</div></div>
+    <div class="hm-card hm-integrative reveal"><div class="hm-count">6개</div><div class="icon">📡</div><div class="hm-name">Altered Intercellular Comm.</div><div class="hm-kr">세포간 신호 변화</div></div>
+    <div class="hm-card hm-integrative reveal"><div class="hm-count">9개</div><div class="icon">🔥</div><div class="hm-name">Chronic Inflammation</div><div class="hm-kr">만성 염증 (Inflammaging)</div></div>
+    <div class="hm-card hm-integrative reveal"><div class="hm-count">3개</div><div class="icon">🦠</div><div class="hm-name">Dysbiosis</div><div class="hm-kr">장내 미생물 불균형</div></div>
+  </div>
+</div>
+
+<!-- SECTION 2: 15 CANDIDATES -->
+<div class="sec" id="candidates">
+  <span class="sec-label">Section 02</span>
+  <h2>15가지 역노화 후보물질 딥다이브</h2>
+  <p class="sub">각 물질의 작용 메커니즘, 임상 증거 수준, 안전성, 비용, 그리고 70대 할머니에게의 적용 가능성까지 종합 평가했습니다.</p>
+
+  <div class="filters">
+    <button class="f-btn active" onclick="filterCards('all')">전체 보기</button>
+    <button class="f-btn" onclick="filterCards('tier-s')">S등급 (즉시적용)</button>
+    <button class="f-btn" onclick="filterCards('tier-a')">A등급 (유망)</button>
+    <button class="f-btn" onclick="filterCards('tier-b')">B등급 (관찰중)</button>
+    <button class="f-btn" onclick="filterCards('tier-c')">C등급 (초기연구)</button>
+  </div>
+
+  <div class="cand-grid" id="candGrid">
+
+    <!-- 1. Vitamin D3+K2 -->
+    <div class="cand-card reveal" data-tier="tier-s">
+      <div class="top-row">
+        <div><div class="cand-name">Vitamin D3 + K2</div><div class="cand-name-kr">비타민 D3 + K2</div></div>
+        <span class="tier tier-s">S TIER</span>
+      </div>
+      <div class="cand-desc">가장 강력한 근거를 가진 기본 보충제. DO-HEALTH 대규모 임상(2,157명, 70세 이상)에서 비타민 D 2,000IU/일 + 오메가-3 병용 시 생체나이 3~4개월 감소 확인.</div>
+      <div class="cand-tags">
+        <span class="cand-tag active">만성 염증</span>
+        <span class="cand-tag active">유전체 불안정성</span>
+        <span class="cand-tag active">미토콘드리아</span>
+        <span class="cand-tag">줄기세포 고갈</span>
+        <span class="cand-tag">세포간 신호</span>
+      </div>
+      <div class="cand-meters">
+        <div class="meter"><div class="meter-label"><span>임상 근거</span><span>95%</span></div><div class="meter-bar"><div class="meter-fill fill-green" style="width:95%"></div></div></div>
+        <div class="meter"><div class="meter-label"><span>안전성</span><span>98%</span></div><div class="meter-bar"><div class="meter-fill fill-green" style="width:98%"></div></div></div>
+        <div class="meter"><div class="meter-label"><span>접근성</span><span>95%</span></div><div class="meter-bar"><div class="meter-fill fill-blue" style="width:95%"></div></div></div>
+        <div class="meter"><div class="meter-label"><span>비용효율</span><span>97%</span></div><div class="meter-bar"><div class="meter-fill fill-purple" style="width:97%"></div></div></div>
+      </div>
+      <div class="cand-evidence"><strong>핵심 근거:</strong> DO-HEALTH trial (2025) — 70세 이상 2,157명, 3년 추적. 비타민 D + 오메가3 + 운동 병용 시 DNA 메틸화 시계 기준 노화 속도 감소, 허약 위험 39% 감소, 침습적 암 발생 61% 감소.</div>
+      <div class="cand-grandma"><div class="gm-label">👵 할머니 적용 가능성</div>70대 여성 대상 직접 임상 완료. 가장 안전하고, 가장 저렴하며, 가장 강력한 근거. <strong>즉시 시작 가능.</strong> 용량: D3 2,000IU/일 + K2 100mcg/일. 월비용: ~1만원.</div>
+    </div>
+
+    <!-- 2. Omega-3 -->
+    <div class="cand-card reveal" data-tier="tier-s">
+      <div class="top-row">
+        <div><div class="cand-name">Omega-3 (EPA+DHA)</div><div class="cand-name-kr">오메가-3 지방산</div></div>
+        <span class="tier tier-s">S TIER</span>
+      </div>
+      <div class="cand-desc">DO-HEALTH 임상에서 비타민 D와 함께 생체나이 역전 효과 입증. Nature(2025)에 독립적으로도 생물학적 노화를 늦춘다는 결과 발표. 항염증 + 텔로미어 보호 이중 효과.</div>
+      <div class="cand-tags">
+        <span class="cand-tag active">만성 염증</span>
+        <span class="cand-tag active">텔로미어 단축</span>
+        <span class="cand-tag active">세포간 신호</span>
+        <span class="cand-tag">미토콘드리아</span>
+        <span class="cand-tag">장내 미생물</span>
+      </div>
+      <div class="cand-meters">
+        <div class="meter"><div class="meter-label"><span>임상 근거</span><span>93%</span></div><div class="meter-bar"><div class="meter-fill fill-green" style="width:93%"></div></div></div>
+        <div class="meter"><div class="meter-label"><span>안전성</span><span>96%</span></div><div class="meter-bar"><div class="meter-fill fill-green" style="width:96%"></div></div></div>
+        <div class="meter"><div class="meter-label"><span>접근성</span><span>92%</span></div><div class="meter-bar"><div class="meter-fill fill-blue" style="width:92%"></div></div></div>
+        <div class="meter"><div class="meter-label"><span>비용효율</span><span>90%</span></div><div class="meter-bar"><div class="meter-fill fill-purple" style="width:90%"></div></div></div>
+      </div>
+      <div class="cand-evidence"><strong>핵심 근거:</strong> Nature (2025) — 오메가-3 단독으로도 생물학적 노화 감속 확인. DO-HEALTH에서 1,000mg/일 EPA+DHA, 비타민 D·운동과 병용 시 시너지 효과.</div>
+      <div class="cand-grandma"><div class="gm-label">👵 할머니 적용 가능성</div>70대 여성 직접 대상 임상 완료. D3+K2와 함께 즉시 시작 권장. <strong>함께 쓰면 효과 극대화.</strong> 용량: 1,000mg/일(EPA+DHA). 월비용: ~1.5만원.</div>
+    </div>
+
+    <!-- 3. Metformin -->
+    <div class="cand-card reveal" data-tier="tier-a">
+      <div class="top-row">
+        <div><div class="cand-name">Metformin</div><div class="cand-name-kr">메트포르민</div></div>
+        <span class="tier tier-a">A TIER</span>
+      </div>
+      <div class="cand-desc">역사상 가장 오래 사용된 당뇨병 약. 노화 연구의 아이콘. TAME 임상(3,000명, 65~79세)이 진행 중이며, 관찰 연구에서 당뇨병 환자가 비당뇨인보다 오래 산다는 역설적 데이터가 반복 확인됨.</div>
+      <div class="cand-tags">
+        <span class="cand-tag active">영양소 감지</span>
+        <span class="cand-tag active">만성 염증</span>
+        <span class="cand-tag active">미토콘드리아</span>
+        <span class="cand-tag active">세포 노화</span>
+        <span class="cand-tag">자가포식</span>
+        <span class="cand-tag">후성유전학</span>
+      </div>
+      <div class="cand-meters">
+        <div class="meter"><div class="meter-label"><span>임상 근거</span><span>82%</span></div><div class="meter-bar"><div class="meter-fill fill-green" style="width:82%"></div></div></div>
+        <div class="meter"><div class="meter-label"><span>안전성</span><span>90%</span></div><div class="meter-bar"><div class="meter-fill fill-green" style="width:90%"></div></div></div>
+        <div class="meter"><div class="meter-label"><span>접근성</span><span>85%</span></div><div class="meter-bar"><div class="meter-fill fill-blue" style="width:85%"></div></div></div>
+        <div class="meter"><div class="meter-label"><span>비용효율</span><span>95%</span></div><div class="meter-bar"><div class="meter-fill fill-purple" style="width:95%"></div></div></div>
+      </div>
+      <div class="cand-evidence"><strong>핵심 근거:</strong> TAME trial (NIH, 진행중) — 65~79세 3,000명 대상. Women's Health Initiative 30년 데이터에서 메트포르민 복용 폐경 후 여성의 90세 이전 사망 위험 30% 감소. DNA 메틸화 시계 감속 확인(Signal Transduction, 2024).</div>
+      <div class="cand-grandma"><div class="gm-label">👵 할머니 적용 가능성</div>처방전 필요 (전문의약품). 당뇨 전단계이거나 당뇨가 있으시면 의사와 상담 후 적용 가능. <strong>비당뇨인 대상 역노화 목적은 TAME 결과 대기 중.</strong> 월비용: ~5천원.</div>
+    </div>
+
+    <!-- 4. Rapamycin -->
+    <div class="cand-card reveal" data-tier="tier-a">
+      <div class="top-row">
+        <div><div class="cand-name">Rapamycin (Low-dose)</div><div class="cand-name-kr">라파마이신 (저용량)</div></div>
+        <span class="tier tier-a">A TIER</span>
+      </div>
+      <div class="cand-desc">mTOR 경로 억제를 통한 자가포식 활성화의 대표 물질. PEARL 임상(2025)에서 1년간 저용량 투여 시 안전성 확인 + 여성에서 근육량 증가·통증 감소 확인.</div>
+      <div class="cand-tags">
+        <span class="cand-tag active">영양소 감지</span>
+        <span class="cand-tag active">자가포식</span>
+        <span class="cand-tag active">단백질 항상성</span>
+        <span class="cand-tag active">세포 노화</span>
+        <span class="cand-tag">줄기세포 고갈</span>
+        <span class="cand-tag">미토콘드리아</span>
+      </div>
+      <div class="cand-meters">
+        <div class="meter"><div class="meter-label"><span>임상 근거</span><span>75%</span></div><div class="meter-bar"><div class="meter-fill fill-green" style="width:75%"></div></div></div>
+        <div class="meter"><div class="meter-label"><span>안전성</span><span>72%</span></div><div class="meter-bar"><div class="meter-fill fill-orange" style="width:72%"></div></div></div>
+        <div class="meter"><div class="meter-label"><span>접근성</span><span>45%</span></div><div class="meter-bar"><div class="meter-fill fill-orange" style="width:45%"></div></div></div>
+        <div class="meter"><div class="meter-label"><span>비용효율</span><span>50%</span></div><div class="meter-bar"><div class="meter-fill fill-orange" style="width:50%"></div></div></div>
+      </div>
+      <div class="cand-evidence"><strong>핵심 근거:</strong> PEARL trial (2025) — 50~85세 114명, 48주, 이중맹검 RCT. 5mg/10mg 주 1회 투여. 안전성 양호, 10mg 여성군에서 근육량 및 자가보고 통증 유의미 개선.</div>
+      <div class="cand-grandma"><div class="gm-label">👵 할머니 적용 가능성</div>처방전 필요 + 면역억제 리스크. 70대에게는 감염 위험 증가 우려. <strong>현 단계에서 할머니께 직접 적용은 비권장.</strong> 추가 임상 결과 대기.</div>
+    </div>
+
+    <!-- 5. GLP-1 RA -->
+    <div class="cand-card reveal" data-tier="tier-a">
+      <div class="top-row">
+        <div><div class="cand-name">GLP-1 Receptor Agonist</div><div class="cand-name-kr">GLP-1 수용체 작용제</div></div>
+        <span class="tier tier-a">A TIER</span>
+      </div>
+      <div class="cand-desc">2025년 가장 뜨거운 역노화 후보. Cell Metabolism(2025)에서 체중 감량과 무관하게 multi-omic 수준에서 노화를 역행시킨다는 결과 발표. 자가포식·세포노화·염증·단백질항상성을 동시에 개선.</div>
+      <div class="cand-tags">
+        <span class="cand-tag active">세포 노화</span>
+        <span class="cand-tag active">자가포식</span>
+        <span class="cand-tag active">만성 염증</span>
+        <span class="cand-tag active">단백질 항상성</span>
+        <span class="cand-tag active">미토콘드리아</span>
+        <span class="cand-tag active">영양소 감지</span>
+        <span class="cand-tag">후성유전학</span>
+        <span class="cand-tag">세포간 신호</span>
+      </div>
+      <div class="cand-meters">
+        <div class="meter"><div class="meter-label"><span>임상 근거</span><span>78%</span></div><div class="meter-bar"><div class="meter-fill fill-green" style="width:78%"></div></div></div>
+        <div class="meter"><div class="meter-label"><span>안전성</span><span>75%</span></div><div class="meter-bar"><div class="meter-fill fill-orange" style="width:75%"></div></div></div>
+        <div class="meter"><div class="meter-label"><span>접근성</span><span>55%</span></div><div class="meter-bar"><div class="meter-fill fill-orange" style="width:55%"></div></div></div>
+        <div class="meter"><div class="meter-label"><span>비용효율</span><span>25%</span></div><div class="meter-bar"><div class="meter-fill fill-orange" style="width:25%"></div></div></div>
+      </div>
+      <div class="cand-evidence"><strong>핵심 근거:</strong> Cell Metabolism (2025) — 고령 쥐에서 GLP-1RA(exenatide) 투여 시 체중 변화 없이 multi-omic 분석에서 노화 반대 방향 변화 확인. 악력·운동능력 유의미 개선. Nature Biotech (2025): "GLP-1은 최초의 장수 약물인가?"</div>
+      <div class="cand-grandma"><div class="gm-label">👵 할머니 적용 가능성</div>처방전 필요 + 고가(월 50~100만원). 비만·당뇨가 있으시면 의사 상담 후 적용 가능성 있음. <strong>역노화 단독 목적으로는 비용 대비 아직 이르다.</strong></div>
+    </div>
+
+    <!-- 6. NMN -->
+    <div class="cand-card reveal" data-tier="tier-b">
+      <div class="top-row">
+        <div><div class="cand-name">NMN / NR</div><div class="cand-name-kr">니코틴아미드 모노뉴클레오티드</div></div>
+        <span class="tier tier-b">B TIER</span>
+      </div>
+      <div class="cand-desc">NAD+ 전구체. 나이가 들수록 감소하는 NAD+ 수치를 보충하여 미토콘드리아 기능과 DNA 수리를 지원. 안전성은 확인되었으나 대규모 역노화 임상은 아직 부족.</div>
+      <div class="cand-tags">
+        <span class="cand-tag active">미토콘드리아</span>
+        <span class="cand-tag active">유전체 불안정성</span>
+        <span class="cand-tag">영양소 감지</span>
+        <span class="cand-tag">후성유전학</span>
+      </div>
+      <div class="cand-meters">
+        <div class="meter"><div class="meter-label"><span>임상 근거</span><span>55%</span></div><div class="meter-bar"><div class="meter-fill fill-orange" style="width:55%"></div></div></div>
+        <div class="meter"><div class="meter-label"><span>안전성</span><span>85%</span></div><div class="meter-bar"><div class="meter-fill fill-green" style="width:85%"></div></div></div>
+        <div class="meter"><div class="meter-label"><span>접근성</span><span>80%</span></div><div class="meter-bar"><div class="meter-fill fill-blue" style="width:80%"></div></div></div>
+        <div class="meter"><div class="meter-label"><span>비용효율</span><span>45%</span></div><div class="meter-bar"><div class="meter-fill fill-orange" style="width:45%"></div></div></div>
+      </div>
+      <div class="cand-evidence"><strong>핵심 근거:</strong> 소규모 인간 임상에서 안전성·내약성 확인. 당뇨 전단계 여성 인슐린 민감도 개선, 중장년 신체활동 개선. 혈관 기능·염증 개선 시사. 대규모 RCT는 아직 미완.</div>
+      <div class="cand-grandma"><div class="gm-label">👵 할머니 적용 가능성</div>보충제로 구입 가능(처방전 불필요). 안전성은 양호하나 <strong>대규모 임상 미완. 예산 여유 시 D3+오메가3 다음 3순위로 고려.</strong> 월비용: ~3~5만원.</div>
+    </div>
+
+    <!-- 7. Quercetin -->
+    <div class="cand-card reveal" data-tier="tier-b">
+      <div class="top-row">
+        <div><div class="cand-name">Quercetin</div><div class="cand-name-kr">퀘르세틴</div></div>
+        <span class="tier tier-b">B TIER</span>
+      </div>
+      <div class="cand-desc">양파·사과에 풍부한 플라보노이드. Dasatinib과 병용(D+Q)하면 세놀리틱(노화세포 제거) 효과. 단독으로도 항산화·항염증 작용. 비용 매우 저렴.</div>
+      <div class="cand-tags">
+        <span class="cand-tag active">세포 노화</span>
+        <span class="cand-tag active">만성 염증</span>
+        <span class="cand-tag">유전체 불안정성</span>
+      </div>
+      <div class="cand-meters">
+        <div class="meter"><div class="meter-label"><span>임상 근거</span><span>50%</span></div><div class="meter-bar"><div class="meter-fill fill-orange" style="width:50%"></div></div></div>
+        <div class="meter"><div class="meter-label"><span>안전성</span><span>90%</span></div><div class="meter-bar"><div class="meter-fill fill-green" style="width:90%"></div></div></div>
+        <div class="meter"><div class="meter-label"><span>접근성</span><span>95%</span></div><div class="meter-bar"><div class="meter-fill fill-blue" style="width:95%"></div></div></div>
+        <div class="meter"><div class="meter-label"><span>비용효율</span><span>92%</span></div><div class="meter-bar"><div class="meter-fill fill-purple" style="width:92%"></div></div></div>
+      </div>
+      <div class="cand-evidence"><strong>핵심 근거:</strong> D+Q 세놀리틱 조합 — 쥐 모델에서 수명 연장 + 건강수명 개선. 인간 임상(DNA 메틸화)에서는 아직 일관적이지 않은 결과. 단독 항산화 효과는 다수 연구에서 확인.</div>
+      <div class="cand-grandma"><div class="gm-label">👵 할머니 적용 가능성</div>보충제 구입 가능. 식품 성분이라 매우 안전. <strong>D3+오메가3와 함께 병용 가능.</strong> 단, Dasatinib 병용은 처방전 필요. 월비용: ~1만원.</div>
+    </div>
+
+    <!-- 8. Fisetin -->
+    <div class="cand-card reveal" data-tier="tier-b">
+      <div class="top-row">
+        <div><div class="cand-name">Fisetin</div><div class="cand-name-kr">피세틴</div></div>
+        <span class="tier tier-b">B TIER</span>
+      </div>
+      <div class="cand-desc">딸기에 풍부한 플라보노이드 세놀리틱. 2025년 연구에서 간헐적 투여만으로 노화세포 유전자 발현 감소 + 악력 유지 확인. 퀘르세틴보다 강력한 세놀리틱 효과 시사.</div>
+      <div class="cand-tags">
+        <span class="cand-tag active">세포 노화</span>
+        <span class="cand-tag active">만성 염증</span>
+        <span class="cand-tag">자가포식</span>
+      </div>
+      <div class="cand-meters">
+        <div class="meter"><div class="meter-label"><span>임상 근거</span><span>48%</span></div><div class="meter-bar"><div class="meter-fill fill-orange" style="width:48%"></div></div></div>
+        <div class="meter"><div class="meter-label"><span>안전성</span><span>85%</span></div><div class="meter-bar"><div class="meter-fill fill-green" style="width:85%"></div></div></div>
+        <div class="meter"><div class="meter-label"><span>접근성</span><span>82%</span></div><div class="meter-bar"><div class="meter-fill fill-blue" style="width:82%"></div></div></div>
+        <span class="meter"><div class="meter-label"><span>비용효율</span><span>78%</span></div><div class="meter-bar"><div class="meter-fill fill-purple" style="width:78%"></div></div></span>
+      </div>
+      <div class="cand-evidence"><strong>핵심 근거:</strong> PMC (2025) — 간헐적 피세틴 투여가 유전적 노화세포 제거 및 합성 세놀리틱 약물과 동등한 신체기능 보존 효과. 인간 임상시험 2건 진행 중(NCT06431932, NCT07195318).</div>
+      <div class="cand-grandma"><div class="gm-label">👵 할머니 적용 가능성</div>보충제 구입 가능. 식품 성분 기반이라 안전. <strong>인간 대상 대규모 임상 결과 대기 중. 관심 리스트에 등록.</strong> 월비용: ~2만원.</div>
+    </div>
+
+    <!-- 9. Urolithin A -->
+    <div class="cand-card reveal" data-tier="tier-b">
+      <div class="top-row">
+        <div><div class="cand-name">Urolithin A</div><div class="cand-name-kr">유로리틴 A</div></div>
+        <span class="tier tier-b">B TIER</span>
+      </div>
+      <div class="cand-desc">석류에서 유래하는 미토파지(손상된 미토콘드리아 제거) 활성 물질. Nature Aging(2025)에서 면역 노화 역전 확인 — CD8+ T세포 활성화, 지방산 산화 능력 증가.</div>
+      <div class="cand-tags">
+        <span class="cand-tag active">미토콘드리아</span>
+        <span class="cand-tag active">자가포식</span>
+        <span class="cand-tag active">세포간 신호</span>
+        <span class="cand-tag">만성 염증</span>
+      </div>
+      <div class="cand-meters">
+        <div class="meter"><div class="meter-label"><span>임상 근거</span><span>62%</span></div><div class="meter-bar"><div class="meter-fill fill-green" style="width:62%"></div></div></div>
+        <div class="meter"><div class="meter-label"><span>안전성</span><span>88%</span></div><div class="meter-bar"><div class="meter-fill fill-green" style="width:88%"></div></div></div>
+        <div class="meter"><div class="meter-label"><span>접근성</span><span>70%</span></div><div class="meter-bar"><div class="meter-fill fill-blue" style="width:70%"></div></div></div>
+        <div class="meter"><div class="meter-label"><span>비용효율</span><span>50%</span></div><div class="meter-bar"><div class="meter-fill fill-orange" style="width:50%"></div></div></div>
+      </div>
+      <div class="cand-evidence"><strong>핵심 근거:</strong> Nature Aging (2025) — RCT, 50명, 1,000mg/일, 4주. 면역 노화의 핵심 지표인 CD8+ naive T세포 증가 + 지방산산화 능력 향상. Mitopure(상업화 브랜드) 으로 시판 중.</div>
+      <div class="cand-grandma"><div class="gm-label">👵 할머니 적용 가능성</div>보충제 구입 가능. Nature Aging에 발표된 수준의 근거는 높은 편. <strong>미토콘드리아 기능 저하가 주요 이슈라면 우선 고려.</strong> 월비용: ~5~8만원.</div>
+    </div>
+
+    <!-- 10. Spermidine -->
+    <div class="cand-card reveal" data-tier="tier-b">
+      <div class="top-row">
+        <div><div class="cand-name">Spermidine</div><div class="cand-name-kr">스페르미딘</div></div>
+        <span class="tier tier-b">B TIER</span>
+      </div>
+      <div class="cand-desc">밀배아·치즈·콩에 풍부한 자연 발생 폴리아민. 자가포식을 유도하는 대표적 식이 물질. 인지 기능과의 관련성이 관찰 연구에서 반복 확인.</div>
+      <div class="cand-tags">
+        <span class="cand-tag active">자가포식</span>
+        <span class="cand-tag active">후성유전학</span>
+        <span class="cand-tag">만성 염증</span>
+        <span class="cand-tag">미토콘드리아</span>
+      </div>
+      <div class="cand-meters">
+        <div class="meter"><div class="meter-label"><span>임상 근거</span><span>45%</span></div><div class="meter-bar"><div class="meter-fill fill-orange" style="width:45%"></div></div></div>
+        <div class="meter"><div class="meter-label"><span>안전성</span><span>92%</span></div><div class="meter-bar"><div class="meter-fill fill-green" style="width:92%"></div></div></div>
+        <div class="meter"><div class="meter-label"><span>접근성</span><span>75%</span></div><div class="meter-bar"><div class="meter-fill fill-blue" style="width:75%"></div></div></div>
+        <div class="meter"><div class="meter-label"><span>비용효율</span><span>70%</span></div><div class="meter-bar"><div class="meter-fill fill-purple" style="width:70%"></div></div></div>
+      </div>
+      <div class="cand-evidence"><strong>핵심 근거:</strong> 혈중 스페르미딘 수치와 인지 기능 부분 상관. 밀배아 섭취 기반 임상에서 안전성 확인. 그러나 순수 스페르미딘 대규모 RCT는 아직 부재.</div>
+      <div class="cand-grandma"><div class="gm-label">👵 할머니 적용 가능성</div>밀배아·콩 식이로 자연스럽게 섭취 가능. 보충제도 있음. <strong>식이 기반이라 매우 안전. 음식 위주 접근 권장.</strong> 월비용: 식이 중심이면 0원.</div>
+    </div>
+
+    <!-- 11. Resveratrol -->
+    <div class="cand-card reveal" data-tier="tier-c">
+      <div class="top-row">
+        <div><div class="cand-name">Resveratrol</div><div class="cand-name-kr">레스베라트롤</div></div>
+        <span class="tier tier-c">C TIER</span>
+      </div>
+      <div class="cand-desc">적포도주의 폴리페놀. SIRT1 활성화를 통해 주목받았으나, 인간 임상에서의 결과는 실망스러운 편. 생체이용률이 매우 낮고 대규모 역노화 근거 부족.</div>
+      <div class="cand-tags">
+        <span class="cand-tag">후성유전학</span>
+        <span class="cand-tag">만성 염증</span>
+        <span class="cand-tag">영양소 감지</span>
+      </div>
+      <div class="cand-meters">
+        <div class="meter"><div class="meter-label"><span>임상 근거</span><span>30%</span></div><div class="meter-bar"><div class="meter-fill fill-orange" style="width:30%"></div></div></div>
+        <div class="meter"><div class="meter-label"><span>안전성</span><span>85%</span></div><div class="meter-bar"><div class="meter-fill fill-green" style="width:85%"></div></div></div>
+        <div class="meter"><div class="meter-label"><span>접근성</span><span>90%</span></div><div class="meter-bar"><div class="meter-fill fill-blue" style="width:90%"></div></div></div>
+        <div class="meter"><div class="meter-label"><span>비용효율</span><span>40%</span></div><div class="meter-bar"><div class="meter-fill fill-orange" style="width:40%"></div></div></div>
+      </div>
+      <div class="cand-evidence"><strong>핵심 근거:</strong> 동물 모델에서는 긍정적이나, 인간 임상 결과 불일치. 생체이용률(bioavailability)이 극도로 낮아 경구 섭취의 실질적 효과에 의문. David Sinclair의 주장과 달리 독립 재현이 어려움.</div>
+      <div class="cand-grandma"><div class="gm-label">👵 할머니 적용 가능성</div>해롭지는 않으나, <strong>같은 비용이면 D3+오메가3+퀘르세틴이 훨씬 유효.</strong> 우선순위 낮음.</div>
+    </div>
+
+    <!-- 12. Berberine -->
+    <div class="cand-card reveal" data-tier="tier-b">
+      <div class="top-row">
+        <div><div class="cand-name">Berberine</div><div class="cand-name-kr">베르베린</div></div>
+        <span class="tier tier-b">B TIER</span>
+      </div>
+      <div class="cand-desc">"자연의 메트포르민"으로 불리는 식물 알칼로이드. AMPK 활성화를 통해 메트포르민과 유사한 경로를 자극. 처방전 없이 구입 가능한 것이 핵심 장점.</div>
+      <div class="cand-tags">
+        <span class="cand-tag active">영양소 감지</span>
+        <span class="cand-tag active">만성 염증</span>
+        <span class="cand-tag">미토콘드리아</span>
+        <span class="cand-tag">장내 미생물</span>
+      </div>
+      <div class="cand-meters">
+        <div class="meter"><div class="meter-label"><span>임상 근거</span><span>55%</span></div><div class="meter-bar"><div class="meter-fill fill-orange" style="width:55%"></div></div></div>
+        <div class="meter"><div class="meter-label"><span>안전성</span><span>80%</span></div><div class="meter-bar"><div class="meter-fill fill-green" style="width:80%"></div></div></div>
+        <div class="meter"><div class="meter-label"><span>접근성</span><span>88%</span></div><div class="meter-bar"><div class="meter-fill fill-blue" style="width:88%"></div></div></div>
+        <div class="meter"><div class="meter-label"><span>비용효율</span><span>85%</span></div><div class="meter-bar"><div class="meter-fill fill-purple" style="width:85%"></div></div></div>
+      </div>
+      <div class="cand-evidence"><strong>핵심 근거:</strong> 혈당 조절 효과 다수 RCT에서 확인(메트포르민과 동등 수준). 항염증·장내 미생물 개선 효과. 그러나 "역노화" 직접 근거(메틸화 시계 등)는 아직 부족.</div>
+      <div class="cand-grandma"><div class="gm-label">👵 할머니 적용 가능성</div>처방전 없이 구입 가능. 혈당 관리가 필요한 경우 메트포르민 대안으로 고려. <strong>다만 다른 약과의 상호작용 주의.</strong> 월비용: ~2만원.</div>
+    </div>
+
+    <!-- 13. CoQ10 -->
+    <div class="cand-card reveal" data-tier="tier-b">
+      <div class="top-row">
+        <div><div class="cand-name">CoQ10 (Ubiquinol)</div><div class="cand-name-kr">코엔자임 Q10</div></div>
+        <span class="tier tier-b">B TIER</span>
+      </div>
+      <div class="cand-desc">미토콘드리아 전자전달계의 핵심 조효소. 나이가 들수록 체내 생산량 감소. 심장 기능 보호 및 에너지 대사 지원. 특히 스타틴 복용자에게 중요.</div>
+      <div class="cand-tags">
+        <span class="cand-tag active">미토콘드리아</span>
+        <span class="cand-tag">유전체 불안정성</span>
+        <span class="cand-tag">만성 염증</span>
+      </div>
+      <div class="cand-meters">
+        <div class="meter"><div class="meter-label"><span>임상 근거</span><span>60%</span></div><div class="meter-bar"><div class="meter-fill fill-green" style="width:60%"></div></div></div>
+        <div class="meter"><div class="meter-label"><span>안전성</span><span>95%</span></div><div class="meter-bar"><div class="meter-fill fill-green" style="width:95%"></div></div></div>
+        <div class="meter"><div class="meter-label"><span>접근성</span><span>90%</span></div><div class="meter-bar"><div class="meter-fill fill-blue" style="width:90%"></div></div></div>
+        <div class="meter"><div class="meter-label"><span>비용효율</span><span>75%</span></div><div class="meter-bar"><div class="meter-fill fill-purple" style="width:75%"></div></div></div>
+      </div>
+      <div class="cand-evidence"><strong>핵심 근거:</strong> Q-SYMBIO trial — 심부전 환자 420명, CoQ10 300mg/일, 2년 추적. 심혈관 사망 43% 감소. 스타틴 유발 근육통 완화에도 다수 연구에서 효과 확인.</div>
+      <div class="cand-grandma"><div class="gm-label">👵 할머니 적용 가능성</div>특히 <strong>콜레스테롤 약(스타틴) 복용 중이시라면 강력 권장.</strong> Ubiquinol 형태로 100~200mg/일. 월비용: ~2~3만원.</div>
+    </div>
+
+    <!-- 14. Dasatinib+Quercetin -->
+    <div class="cand-card reveal" data-tier="tier-c">
+      <div class="top-row">
+        <div><div class="cand-name">Dasatinib + Quercetin (D+Q)</div><div class="cand-name-kr">다사티닙 + 퀘르세틴</div></div>
+        <span class="tier tier-c">C TIER</span>
+      </div>
+      <div class="cand-desc">가장 연구된 세놀리틱(노화세포 제거) 조합. 동물 모델에서 수명 연장·건강수명 개선 반복 확인. 인간 임상은 초기 단계이며 DNA 메틸화 결과 불일치.</div>
+      <div class="cand-tags">
+        <span class="cand-tag active">세포 노화</span>
+        <span class="cand-tag active">만성 염증</span>
+        <span class="cand-tag">줄기세포 고갈</span>
+        <span class="cand-tag">세포간 신호</span>
+      </div>
+      <div class="cand-meters">
+        <div class="meter"><div class="meter-label"><span>임상 근거</span><span>40%</span></div><div class="meter-bar"><div class="meter-fill fill-orange" style="width:40%"></div></div></div>
+        <div class="meter"><div class="meter-label"><span>안전성</span><span>55%</span></div><div class="meter-bar"><div class="meter-fill fill-orange" style="width:55%"></div></div></div>
+        <div class="meter"><div class="meter-label"><span>접근성</span><span>25%</span></div><div class="meter-bar"><div class="meter-fill fill-orange" style="width:25%"></div></div></div>
+        <div class="meter"><div class="meter-label"><span>비용효율</span><span>30%</span></div><div class="meter-bar"><div class="meter-fill fill-orange" style="width:30%"></div></div></div>
+      </div>
+      <div class="cand-evidence"><strong>핵심 근거:</strong> 동물: 수명 36% 연장, 건강수명 개선 다수 재현. 인간: 단일군 임상에서 DNA 메틸화 시계 결과 비일관적. Dasatinib은 항암제(처방전 필수).</div>
+      <div class="cand-grandma"><div class="gm-label">👵 할머니 적용 가능성</div>Dasatinib은 항암제. <strong>현 단계에서 할머니께 적용 불가.</strong> 향후 세놀리틱 전용 약물 개발 주시.</div>
+    </div>
+
+    <!-- 15. Yamanaka Factors -->
+    <div class="cand-card reveal" data-tier="tier-c">
+      <div class="top-row">
+        <div><div class="cand-name">Partial Reprogramming</div><div class="cand-name-kr">야마나카 인자 (부분 리프로그래밍)</div></div>
+        <span class="tier tier-c">C TIER</span>
+      </div>
+      <div class="cand-desc">노벨상 수상 기술의 역노화 응용. OSKM 인자를 부분적으로만 활성화하여 세포를 젊게 되돌리면서도 줄기세포화(암화)를 방지. Altos Labs 등에서 수십억 달러 투자 중.</div>
+      <div class="cand-tags">
+        <span class="cand-tag active">후성유전학</span>
+        <span class="cand-tag active">줄기세포 고갈</span>
+        <span class="cand-tag active">텔로미어 단축</span>
+        <span class="cand-tag">유전체 불안정성</span>
+        <span class="cand-tag">단백질 항상성</span>
+        <span class="cand-tag">미토콘드리아</span>
+      </div>
+      <div class="cand-meters">
+        <div class="meter"><div class="meter-label"><span>임상 근거</span><span>15%</span></div><div class="meter-bar"><div class="meter-fill fill-orange" style="width:15%"></div></div></div>
+        <div class="meter"><div class="meter-label"><span>안전성</span><span>20%</span></div><div class="meter-bar"><div class="meter-fill fill-orange" style="width:20%"></div></div></div>
+        <div class="meter"><div class="meter-label"><span>접근성</span><span>5%</span></div><div class="meter-bar"><div class="meter-fill fill-orange" style="width:5%"></div></div></div>
+        <div class="meter"><div class="meter-label"><span>비용효율</span><span>5%</span></div><div class="meter-bar"><div class="meter-fill fill-orange" style="width:5%"></div></div></div>
+      </div>
+      <div class="cand-evidence"><strong>핵심 근거:</strong> Altos Labs(30억 달러 투자), Retro Biosciences 등이 연구 중. 동물 모델에서 에피제네틱 시계 역전 확인. 그러나 암 발생 위험, 전달 기술 미완 등 인간 적용까지 최소 10~20년.</div>
+      <div class="cand-grandma"><div class="gm-label">👵 할머니 적용 가능성</div><strong>현재 적용 불가능.</strong> 그러나 이것이 "궁극의 역노화"이기 때문에, 이 분야의 진전을 계속 모니터링하는 것 자체가 도메인 지식.</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- SECTION 3: GRANDMOTHER PROTOCOL -->
+<div class="sec" id="protocol">
+  <span class="sec-label">Section 03</span>
+  <h2>할머니를 위한 역노화 프로토콜 설계</h2>
+  <p class="sub">위 15가지 후보물질 분석을 바탕으로, 70대 할머니에게 실제로 적용 가능한 단계별 프로토콜을 설계했습니다. 안전성과 근거 수준이 가장 높은 것부터 시작합니다.</p>
+
+  <div class="protocol-box">
+    <h3>🩺 70대 여성 맞춤 역노화 프로토콜 v1.0</h3>
+    <div class="prot-sub">대원칙: 안전성 > 근거 수준 > 비용효율 순으로 우선순위. 반드시 의사 상담 병행.</div>
+
+    <div class="prot-tier">
+      <div class="prot-tier-header">
+        <span class="tier-badge tier-s">1단계</span>
+        <span class="tier-title">즉시 시작 — 월 3만원 이내</span>
+      </div>
+      <div class="prot-items">
+        <div class="prot-item"><div class="pi-name">비타민 D3 + K2</div><div class="pi-dose">D3 2,000IU + K2 100mcg / 매일</div><div class="pi-cost">~1만원/월 · 70세 이상 RCT 완료</div></div>
+        <div class="prot-item"><div class="pi-name">오메가-3 (EPA+DHA)</div><div class="pi-dose">1,000mg / 매일 식후</div><div class="pi-cost">~1.5만원/월 · Nature 2025 발표</div></div>
+        <div class="prot-item"><div class="pi-name">규칙적 걷기 운동</div><div class="pi-dose">30분 × 주 3회</div><div class="pi-cost">0원 · DO-HEALTH에서 시너지 확인</div></div>
+      </div>
+    </div>
+
+    <div class="prot-tier">
+      <div class="prot-tier-header">
+        <span class="tier-badge tier-a" style="background:rgba(59,130,246,.15);color:var(--blue);border:1px solid rgba(59,130,246,.25)">2단계</span>
+        <span class="tier-title">1개월 후 추가 — 월 5만원 이내</span>
+      </div>
+      <div class="prot-items">
+        <div class="prot-item"><div class="pi-name">퀘르세틴</div><div class="pi-dose">500mg / 매일</div><div class="pi-cost">~1만원/월 · 세놀리틱 + 항염증</div></div>
+        <div class="prot-item"><div class="pi-name">CoQ10 (Ubiquinol)</div><div class="pi-dose">100~200mg / 매일</div><div class="pi-cost">~2만원/월 · 스타틴 복용 시 필수</div></div>
+        <div class="prot-item"><div class="pi-name">스페르미딘 (식이)</div><div class="pi-dose">밀배아·콩·발효식품 매일 섭취</div><div class="pi-cost">~0원 · 자가포식 자연 유도</div></div>
+      </div>
+    </div>
+
+    <div class="prot-tier">
+      <div class="prot-tier-header">
+        <span class="tier-badge tier-b">3단계</span>
+        <span class="tier-title">의사 상담 후 — 예산 여유 시</span>
+      </div>
+      <div class="prot-items">
+        <div class="prot-item"><div class="pi-name">NMN</div><div class="pi-dose">250~500mg / 매일</div><div class="pi-cost">~4만원/월 · NAD+ 보충</div></div>
+        <div class="prot-item"><div class="pi-name">메트포르민</div><div class="pi-dose">의사 처방 필요</div><div class="pi-cost">~5천원/월 · 당뇨 전단계 시 우선</div></div>
+        <div class="prot-item"><div class="pi-name">유로리틴 A</div><div class="pi-dose">500~1,000mg / 매일</div><div class="pi-cost">~6만원/월 · 미토파지 활성</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 4: INSIGHTS -->
+<div class="sec" id="insights">
+  <span class="sec-label">Section 04</span>
+  <h2>이 연구에서 발견한 3가지</h2>
+
+  <div class="ins-box reveal">
+    <h3>💡 발견 1 — 가장 강력한 역노화 전략은 가장 저렴하다</h3>
+    <p>비타민 D3 + 오메가-3 + 걷기 운동 — 이 세 가지 조합은 <span class="hl">70세 이상 2,157명 대상 RCT(DO-HEALTH)</span>에서 생체나이 감소, 허약 위험 39% 감소, 침습적 암 61% 감소를 동시에 달성했습니다. 월 비용 3만원 이내. 가장 비싼 물질이 아니라, 가장 검증된 물질이 가장 효과적입니다.</p>
+  </div>
+  <div class="ins-box reveal">
+    <h3>💡 발견 2 — GLP-1RA는 "멀티 hallmark 공격자"다</h3>
+    <p>대부분의 후보물질이 1~3개 hallmark에 작용하는 반면, <span class="hl">GLP-1RA는 8개 hallmark를 동시에 표적</span>합니다(Cell Metabolism, 2025). 세포노화·자가포식·염증·단백질항상성·미토콘드리아·영양소감지·후성유전학·세포간신호. 체중 감량 없이도 이 효과가 나타난다는 점이 핵심입니다. 이것이 Nature Biotech가 "최초의 장수 약물인가?"라고 물은 이유입니다.</p>
+  </div>
+  <div class="ins-box reveal">
+    <h3>💡 발견 3 — "근거의 사다리"를 알면 속지 않는다</h3>
+    <p>역노화 시장에서 가장 위험한 것은 "쥐에서 효과가 있었다"를 "사람에게도 효과가 있다"로 읽는 것입니다. 이 리포트에서 <span class="hl">S~C 등급 체계</span>를 만든 이유입니다. S등급(D3, 오메가-3)은 70세 이상 RCT 완료. C등급(야마나카 인자)은 동물 실험 단계. 이 차이를 구별하는 것 자체가 도메인 지식입니다.</p>
+  </div>
+</div>
+
+<!-- AUTHOR -->
+<div class="sec">
+  <div class="author">
+    <h3>이 연구를 한 사람</h3>
+    <div class="story">
+      저는 의학을 전공하지 않은 <em>구건우</em>입니다.<br><br>
+      70대 할머니의 생체나이를 되돌리고 싶다는 마음에서 시작해,<br>
+      노화의 12가지 메커니즘과 15가지 후보물질을 AI와 함께 조사했습니다.<br><br>
+      이 페이지는 <em>포트폴리오이자 실전 연구</em>입니다.<br>
+      의료 AI·역노화 분야에서 함께 일하고 싶습니다.
+    </div>
+    <a class="author-cta" href="https://www.linkedin.com/in/%EA%B1%B4%EC%9A%B0-%EA%B5%AC-5aa559341/" target="_blank">LinkedIn에서 구건우와 연결하기 →</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <p>역노화 후보물질 연구 — 12 Hallmarks × 15 Candidates &mdash; 구건우 제작</p>
+  <p style="margin-top:.5rem">데이터 출처: <a href="https://pubmed.ncbi.nlm.nih.gov/36599349/" target="_blank">Lopez-Otin et al. Cell (2023)</a> · <a href="https://www.cell.com/cell-metabolism/fulltext/S1550-4131(25)00474-7" target="_blank">Cell Metabolism (2025)</a> · <a href="https://www.nature.com/articles/s43587-025-00996-x" target="_blank">Nature Aging (2025)</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/40188830/" target="_blank">PEARL Trial (2025)</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/39900648/" target="_blank">DO-HEALTH Trial</a></p>
+  <p style="margin-top:.3rem;opacity:.5">Last updated: April 2026 · Built with AI-assisted research · Portfolio Piece #2</p>
+</div>
+
+<script>
+// FILTER
+function filterCards(tier){
+  document.querySelectorAll('.f-btn').forEach(b=>b.classList.remove('active'));
+  event.target.classList.add('active');
+  document.querySelectorAll('.cand-card').forEach(c=>{
+    c.style.display=(tier==='all'||c.dataset.tier===tier)?'block':'none';
+  });
+}
+
+// SCROLL REVEAL
+const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')})},{threshold:.1});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+// COUNTER ANIMATION
+function animNum(el,target,suffix='',dur=2000){
+  const start=performance.now();
+  (function update(now){
+    const p=Math.min((now-start)/dur,1);
+    const v=Math.round(target*(1-Math.pow(1-p,3)));
+    el.textContent=(target>=100?v.toLocaleString():v)+suffix;
+    if(p<1)requestAnimationFrame(update);
+  })(start);
+}
+const hObs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){
+  animNum(document.querySelector('.hero-num:nth-child(1) .n'),12,'',1500);
+  animNum(document.querySelector('.hero-num:nth-child(2) .n'),15,'',1500);
+  animNum(document.querySelector('.hero-num:nth-child(3) .n'),47,'',2000);
+  animNum(document.querySelector('.hero-num:nth-child(4) .n'),1,'',800);
+  hObs.disconnect();}})},{threshold:.3});
+hObs.observe(document.querySelector('.hero-nums'));
+</script>
+</body>
+</html>
