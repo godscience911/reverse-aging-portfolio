@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>구건우 — 회춘 프로젝트</title>
+    <title>구건우 — 할머니를 1년 젊게 해드리기 프로젝트</title>
     <meta name="description" content="Medical AI · Reverse-Aging · AI-Assisted Research">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;900&family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap');
@@ -249,8 +249,10 @@
             border: 1px solid var(--border); border-radius: 14px;
             padding: 1.5rem; transition: all .4s;
             display: flex; flex-direction: column;
+            cursor: pointer; text-decoration: none; color: inherit;
         }
-        .news-card:hover { border-color: rgba(181,255,0,.1); transform: translateY(-3px); box-shadow: 0 12px 36px rgba(0,0,0,.35); }
+        .news-card:hover { border-color: rgba(181,255,0,.2); transform: translateY(-3px); box-shadow: 0 12px 36px rgba(0,0,0,.35); }
+        .news-card:hover h4 { color: var(--lime); }
         .news-meta { display: flex; align-items: center; gap: .5rem; margin-bottom: .8rem; }
         .news-type {
             font-size: .6rem; font-weight: 700; padding: 3px 10px; border-radius: 100px;
@@ -259,7 +261,7 @@
         .news-type.paper { background: rgba(181,255,0,.06); color: var(--lime); border: 1px solid rgba(181,255,0,.1); }
         .news-type.news { background: rgba(255,255,255,.04); color: var(--muted); border: 1px solid var(--border); }
         .news-date { font-size: .65rem; color: var(--dim); }
-        .news-card h4 { font-size: .92rem; font-weight: 700; line-height: 1.5; margin-bottom: .5rem; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+        .news-card h4 { font-size: .92rem; font-weight: 700; line-height: 1.5; margin-bottom: .5rem; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; transition: color .3s; }
         .news-card p { font-size: .78rem; color: var(--muted); line-height: 1.65; flex: 1; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
         .news-source { font-size: .65rem; color: var(--dim); margin-top: .8rem; padding-top: .6rem; border-top: 1px solid var(--border); }
         .news-source a { color: var(--lime-soft); }
@@ -416,7 +418,7 @@
             <a href="#workflow">방법론</a>
             <a href="#contact">연락</a>
             <a href="https://www.linkedin.com/in/%EA%B1%B4%EC%9A%B0-%EA%B5%AC-5aa559341/" class="nav-cta" target="_blank" rel="noopener">
-                1촉 신청
+                1촌 신청
                 <svg viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
             </a>
         </div>
@@ -427,12 +429,12 @@
             <div class="hero-tag"><span class="tdot"></span>Medical AI · Reverse-Aging · Researcher</div>
             <h1>
                 <span class="l1">구건우의</span>
-                <span class="l2">조부모님 회춘</span>
+                <span class="l2">할머니를 1년 젊게 해드리기</span>
                 <span class="l3">프로젝트</span>
             </h1>
             <p class="hero-p">
-                실제 생체나이를 젊게 해드리고 싶은 <em>간절한 마음</em> 하나로 시작했습니다.<br>
-                AI를 연구 동료로 활용하여, 의료 AI 산업과 역노화 과학을 독학합니다.<br>
+                70대 할머니의 생체나이를 되돌리고 싶은 <em>간절한 마음</em> 하나로 시작했습니다.<br>
+                AI를 연구 동료로 활용하여, 의료 AI 산업과 역녴화 과학을 독학합니다.<br>
                 이 사이트는 그 여정의 기록이자, <em>함께 일하고 싶다는 제안</em>입니다.
             </p>
             <div class="hero-btns">
@@ -453,16 +455,16 @@
         <h2 class="rv">왜 이것을 하는가</h2>
         <p class="lead rv">기술은 배울 수 있습니다. 하지만 의학과 환자를 향한 진심은 가르칠 수 없습니다.</p>
         <div class="m-grid">
-            <div class="m-card rv rv-d1"><div class="mc-i">👵</div><h3>출발점: 할머니</h3><p>70대 할머니의 건강이 겉잡을 수 없게 악화되기 시작한 그 날, 저는 처음으로 "역노화"를 검색했습니다. 비전공자이지만, 가족을 위해 과학을 읽기 시작했습니다.</p></div>
+            <div class="m-card rv rv-d1"><div class="mc-i">👵</div><h3>출발점: 할머니</h3><p>70대 할머니의 건강을 걱정되기 시작한 그 날, 저는 처음으로 "역노화"를 검색했습니다. 비전공자이지만, 가족을 위해 과학을 읽기 시작했습니다.</p></div>
             <div class="m-card rv rv-d2"><div class="mc-i">🤖</div><h3>방법: AI와 함께 연구</h3><p>AI를 연구 동료로 활용하여, 비전공자도 논문을 읽고, 산업을 분석하고, 후보물질을 평가할 수 있다는 것을 직접 증명하고 있습니다.</p></div>
-            <div class="m-card rv rv-d3"><div class="mc-i">🚀</div><h3>목표: 함께 일하기</h3><p>이 연구를 혼자 하는 것보다, 의료 AI·역노화 스타트업에서 함께 하면 100배 빠릅니다. 도메인 이해도 + AI 활용 실행력을 가진 팀원이 되고 싶습니다.</p></div>
+            <div class="m-card rv rv-d3"><div class="mc-i">🚀</div><h3>목표: 함께 일하기</h3><p>이 연구를 혼자 하는 것보다, 의료 AI·역노화 스타트업에서 함께 하메 100배 빠릉니다. 도메인 이해도 + AI 활용 실행력을 가진 파원이 되고 싶습니다.</p></div>
         </div>
     </section>
 
     <section class="sec" id="projects">
         <span class="sec-eye rv">RESEARCH PROJECTS</span>
         <h2 class="rv">연구 프로젝트</h2>
-        <p class="lead rv">각 프로젝트는 독립된 리서치이면서, 도메인 지식과 AI 활용 능력의 증거입니다.</p>
+        <p class="lead rv">각 프로젝트는 독립된 리서치이며서, 도메인 지식과 AI 활용 능력의 증거입니다.</p>
         <div class="p-grid">
             <div class="p-card rv rv-d1">
                 <div class="p-hero"><div class="p-num">#01</div><div class="p-icon">🗺️</div></div>
@@ -479,7 +481,7 @@
                 <div class="p-body">
                     <h3>역노화 후보물질 연구: 12 Hallmarks × 15 Candidates</h3>
                     <span class="p-sub">Reverse-Aging · Hallmarks · Protocol Design</span>
-                    <p class="p-desc">노화의 12가지 hallmarks에 대응하는 15가지 후보물질을 S~C 등급으로 평가. 70대 할머니 맞춤 3단계 프로토콜 설계.</p>
+                    <p class="p-desc">노화의 12가지 hallmarks에 대응하는 15가지 후보무질을 S~C 등급으로 평가. 70대 할머니 맞춤 3단계 프로토콜 설계.</p>
                     <div class="p-tags"><span class="p-tag">Hallmarks of Aging</span><span class="p-tag">GLP-1</span><span class="p-tag">RAR</span><span class="p-tag">Rapamycin</span><span class="p-tag">Senolytics</span></div>
                 </div>
                 <div class="p-foot"><span class="p-status st-live">LIVE</span><a href="reverse_aging_candidates.html" class="p-link">자세히 보기 →</a></div>
@@ -489,7 +491,7 @@
                 <div class="p-body">
                     <h3>한국 의료 AI · 역노화 스타트업 시장 지도</h3>
                     <span class="p-sub">Startup Analysis · Financial · Strategy</span>
-                    <p class="p-desc">루닛·뷰노·하플사이언스 등 9개 기업의 기술·재무·전략 종합 분석. VUNO 감사보고서 해석, GLP-1RA 시장 기회 분석.</p>
+                    <p class="p-desc">루닗·뷸노·하플사이언스 등 9개 기업의 기술·재무·전략 종합 분석. VUNO 감사보고서 해석, GLP-1RA 시장 기회 분석.</p>
                     <div class="p-tags"><span class="p-tag">Lunit</span><span class="p-tag">VUNO</span><span class="p-tag">HaplnScience</span><span class="p-tag">K-IFRS</span></div>
                 </div>
                 <div class="p-foot"><span class="p-status st-soon">COMING SOON</span><span style="color:var(--dim);font-size:.78rem;">준비 중</span></div>
@@ -501,7 +503,7 @@
     <section class="sec" id="news">
         <span class="sec-eye rv">RESEARCH NEWS</span>
         <h2 class="rv">역노화 · GLP-1 최신 연구 소식</h2>
-        <p class="lead rv">매일 자동 업데이트되는 역노화/GLP-1 관련 최신 논문과 뉴스입니다.</p>
+        <p class="lead rv">매일 자동 업데이트되는 역노화/GLP-1 관련 최술 논문과 뉴스입니다.</p>
         <div id="newsFeed" class="news-grid">
             <div class="news-loading"><span></span><span></span><span></span></div>
         </div>
@@ -510,7 +512,7 @@
     <section class="quote-sec">
         <div class="quote-inner">
             <div class="q-mark">"</div>
-            <p class="q-text">기술은 가르칠 수 있지만,<br>의학과 환자에 대한 집착은 가르칠 수 없다.</p>
+            <p class="q-text">기술은 가르칠 수 있지만,<br>의학과 활자에 대한 집착은 가르칠 수 없다.</p>
             <p class="q-author">— 의료 AI 스타트업 대표들이 공통으로 하는 말</p>
         </div>
     </section>
@@ -520,32 +522,32 @@
         <h2 class="rv">비전공자의 AI 리서치 방법론</h2>
         <p class="lead rv">이 사이트의 모든 연구는 아래 4단계로 만들어졌습니다. 누구나 재현할 수 있습니다.</p>
         <div class="wf-list">
-            <div class="wf-item rv rv-d1"><div class="wf-dot">🎯</div><div class="wf-text"><div class="wf-label">Step 1</div><h3>거대한 질문을 작은 질문으로 분해</h3><p>"한국 의료 AI 시장은?"이라는 거대한 질문을 12개의 작은 질문으로 쪼갭니다. 질문을 잘 쪼개는 능력이 AI 활용의 80%입니다.</p><div class="wf-ex"><strong>예시:</strong> "역노화 후보물질" → "hallmarks는 몇 개?" + "각 hallmark별 후보물질은?" + "70대 여성에게 안전한가?" + "임상 근거 수준은?"</div></div></div>
-            <div class="wf-item rv rv-d2"><div class="wf-dot">🤖</div><div class="wf-text"><div class="wf-label">Step 2</div><h3>AI를 "연구 동료"로 활용</h3><p>AI에게 역할을 부여합니다. "너는 FDA 규제 전문가야" — 역할 + 맥락 + 구체적 요청 = 전문가급 출력.</p><div class="wf-ex"><strong>프롬프트:</strong> "2023 Cell 논문 기준 12 hallmarks에 대응하는 후보물질을 매핑해줘. 물질별로 (1) 메커니즘 (2) 임상 근거 (3) 70대 여성 안전성 포함."</div></div></div>
+            <div class="wf-item rv rv-d1"><div class="wf-dot">🎯</div><div class="wf-text"><div class="wf-label">Step 1</div><h3>거대한 질문을 작은 질문으로 분해</h3><p>"한국 의료 AI 시장은?"이라는 거대한 질문을 12개의 작은 질문으로 쪸갭니다. 질문을 잘 쪼개는 능력이 AI 활용의 80%입니다.</p><div class="wf-ex"><strong>예시:</strong> "역노화 후보물질" → "hallmarks는 몇 개?" + "각 hallmark별 후보물질은?" + "70대 여성에게 안전한가?" + "임상 근거 수준은?"</div></div></div>
+     <div class="wf-item rv rv-d2"><div class="wf-dot">🤖</div><div class="wf-text"><div class="wf-label">Step 2</div><h3>AI를 "연구 동료"로 활용</h3><p>AI에게 역할을 부여합니다. "너는 FDA 규제 전문가야" — 역할 + 맥락 + 구체적 요청 = 전문가급 출력.</p><div class="wf-ex"><strong>프롬프트:</strong> "2023 Cell 논문 기준 12 hallmarks에 대응하는 후보물질을 매핑해줘. 물질별로 (1) 메커니즘 (2) 임상 근거 (3) 70대 여성 안전성 포함."</div></div></div>
             <div class="wf-item rv rv-d3"><div class="wf-dot">✅</div><div class="wf-text"><div class="wf-label">Step 3</div><h3>3중 교차검증</h3><p>AI 출력을 3개 독립 출처에서 확인합니다. (1) 정부 공식 사이트 (2) 기업 공시자료 (3) 학술 논문. 불일치 시 가장 권위 있는 출처를 채택.</p><div class="wf-ex"><strong>실제 사례:</strong> VUNO "왜 적자?" → 감사보고서 ZIP 직접 분석 → K-IFRS 5년치 영업손실(-176억→-46억) 직접 확인.</div></div></div>
-            <div class="wf-item rv rv-d3"><div class="wf-dot">🎨</div><div class="wf-text"><div class="wf-label">Step 4</div><h3>시각화 + 공개 발행</h3><p>검증된 데이터를 인터랙티브 웹으로 시각화. "조사했다"가 아니라 "이것을 만들었다"는 결과물. 이 사이트 자체가 Step 4의 산출물입니다.</p></div></div>
+            <div class="wf-item rv rv-d3"><div class="wf-dot">🎨</div><div class="wf-text"><div class="wf-label">Step 4</div><h3>시각화 + 공개 발행</h3><p>검증된 데이터를 인터랡티브 웹으로 시각화. "조사했다"가 아니라 "이것을 만들었다"는 결과문. 이 사이트 자체가 Step 4의 산출문입니다.</p></div></div>
         </div>
     </section>
 
     <section class="sec" id="contact">
         <h2 class="rv" style="margin-bottom:.8rem;">함께 일하고 싶습니다</h2>
-        <p class="lead rv" style="margin-bottom:2rem;max-width:720px;">의료 AI·역노화 분야에서 도메인 이해도와 AI 활용 실행력을 가진 팀원을 찾고 계신다면, 연락해주세요.</p>
+        <p class="lead rv" style="margin-bottom:2rem;max-width:720px;">의료 AI·역노화 분야에서 도메인 이해도와 AI 활용 실행력을 갖춘 파원을 찾고 계시다면, 연결해주세요.</p>
         <div class="contact-wrap">
             <div class="contact-card rv">
                 <div class="c-btns">
                     <a href="https://www.linkedin.com/in/%EA%B1%B4%EC%9A%B0-%EA%B5%AC-5aa559341/" class="c-btn c-linkedin" target="_blank" rel="noopener">
                         <svg viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
-                        LinkedIn 1촉 신청하기
+                        LinkedIn 1촌 신청하기
                     </a>
                     <a href="mailto:godscience2024@gmail.com" class="c-btn c-email">godscience2024@gmail.com</a>
                 </div>
-                <p class="c-note">"귀사에 대해 제가 이렇게 이해했습니다. 틀린 부분이 있다면 알려주세요."<br>— 부탁이 아니라 기여로 시작하겠습니다.</p>
+                <p class="c-note">"귀사에 대해 제가 이렇게 이해했습니다. 틀린 부분이 있다메 알려주세요."<br>— 부탁이 아니라 기여로 시작하겠습니다.</p>
             </div>
         </div>
     </section>
 
     <footer class="footer">
-        <p>구건우 — 할머니를 1년 늙게 해드리기 프로젝트 &copy; 2026</p>
+        <p>구건우 — 할머니를 1년 절게 해드리기 프로젝트 &copy; 2026</p>
         <p style="margin-top:.8rem;">Built with AI-assisted research workflow · <a href="https://www.linkedin.com/in/%EA%B1%B4%EC%9A%B0-%EA%B5%AC-5aa559341/" target="_blank" rel="noopener">LinkedIn</a></p>
     </footer>
 
@@ -603,7 +605,7 @@
 
     // ===== COUNTER ANIMATION =====
     function animNum(el,target,dur=1800){const start=performance.now();(function tick(now){const p=Math.min((now-start)/dur,1);el.textContent=Math.round(target*(1-Math.pow(1-p,3)));if(p<1)requestAnimationFrame(tick)})(start)}
-    const sObs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.querySelectorAll('.sv').forEach(s=>animNum(s,+s.dataset.t,1800));sObs.disconnect()}})},{threshold:.2});
+    const sObs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.querySelectorAll('.sv').forEach(a=>animNum(a,+a.dataset.t,1800));sObs.disconnect()}})},{threshold:.2});
     sObs.observe(document.querySelector('.stats-bar'));
 
     // ===== SMOOTH NAV =====
@@ -626,21 +628,25 @@
     function renderNewsCards(feed, articles){
         const items = articles ? articles.slice(0,5) : [
             {type:'paper',date:'2026.04',title:'GLP-1RA가 후성유전학적 노화를 역전시킬 수 있는가: 체계적 문헌고찰 및 메타분석',summary:'22개 임상시험, 50,000명+ 피험자 데이터 종합 분석. PCGrimAge -3.1년, PhenoAge -4.9년 역전 확인.',source:'KOO, GeonWoo · Preprint 2026',url:'glp1ra_meta_analysis.html'},
-            {type:'news',date:'2026.04',title:'Eli Lilly, 차세대 GLP-1/GIP/글루카곤 삼중 작용제 임상 3상 결과 발표',summary:'Retatrutide 48주 투여 시 체중 24.2% 감소, 간지방 85% 감소. 비만-NAFLD 동시 치료 가능성 확인.',source:'Nature Medicine · 2026',url:''},
-            {type:'paper',date:'2026.03',title:'Rapamycin 저용량 간헐 투여, 인간 면역노화 역전 최초 RCT 결과',summary:'건강한 65세 이상 성인 대상. 12주 간헐 투여로 인플루엔자 백신 반응률 20% 향상, T세포 기능 회복.',source:'The Lancet Healthy Longevity · 2026',url:''},
-            {type:'news',date:'2026.03',title:'한국 식약처, AI 기반 신약 재창출 플랫폼 최초 허가 — 하플사이언스 선도',summary:'AI 기반 Drug Repurposing 플랫폼이 국내 최초로 의료기기 인허가 단곡. 역노화 물질 스크리닝에 활용 기대.',source:'Medical Device Korea · 2026',url:''}
+            {type:'news',date:'2026.04',title:'Eli Lilly, 차세대 GLP-1/GIP/글루카곤 삼중 작용제 임상 3상 결과 발표',summary:'Retatrutide 48주 투여 시 체중 24.2% 감소, Ꞅ지방 85% 감소. 비만-NAFLD 동시 치료 가능성 확인.',source:'Nature Medicine · 2026',url:''},
+            {type:'paper',date:'2026.03',title:'Rapamycin 저용량 간헓 투여, 인간 면역노화 역전 최초 RCT 결과',summary:'건강한 65세 이상 성인 대상. 12주 간헓 투여로 인플루엔자 백신 반응률 20% 향상, T세포 기능 회복.',source:'The Lancet Healthy Longevity · 2026',url:''},
+            {type:'news',date:'2026.03',title:'한국 싽약처, AI 기반 신약 재창출 플랫폼 최초 허가 — 하플사이언스 선도',summary:'AI 기반 Drug Repurposing 플랫폼이 국내 최초로 의료기기 인허가 획득. 역노화 물질 스크리닝에 활용 기대.',source:'Medical Device Korea · 2026',url:''}
         ];
-        feed.innerHTML=items.map(a=>`
-            <div class="news-card">
+        feed.innerHTML=items.map(a=>{
+            const href=a.url||'#news';
+            const isExternal=a.url&&a.url.startsWith('http');
+            const target=a.url?(isExternal?' target="_blank" rel="noopener"':''):'';
+            return `
+            <a class="news-card" href="${href}"${target}>
                 <div class="news-meta">
                     <span class="news-type ${a.type||'news'}">${a.type==='paper'?'PAPER':'NEWS'}</span>
                     <span class="news-date">${a.date||''}</span>
                 </div>
                 <h4>${a.title}</h4>
                 <p>${a.summary||''}</p>
-                <div class="news-source">${a.source||''} ${a.url?`· <a href="${a.url}" target="_blank" rel="noopener">원문 보기</a>`:''}</div>
-            </div>
-        `).join('');
+                <div class="news-source">${a.source||''}${a.url?' · 원문 보기 →':''}</div>
+            </a>`;
+        }).join('');
     }
 
     loadNews();
