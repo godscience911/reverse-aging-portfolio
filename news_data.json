@@ -1,0 +1,45 @@
+{
+  "updated": "2026-04-07T09:00:00Z",
+  "articles": [
+    {
+      "type": "paper",
+      "date": "2026.04",
+      "title": "GLP-1RA가 후성유전학적 노화를 역전시킬 수 있는가: 체계적 문헌고찰 및 메타분석",
+      "summary": "22개 임상시험, 50,000명+ 피험자 데이터 종합 분석. PCGrimAge -3.1년, PhenoAge -4.9년 역전 확인.",
+      "source": "KOO, GeonWoo · Preprint 2026",
+      "url": "glp1ra_meta_analysis.html"
+    },
+    {
+      "type": "news",
+      "date": "2026.04",
+      "title": "Eli Lilly, 차세대 GLP-1/GIP/글루카곤 삼중 작용제 임상 3상 결과 발표",
+      "summary": "Retatrutide 48주 투여 시 체중 24.2% 감소, 간지방 85% 감소. 비만-NAFLD 동시 치료 가능성 확인.",
+      "source": "Nature Medicine · 2026",
+      "url": ""
+    },
+    {
+      "type": "paper",
+      "date": "2026.03",
+      "title": "Rapamycin 저용량 간헐 투여, 인간 면역노화 역전 최초 RCT 결과",
+      "summary": "건강한 65세 이상 성인 대상. 12주 간헐 투여로 인플루엔자 백신 반응률 20% 향상, T세포 기능 회복.",
+      "source": "The Lancet Healthy Longevity · 2026",
+      "url": ""
+    },
+    {
+      "type": "news",
+      "date": "2026.03",
+      "title": "한국 식약처, AI 기반 신약 재창출 플랫폼 최초 허가 — 하플사이언스 선도",
+      "summary": "AI 기반 Drug Repurposing 플랫폼이 국내 최초로 의료기기 인허가 획득. 역노화 물질 스크리닝에 활용 기대.",
+      "source": "Medical Device Korea · 2026",
+      "url": ""
+    },
+    {
+      "type": "paper",
+      "date": "2026.02",
+      "title": "Senolytics(D+Q) 2년 추적 연구: 노인 폐섬유증 환자 6분 보행 거리 유의미 개선",
+      "summary": "Dasatinib + Quercetin 간헐 투여 2년 추적. 대조군 대비 6분 보행 거리 +21m, 삶의 질 지표 향상.",
+      "source": "Nature Aging · 2026",
+      "url": ""
+    }
+  ]
+}
