@@ -652,18 +652,39 @@
     }
     @media (max-width: 720px) { .channel-grid { grid-template-columns: 1fr; } }
     .channel-card {
+      position: relative;
       background: var(--card); border: 1px solid var(--line);
-      border-radius: 12px; padding: 1.3rem 1.5rem;
+      border-radius: 12px; padding: 1.3rem 1.5rem 2.7rem;
       display: block; text-decoration: none; color: inherit;
-      transition: all .2s;
+      transition: all .22s ease;
     }
     .channel-card:hover {
       border-color: var(--sage); transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(35,46,66,.06);
+      box-shadow: 0 10px 28px rgba(35,46,66,.09);
+    }
+    .ch-top {
+      display: flex; align-items: flex-start; justify-content: space-between;
+      gap: .8rem; margin-bottom: .4rem;
     }
     .ch-name {
       font-size: 1rem; font-weight: 700; color: var(--text);
-      margin-bottom: .3rem; letter-spacing: -.01em;
+      letter-spacing: -.01em; flex: 1;
+    }
+    .ch-platform {
+      flex: none; display: inline-flex; align-items: center; justify-content: center;
+      width: 28px; height: 28px; border-radius: 7px;
+      transition: transform .22s ease;
+    }
+    .channel-card:hover .ch-platform { transform: scale(1.08); }
+    .ch-platform.youtube {
+      background: #FF0000;
+    }
+    .ch-platform.youtube svg { width: 14px; height: 14px; fill: #fff; }
+    .ch-platform.naver {
+      background: #03C75A; color: #fff;
+      font-family: -apple-system, system-ui, sans-serif;
+      font-weight: 900; font-size: 15px; line-height: 1;
+      font-style: italic;
     }
     .ch-role {
       font-size: .82rem; color: var(--sage-deep); font-weight: 600;
@@ -673,6 +694,18 @@
       font-size: .76rem; color: var(--muted);
       font-family: SFMono-Regular, Consolas, monospace;
     }
+    .ch-visit {
+      position: absolute; right: 1.3rem; bottom: 1rem;
+      font-size: .74rem; font-weight: 700; letter-spacing: .02em;
+      color: var(--muted); opacity: .7;
+      display: inline-flex; align-items: center; gap: .3rem;
+      transition: all .22s ease;
+    }
+    .ch-visit .ch-arrow { transition: transform .22s ease; display: inline-block; }
+    .channel-card:hover .ch-visit {
+      color: var(--sage-deep); opacity: 1;
+    }
+    .channel-card:hover .ch-visit .ch-arrow { transform: translateX(4px); }
 
     /* DOMAIN BACKGROUND (existing work) */
     .domain { background: var(--bg-2); }
@@ -1466,11 +1499,6 @@
             무엇을 할지, 이미 일부 만들어 왔습니다.
           </p>
 
-          <div class="field-note">
-            <div class="field-note-label">Field Note · 직접 써본 헬시어</div>
-            <p>지원 준비 중에 헬시어 앱을 설치해 실제로 써봤습니다. <strong>제 위치에서는 지도에 약국·병원이 전혀 노출되지 않았습니다.</strong> 커버리지든, 위치 권한이든, 검색 반경이든 — 첫 진입 사용자 입장에서는 "아직 준비 중인 서비스"로 느껴지는 순간이었습니다. 제 역할은 콘텐츠만이 아니라, <strong>이런 첫인상·신뢰 문제까지 함께 해결</strong>하는 것입니다.</p>
-          </div>
-
           <div class="hero-meta">
             <div>
               <b>정설아 대표님께</b>
@@ -1792,9 +1820,9 @@
         </article>
 
         <!-- Card C -->
-        <article class="sample-card" data-deck="c" data-title="밤 3시의 의학 · Pillar 03">
+        <article class="sample-card" data-deck="c" data-title="새벽 3시의 의학 · Pillar 03">
           <div class="sample-cover">
-            <img src="assets/samples/card-c/slide_1_cover.png" alt="밤 3시의 의학 카드뉴스 커버">
+            <img src="assets/samples/card-c/slide_1_cover.png" alt="새벽 3시의 의학 카드뉴스 커버">
             <div class="sample-overlay">
               <div class="sample-meta">
                 <span class="chip">Card News · 8 Slides</span>
@@ -1947,25 +1975,41 @@
       <div class="channels">
         <h3>직접 운영하거나 기여한 채널 4곳</h3>
         <div class="channel-grid">
-          <a class="channel-card" href="https://www.youtube.com/@philspring7777" target="_blank" rel="noopener">
-            <div class="ch-name">봄들애 인문교육 연구소</div>
+          <a class="channel-card" href="https://www.youtube.com/@philspring7777" target="_blank" rel="noopener" aria-label="봄들애 YouTube 채널로 이동">
+            <div class="ch-top">
+              <div class="ch-name">봄들애 인문교육 연구소</div>
+              <span class="ch-platform youtube" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
+            </div>
             <div class="ch-role">콘텐츠 팀장 · 2023.12 – 2024.7</div>
             <div class="ch-meta">YouTube @philspring7777 · 기획/촬영/편집/업로드</div>
+            <span class="ch-visit">YouTube 채널로 이동 <span class="ch-arrow">→</span></span>
           </a>
-          <a class="channel-card" href="https://www.youtube.com/@GoldLineRealty" target="_blank" rel="noopener">
-            <div class="ch-name">아크로에스</div>
+          <a class="channel-card" href="https://www.youtube.com/@GoldLineRealty" target="_blank" rel="noopener" aria-label="아크로에스 YouTube 채널로 이동">
+            <div class="ch-top">
+              <div class="ch-name">아크로에스</div>
+              <span class="ch-platform youtube" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
+            </div>
             <div class="ch-role">영업 + 마케팅 서포트 · 2024.8 – 11</div>
             <div class="ch-meta">YouTube @GoldLineRealty · 영상 제작 지원</div>
+            <span class="ch-visit">YouTube 채널로 이동 <span class="ch-arrow">→</span></span>
           </a>
-          <a class="channel-card" href="https://blog.naver.com/icmeeungye" target="_blank" rel="noopener">
-            <div class="ch-name">아이크미 학원</div>
+          <a class="channel-card" href="https://blog.naver.com/icmeeungye" target="_blank" rel="noopener" aria-label="아이크미 네이버 블로그로 이동">
+            <div class="ch-top">
+              <div class="ch-name">아이크미 학원</div>
+              <span class="ch-platform naver" aria-hidden="true">N</span>
+            </div>
             <div class="ch-role">프리랜서 콘텐츠 마케터 · 2025.9</div>
             <div class="ch-meta">네이버 블로그 + 맘카페 + 인스타 릴스 → 체험 50+ / 등록 35</div>
+            <span class="ch-visit">네이버 블로그로 이동 <span class="ch-arrow">→</span></span>
           </a>
-          <a class="channel-card" href="https://www.youtube.com/@%EB%82%A0%EA%B3%BC%ED%95%99Realscience" target="_blank" rel="noopener">
-            <div class="ch-name">날과학 Realscience</div>
+          <a class="channel-card" href="https://www.youtube.com/@%EB%90%A0%EA%B3%BC%ED%95%99Realscience" target="_blank" rel="noopener" aria-label="될과학 YouTube 채널로 이동">
+            <div class="ch-top">
+              <div class="ch-name">될과학 Realscience</div>
+              <span class="ch-platform youtube" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
+            </div>
             <div class="ch-role">개인 프로젝트 · 상시</div>
-            <div class="ch-meta">YouTube @날과학Realscience · 과학/역노화 콘텐츠 실험실</div>
+            <div class="ch-meta">YouTube @될과학Realscience · 과학/역노화 콘텐츠 실험실</div>
+            <span class="ch-visit">YouTube 채널로 이동 <span class="ch-arrow">→</span></span>
           </a>
         </div>
       </div>
@@ -2167,7 +2211,7 @@
         ]
       },
       c: {
-        title: '밤 3시의 의학',
+        title: '새벽 3시의 의학',
         slides: [
           'assets/samples/card-c/slide_1_cover.png',
           'assets/samples/card-c/slide_2_search_bar.png',
