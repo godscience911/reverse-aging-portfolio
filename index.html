@@ -1157,6 +1157,106 @@
       text-transform: uppercase;
     }
 
+    /* Shortform CTA — play button on the tile */
+    .shortform-cta {
+      margin-top: 1.6rem;
+      display: flex; align-items: center; gap: .7rem;
+      flex-wrap: wrap;
+    }
+    .btn-play {
+      appearance: none; border: 0;
+      padding: .85rem 1.4rem;
+      background: rgba(168,224,99,.16);
+      color: #a8e063;
+      border: 1px solid rgba(168,224,99,.45);
+      border-radius: 999px;
+      font-size: .88rem; font-weight: 700;
+      letter-spacing: .01em;
+      cursor: pointer;
+      display: inline-flex; align-items: center; gap: .55rem;
+      transition: all .2s;
+      font-family: inherit;
+    }
+    .btn-play:hover {
+      background: #a8e063; color: #0a0a0a;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(168,224,99,.25);
+    }
+    .btn-play .play-icon {
+      width: 18px; height: 18px; display: inline-flex;
+      align-items: center; justify-content: center;
+      background: currentColor; color: #0a0a0a;
+      border-radius: 50%;
+    }
+    .btn-play .play-icon::before {
+      content: '';
+      border-left: 6px solid currentColor;
+      border-top: 4px solid transparent;
+      border-bottom: 4px solid transparent;
+      margin-left: 2px;
+    }
+    .btn-play:hover .play-icon { background: #0a0a0a; color: #a8e063; }
+    .shortform-runtime {
+      font-size: .76rem; color: rgba(245,242,232,.5);
+      letter-spacing: .04em; font-weight: 500;
+    }
+
+    /* Video Modal */
+    .video-modal {
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,.94);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      z-index: 1000;
+      display: none; align-items: center; justify-content: center;
+      padding: 1.5rem;
+      opacity: 0; transition: opacity .25s ease;
+    }
+    .video-modal.open {
+      display: flex; opacity: 1;
+    }
+    .video-modal-inner {
+      position: relative;
+      max-width: 480px; width: 100%;
+      aspect-ratio: 9 / 16;
+      max-height: 90vh;
+      background: #000;
+      border-radius: 22px;
+      overflow: hidden;
+      box-shadow: 0 30px 80px rgba(0,0,0,.6);
+    }
+    .video-modal video {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .video-modal-close {
+      position: absolute; top: -52px; right: 0;
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.12);
+      border: 1px solid rgba(255,255,255,.2);
+      color: #fff;
+      font-size: 1.1rem;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: all .2s;
+    }
+    .video-modal-close:hover {
+      background: rgba(255,255,255,.22);
+      transform: scale(1.05);
+    }
+    .video-modal-caption {
+      position: absolute; bottom: -44px; left: 0; right: 0;
+      text-align: center;
+      font-size: .8rem; color: rgba(255,255,255,.55);
+      letter-spacing: .04em;
+    }
+    @media (max-width: 520px) {
+      .video-modal-close { top: -44px; }
+      .video-modal-caption { bottom: -36px; }
+    }
+
     /* Landing hero display */
     .landing-tile {
       min-height: 360px;
@@ -1726,6 +1826,13 @@
               딸이 약 사진을 헬시어에 찍어 올린다.<br>
               그리고, 엄마가 웃는다."
             </div>
+            <div class="shortform-cta">
+              <button class="btn-play" type="button" data-video="/mom-medicine-pouch.mp4" data-title="엄마의 약봉투 · 15초">
+                <span class="play-icon"></span>
+                15초 영상 보기
+              </button>
+              <span class="shortform-runtime">실제 제작 완료 · 0.6 MB</span>
+            </div>
           </div>
           <div class="tile-specs">
             <div class="spec">
@@ -1979,6 +2086,15 @@
     </div>
   </footer>
 
+  <!-- VIDEO MODAL (Shortform Reel) -->
+  <div class="video-modal" id="videoModal" role="dialog" aria-modal="true" aria-label="엄마의 약봉투 15초 영상">
+    <div class="video-modal-inner">
+      <button class="video-modal-close" id="videoModalClose" aria-label="닫기">✕</button>
+      <video id="videoModalPlayer" playsinline controls preload="metadata"></video>
+      <div class="video-modal-caption" id="videoModalCaption">15초 · 9:16 · Instagram Reels 포맷</div>
+    </div>
+  </div>
+
   <!-- LIGHTBOX (Card News Carousel) -->
   <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="카드뉴스 전체 보기">
     <div class="lb-header">
@@ -2135,6 +2251,43 @@
     ['a','b','c'].forEach(k => {
       const i = new Image();
       i.src = decks[k].slides[0];
+    });
+
+    // ---- VIDEO MODAL (Shortform Reel) ----
+    const videoModal = document.getElementById('videoModal');
+    const videoPlayer = document.getElementById('videoModalPlayer');
+    const videoCaption = document.getElementById('videoModalCaption');
+
+    function openVideo(src, title) {
+      videoPlayer.src = src;
+      if (title) videoCaption.textContent = title + ' · 9:16 · Instagram Reels 포맷';
+      videoModal.classList.add('open');
+      // Autoplay with a tiny delay to let modal paint
+      setTimeout(() => {
+        const p = videoPlayer.play();
+        if (p && p.catch) p.catch(() => {/* user must tap play */});
+      }, 100);
+      document.body.style.overflow = 'hidden';
+    }
+    function closeVideo() {
+      videoModal.classList.remove('open');
+      videoPlayer.pause();
+      videoPlayer.currentTime = 0;
+      document.body.style.overflow = '';
+    }
+
+    document.querySelectorAll('.btn-play[data-video]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        openVideo(btn.dataset.video, btn.dataset.title || '');
+      });
+    });
+    document.getElementById('videoModalClose').addEventListener('click', closeVideo);
+    videoModal.addEventListener('click', (e) => {
+      if (e.target === videoModal) closeVideo();
+    });
+    document.addEventListener('keydown', (e) => {
+      if (!videoModal.classList.contains('open')) return;
+      if (e.key === 'Escape') closeVideo();
     });
   </script>
 </body>
