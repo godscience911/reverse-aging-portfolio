@@ -435,6 +435,511 @@
       letter-spacing: .12em; font-weight: 700;
       text-transform: uppercase;
     }
+
+    /* ================================================= */
+    /* CONTENT SAMPLES GALLERY — Editorial Black Stage    */
+    /* ================================================= */
+    .gallery {
+      background: #0a0a0a;
+      color: #f5f2e8;
+      padding: 10rem 0;
+      position: relative;
+      overflow: hidden;
+    }
+    @media (max-width: 720px) { .gallery { padding: 6rem 0; } }
+    .gallery::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse at 82% 12%, rgba(168,224,99,.075), transparent 50%),
+        radial-gradient(ellipse at 15% 85%, rgba(212,165,116,.055), transparent 55%);
+      pointer-events: none;
+    }
+    .gallery .wrap { position: relative; z-index: 1; max-width: 1280px; }
+
+    .gallery-head {
+      display: grid;
+      grid-template-columns: 1.15fr 1fr;
+      gap: 3.5rem;
+      align-items: end;
+      margin-bottom: 5rem;
+      padding-bottom: 3rem;
+      border-bottom: 1px solid rgba(245,242,232,.1);
+    }
+    @media (max-width: 860px) {
+      .gallery-head { grid-template-columns: 1fr; gap: 1.5rem; }
+    }
+    .gallery-head .eyebrow { color: rgba(168,224,99,.9); }
+    .gallery-head h2 {
+      font-size: clamp(2.1rem, 4.8vw, 3.8rem);
+      font-weight: 800;
+      letter-spacing: -.04em;
+      line-height: 1.08;
+      color: #f5f2e8;
+    }
+    .gallery-head h2 em {
+      font-style: normal;
+      color: #a8e063;
+    }
+    .gallery-sub {
+      color: rgba(245,242,232,.7);
+      font-size: 1rem;
+      line-height: 1.8;
+      max-width: 460px;
+    }
+    .gallery-counter {
+      display: inline-flex;
+      gap: 1.2rem;
+      font-size: .75rem;
+      color: rgba(245,242,232,.45);
+      letter-spacing: .15em;
+      font-variant-numeric: tabular-nums;
+      margin-top: 1.3rem;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+    .gallery-counter span b { color: rgba(168,224,99,.9); font-weight: 700; margin-right: .3rem; }
+
+    /* BENTO */
+    .bento {
+      display: grid;
+      grid-template-columns: 1.55fr 1fr 1fr;
+      gap: 1.25rem;
+    }
+    @media (max-width: 1040px) { .bento { grid-template-columns: 1.4fr 1fr; } }
+    @media (max-width: 760px) { .bento { grid-template-columns: 1fr; } }
+
+    .sample-card {
+      background: #141414;
+      border: 1px solid rgba(245,242,232,.08);
+      border-radius: 24px;
+      overflow: hidden;
+      transition: transform .45s cubic-bezier(.2,.8,.2,1), border-color .3s, box-shadow .3s;
+      cursor: pointer;
+      display: flex; flex-direction: column;
+      position: relative;
+    }
+    .sample-card::after {
+      content: '';
+      position: absolute; inset: 0;
+      border-radius: 24px;
+      box-shadow: inset 0 0 0 1px rgba(168,224,99,0);
+      transition: box-shadow .3s;
+      pointer-events: none;
+    }
+    .sample-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(168,224,99,.38);
+      box-shadow: 0 30px 80px rgba(0,0,0,.5);
+    }
+    .sample-card:hover::after { box-shadow: inset 0 0 0 1px rgba(168,224,99,.15); }
+
+    .sample-card.dominant {
+      grid-row: span 2;
+      grid-column: 1;
+    }
+    @media (max-width: 1040px) {
+      .sample-card.dominant { grid-column: 1 / -1; grid-row: auto; }
+    }
+    @media (max-width: 760px) {
+      .sample-card.dominant { grid-column: 1; }
+    }
+
+    .sample-cover {
+      position: relative;
+      aspect-ratio: 1 / 1;
+      overflow: hidden;
+      background: #000;
+    }
+    .sample-cover img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform .7s cubic-bezier(.2,.8,.2,1);
+    }
+    .sample-card:hover .sample-cover img { transform: scale(1.045); }
+
+    .sample-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(180deg, transparent 40%, rgba(0,0,0,.82) 100%);
+      display: flex;
+      align-items: flex-end;
+      padding: 1.5rem;
+    }
+    .sample-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      color: #f5f2e8;
+    }
+    .chip {
+      font-size: .68rem;
+      font-weight: 700;
+      letter-spacing: .15em;
+      padding: .38rem .75rem;
+      background: rgba(245,242,232,.14);
+      border: 1px solid rgba(245,242,232,.22);
+      border-radius: 999px;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      text-transform: uppercase;
+    }
+    .sample-count {
+      font-size: .78rem;
+      font-weight: 600;
+      letter-spacing: .12em;
+      color: rgba(245,242,232,.92);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .sample-body {
+      padding: 1.9rem 1.8rem 1.7rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .sample-card.dominant .sample-body { padding: 2.4rem 2.4rem 2.1rem; }
+
+    .sample-label {
+      font-size: .68rem;
+      letter-spacing: .16em;
+      font-weight: 700;
+      color: rgba(168,224,99,.88);
+      margin-bottom: .85rem;
+      text-transform: uppercase;
+    }
+    .sample-body h3 {
+      font-size: 1.5rem;
+      font-weight: 800;
+      letter-spacing: -.03em;
+      line-height: 1.18;
+      margin-bottom: .9rem;
+      color: #f5f2e8;
+    }
+    .sample-card.dominant .sample-body h3 {
+      font-size: 2rem;
+      line-height: 1.12;
+    }
+    .sample-body p {
+      font-size: .92rem;
+      line-height: 1.72;
+      color: rgba(245,242,232,.6);
+      margin-bottom: 1.6rem;
+      flex: 1;
+    }
+    .sample-cta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 1.1rem;
+      border-top: 1px solid rgba(245,242,232,.08);
+    }
+    .btn-view {
+      background: rgba(168,224,99,.12);
+      color: #a8e063;
+      border: 1px solid rgba(168,224,99,.32);
+      padding: .58rem 1.15rem;
+      border-radius: 999px;
+      font-size: .82rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all .25s;
+      font-family: inherit;
+      display: inline-flex;
+      align-items: center;
+      gap: .4rem;
+    }
+    .btn-view::after { content: '→'; transition: transform .2s; }
+    .btn-view:hover {
+      background: rgba(168,224,99,.2);
+      border-color: rgba(168,224,99,.55);
+    }
+    .btn-view:hover::after { transform: translateX(3px); }
+    .sample-duration {
+      font-size: .74rem;
+      color: rgba(245,242,232,.42);
+      letter-spacing: .06em;
+    }
+
+    /* TYPOGRAPHIC TILES (Shortform / Landing) */
+    .sample-text-tile {
+      background: #141414;
+      border: 1px solid rgba(245,242,232,.08);
+      border-radius: 24px;
+      padding: 2.5rem 2.5rem 2.2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: border-color .3s, transform .4s cubic-bezier(.2,.8,.2,1), box-shadow .3s;
+      position: relative;
+      overflow: hidden;
+    }
+    .sample-text-tile:hover {
+      border-color: rgba(168,224,99,.3);
+      transform: translateY(-4px);
+      box-shadow: 0 25px 70px rgba(0,0,0,.4);
+    }
+    .sample-text-tile::before {
+      content: '';
+      position: absolute;
+      top: 0; right: 0;
+      width: 280px; height: 280px;
+      background: radial-gradient(circle at top right, rgba(168,224,99,.08), transparent 70%);
+      pointer-events: none;
+    }
+    .sample-text-tile > * { position: relative; z-index: 1; }
+
+    .sample-text-tile.shortform-tile {
+      grid-column: 2 / -1;
+    }
+    .landing-tile {
+      grid-column: 1 / -1;
+    }
+    @media (max-width: 1040px) {
+      .sample-text-tile.shortform-tile { grid-column: 1 / -1; }
+    }
+
+    .tile-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.8rem;
+      flex-wrap: wrap;
+      gap: .8rem;
+    }
+    .chip-dark {
+      font-size: .68rem;
+      font-weight: 700;
+      letter-spacing: .15em;
+      padding: .38rem .75rem;
+      background: rgba(168,224,99,.12);
+      color: #a8e063;
+      border: 1px solid rgba(168,224,99,.28);
+      border-radius: 999px;
+      text-transform: uppercase;
+    }
+    .tile-format {
+      font-size: .74rem;
+      color: rgba(245,242,232,.42);
+      letter-spacing: .06em;
+    }
+    .sample-text-tile h3 {
+      font-size: clamp(2rem, 3.5vw, 2.8rem);
+      font-weight: 800;
+      letter-spacing: -.04em;
+      line-height: 1.05;
+      margin-bottom: 1.7rem;
+      color: #f5f2e8;
+    }
+    .sample-text-tile h3 em {
+      font-style: normal;
+      color: #a8e063;
+    }
+    .tile-quote {
+      font-size: 1rem;
+      font-style: italic;
+      color: rgba(245,242,232,.78);
+      padding: .2rem 0 .2rem 1.1rem;
+      border-left: 2px solid rgba(168,224,99,.45);
+      line-height: 1.75;
+      margin-bottom: 1.8rem;
+      font-weight: 500;
+    }
+    .tile-specs {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.2rem;
+      padding-top: 1.4rem;
+      border-top: 1px solid rgba(245,242,232,.08);
+    }
+    @media (max-width: 640px) { .tile-specs { grid-template-columns: 1fr 1fr; } }
+    .spec {
+      display: flex;
+      flex-direction: column;
+      gap: .3rem;
+      font-size: .88rem;
+      color: rgba(245,242,232,.8);
+      line-height: 1.5;
+    }
+    .spec-label {
+      font-size: .64rem;
+      font-weight: 700;
+      letter-spacing: .15em;
+      color: rgba(168,224,99,.85);
+      text-transform: uppercase;
+    }
+
+    /* Landing hero display */
+    .landing-tile {
+      min-height: 360px;
+    }
+    .landing-display {
+      display: grid;
+      grid-template-columns: 1.3fr 1fr;
+      gap: 3rem;
+      align-items: center;
+      flex: 1;
+    }
+    @media (max-width: 860px) {
+      .landing-display { grid-template-columns: 1fr; gap: 2rem; }
+    }
+    .landing-display h3 {
+      font-size: clamp(2.4rem, 5vw, 4rem);
+      line-height: .98;
+      letter-spacing: -.045em;
+      margin-bottom: 0;
+    }
+    .landing-structure {
+      display: flex;
+      flex-direction: column;
+      gap: .6rem;
+    }
+    .landing-structure .seq {
+      display: flex;
+      align-items: center;
+      gap: .9rem;
+      font-size: .82rem;
+      color: rgba(245,242,232,.6);
+      padding: .55rem 0;
+      border-bottom: 1px solid rgba(245,242,232,.06);
+    }
+    .landing-structure .seq-num {
+      font-size: .7rem;
+      letter-spacing: .1em;
+      color: rgba(168,224,99,.85);
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
+      min-width: 28px;
+    }
+    .landing-structure .seq-name {
+      flex: 1;
+      color: rgba(245,242,232,.82);
+      font-weight: 500;
+    }
+    .landing-footer {
+      padding-top: 1.8rem;
+      margin-top: 1.8rem;
+      border-top: 1px solid rgba(245,242,232,.08);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      font-size: .82rem;
+      color: rgba(245,242,232,.55);
+    }
+    .landing-footer b { color: rgba(168,224,99,.9); font-weight: 700; }
+
+    /* LIGHTBOX */
+    .lightbox {
+      position: fixed; inset: 0;
+      background: rgba(8,8,8,.97);
+      z-index: 10000;
+      display: none;
+      align-items: center; justify-content: center;
+      flex-direction: column;
+      padding: 2rem;
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+    }
+    .lightbox.open { display: flex; }
+    .lb-header {
+      position: absolute;
+      top: 1.8rem; left: 0; right: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 2rem;
+      z-index: 2;
+    }
+    .lb-title {
+      font-size: .85rem;
+      color: rgba(245,242,232,.75);
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+    .lb-title b { color: #a8e063; font-weight: 700; }
+    .lb-close {
+      background: rgba(245,242,232,.08);
+      color: #f5f2e8;
+      border: 1px solid rgba(245,242,232,.22);
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: all .2s;
+      font-family: inherit;
+    }
+    .lb-close:hover {
+      background: rgba(231,76,60,.15);
+      border-color: rgba(231,76,60,.4);
+    }
+    .lb-inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.6rem;
+      max-width: 720px;
+      width: 100%;
+    }
+    .lb-stage {
+      position: relative;
+      width: 100%;
+      max-width: 560px;
+      aspect-ratio: 1/1;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 30px 100px rgba(0,0,0,.7);
+      background: #000;
+    }
+    .lb-stage img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity .25s ease;
+    }
+    .lb-stage img.loaded { opacity: 1; }
+    .lb-nav {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      color: #f5f2e8;
+    }
+    .lb-prev, .lb-next {
+      background: rgba(245,242,232,.08);
+      color: #f5f2e8;
+      border: 1px solid rgba(245,242,232,.22);
+      width: 48px; height: 48px;
+      border-radius: 50%;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: all .2s;
+      font-family: inherit;
+    }
+    .lb-prev:hover, .lb-next:hover {
+      background: rgba(168,224,99,.18);
+      border-color: rgba(168,224,99,.45);
+      transform: scale(1.05);
+    }
+    .lb-counter {
+      font-size: .9rem;
+      letter-spacing: .12em;
+      font-variant-numeric: tabular-nums;
+      color: rgba(245,242,232,.75);
+      min-width: 80px;
+      text-align: center;
+    }
+    .lb-counter b { color: #a8e063; font-weight: 700; }
+    .lb-hint {
+      font-size: .72rem;
+      color: rgba(245,242,232,.35);
+      letter-spacing: .08em;
+    }
+    @media (max-width: 640px) {
+      .lb-header { top: 1rem; padding: 0 1rem; }
+      .lb-title { font-size: .72rem; }
+    }
   </style>
 </head>
 <body>
@@ -447,6 +952,7 @@
     </a>
     <div class="nav-links">
       <a href="#work">Work</a>
+      <a href="#samples">Samples</a>
       <a href="#domain">Background</a>
       <a href="#story">Story</a>
       <a class="nav-cta" href="#contact">Contact</a>
@@ -572,11 +1078,11 @@
       <div class="deliverable">
         <div class="deliverable-num">04</div>
         <div class="deliverable-body">
-          <span class="deliverable-tag">콘텐츠 샘플 세트 (제작 중)</span>
-          <h3>카드뉴스 · 숏폼 · 랜딩 카피</h3>
-          <p>Pillar별 실제 발행 가능한 샘플 3-5종. 합류 후 첫 주 내 발행을 전제로 한 실전 에셋. (제출 당일 야간 추가 업로드)</p>
+          <span class="deliverable-tag">콘텐츠 샘플 세트 · 26 에셋</span>
+          <h3>카드뉴스 24장 · 숏폼 · 랜딩</h3>
+          <p>3개 Pillar × 카드뉴스 8장(총 24) + 15초 숏폼 시놉시스 + 7섹션 랜딩 카피. Pillar별 실제 발행 가능한 샘플을 실사 렌더링으로 먼저 완성. Healthier 인스타그램 톤을 해체해 한 단계 더 정제된 타이포·그리드로 재조립.</p>
         </div>
-        <span class="soon" style="padding:.35rem .8rem; border:1px solid var(--line); border-radius:999px; font-size:.78rem; color:var(--muted);">진행 중</span>
+        <a class="deliverable-link" href="#samples">샘플 갤러리 →</a>
       </div>
     </div>
   </section>
@@ -617,6 +1123,149 @@
         <span class="em">이해가 주는 평온."</span>
       </blockquote>
       <div class="attr">광고 영상 및 런칭 캠페인 메인 카피 — 구건우 제안</div>
+    </div>
+  </section>
+
+  <!-- CONTENT SAMPLES GALLERY -->
+  <section class="gallery" id="samples">
+    <div class="wrap">
+      <div class="gallery-head">
+        <div>
+          <div class="eyebrow">Deliverable 04 · Content Samples</div>
+          <h2>합류 첫 주,<br>이걸 <em>내고 싶었습니다</em>.</h2>
+          <div class="gallery-counter">
+            <span><b>03</b>카드뉴스 세트</span>
+            <span><b>24</b>슬라이드</span>
+            <span><b>02</b>카피 에셋</span>
+          </div>
+        </div>
+        <p class="gallery-sub">
+          Pillar별 실제 발행 가능한 샘플을 렌더링으로 먼저 완성했습니다. Healthier 인스타그램 톤을 해체해서, 한 단계 더 정제된 타이포와 그리드로 재조립했습니다. 각 카드를 클릭하면 8장 전체를 볼 수 있습니다.
+        </p>
+      </div>
+
+      <div class="bento">
+        <!-- Card A — Dominant -->
+        <article class="sample-card dominant" data-deck="a" data-title="0차 의료 사전 · Pillar 01">
+          <div class="sample-cover">
+            <img src="assets/samples/card-a/slide_1_cover.png" alt="0차 의료 사전 커버 슬라이드">
+            <div class="sample-overlay">
+              <div class="sample-meta">
+                <span class="chip">Card News · 8 Slides</span>
+                <span class="sample-count">01 / 03</span>
+              </div>
+            </div>
+          </div>
+          <div class="sample-body">
+            <div class="sample-label">Pillar 01 · 카테고리 정의</div>
+            <h3>지금 병원 가야 할지<br>모르겠다면, 여기부터.</h3>
+            <p>정설아 대표님이 여신 새 카테고리 "0차 의료"를 사람들의 언어로 번역한 8장. 1차 의료 vs 0차 의료 비교 · 왜 이 자리가 비어 있었는가 · Healthier가 이 자리에 오는 이유. 검색 알고리즘 다음엔 <b style="color:#a8e063;font-weight:600;">"이해 알고리즘"</b>이 필요하다는 선언.</p>
+            <div class="sample-cta">
+              <button class="btn-view" type="button">8장 전체 보기</button>
+              <span class="sample-duration">읽기 2분 · IG 9:16</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card B -->
+        <article class="sample-card" data-deck="b" data-title="CKD 식단 딥다이브 · Pillar 02">
+          <div class="sample-cover">
+            <img src="assets/samples/card-b/slide_1_cover.png" alt="CKD 식단 카드뉴스 커버">
+            <div class="sample-overlay">
+              <div class="sample-meta">
+                <span class="chip">Card News · 8 Slides</span>
+                <span class="sample-count">02 / 03</span>
+              </div>
+            </div>
+          </div>
+          <div class="sample-body">
+            <div class="sample-label">Pillar 02 · 가족 돌봄</div>
+            <h3>신장이 나쁜 엄마,<br>오늘 뭘 드셔야 할까요.</h3>
+            <p>CKD 환자 보호자 관점. 저염·저칼륨·저인 3원칙을 식탁의 언어로. 서울대병원 공동연구와 직접 연결되는 콘텐츠 축.</p>
+            <div class="sample-cta">
+              <button class="btn-view" type="button">8장 보기</button>
+              <span class="sample-duration">2분</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card C -->
+        <article class="sample-card" data-deck="c" data-title="밤 3시의 의학 · Pillar 03">
+          <div class="sample-cover">
+            <img src="assets/samples/card-c/slide_1_cover.png" alt="밤 3시의 의학 카드뉴스 커버">
+            <div class="sample-overlay">
+              <div class="sample-meta">
+                <span class="chip">Card News · 8 Slides</span>
+                <span class="sample-count">03 / 03</span>
+              </div>
+            </div>
+          </div>
+          <div class="sample-body">
+            <div class="sample-label">Pillar 03 · 3AM 주치의</div>
+            <h3>AM 2:14,<br>검색창을 열기 전에.</h3>
+            <p>30초 광고 Act 1–2의 세계관 확장. 사이버콘드리아 심리 → 0차 의료 제안. Chat UI 실사 재현 슬라이드 포함.</p>
+            <div class="sample-cta">
+              <button class="btn-view" type="button">8장 보기</button>
+              <span class="sample-duration">2분</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Shortform Tile -->
+        <article class="sample-text-tile shortform-tile">
+          <div>
+            <div class="tile-meta">
+              <span class="chip-dark">Short Form · 15 sec · 9:16</span>
+              <span class="tile-format">Instagram Reels · TikTok · YouTube Shorts</span>
+            </div>
+            <h3>엄마의<br><em>약봉투</em>.</h3>
+            <div class="tile-quote">
+              "엄마가 세 개의 약봉투를 식탁에 꺼내놓는다.<br>
+              딸이 약 사진을 헬시어에 찍어 올린다.<br>
+              그리고, 엄마가 웃는다."
+            </div>
+          </div>
+          <div class="tile-specs">
+            <div class="spec">
+              <span class="spec-label">Target</span>
+              <span>25–40세<br>자녀 세대</span>
+            </div>
+            <div class="spec">
+              <span class="spec-label">Hook 2s</span>
+              <span>"어라, 약이<br>많네…"</span>
+            </div>
+            <div class="spec">
+              <span class="spec-label">Series</span>
+              <span>#오늘의약봉투<br>연작 가능</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Landing Tile -->
+        <article class="sample-text-tile landing-tile">
+          <div class="tile-meta">
+            <span class="chip-dark">Landing Page · 7 Sections</span>
+            <span class="tile-format">www.healthier.kr — Hero Copy</span>
+          </div>
+          <div class="landing-display">
+            <h3>검색이 주는 <em>불안</em>이 아니라,<br>이해가 주는 <em>평온</em>.</h3>
+            <div class="landing-structure">
+              <div class="seq"><span class="seq-num">H</span><span class="seq-name">Hero · Tagline + CTA</span></div>
+              <div class="seq"><span class="seq-num">01</span><span class="seq-name">Before / After · 감정 여정</span></div>
+              <div class="seq"><span class="seq-num">02</span><span class="seq-name">How It Works · 3-Step</span></div>
+              <div class="seq"><span class="seq-num">03</span><span class="seq-name">0차 의료 · 카테고리 선언</span></div>
+              <div class="seq"><span class="seq-num">04</span><span class="seq-name">Trust · 서울대 · 정부 AI 바우처</span></div>
+              <div class="seq"><span class="seq-num">05</span><span class="seq-name">Usage · Chat Simulation</span></div>
+              <div class="seq"><span class="seq-num">06</span><span class="seq-name">FAQ · 반론 해소 5문</span></div>
+              <div class="seq"><span class="seq-num">07</span><span class="seq-name">Final CTA · 스토어 리다이렉트</span></div>
+            </div>
+          </div>
+          <div class="landing-footer">
+            <span>의료법 체크리스트 <b>6개</b> · A/B 테스트 <b>3안</b> · 전환 이벤트 <b>7종</b> 정의 완료</span>
+            <span>Pretendard Variable · Healthier Green #A8E063</span>
+          </div>
+        </article>
+      </div>
     </div>
   </section>
 
@@ -706,6 +1355,25 @@
     </div>
   </footer>
 
+  <!-- LIGHTBOX (Card News Carousel) -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="카드뉴스 전체 보기">
+    <div class="lb-header">
+      <span class="lb-title" id="lb-title"><b>01</b> Card News</span>
+      <button class="lb-close" id="lb-close" aria-label="닫기">✕</button>
+    </div>
+    <div class="lb-inner">
+      <div class="lb-stage">
+        <img id="lb-img" src="" alt="카드뉴스 슬라이드">
+      </div>
+      <div class="lb-nav">
+        <button class="lb-prev" id="lb-prev" aria-label="이전 슬라이드">←</button>
+        <span class="lb-counter"><b id="lb-i">1</b> / <span id="lb-n">8</span></span>
+        <button class="lb-next" id="lb-next" aria-label="다음 슬라이드">→</button>
+      </div>
+      <span class="lb-hint">← → 방향키 · ESC로 닫기</span>
+    </div>
+  </div>
+
   <script>
     // scroll-aware nav
     const nav = document.getElementById('nav');
@@ -728,6 +1396,121 @@
     document.querySelectorAll('section .wrap > *').forEach(el => {
       el.classList.add('reveal');
       io.observe(el);
+    });
+
+    // ===== CARD NEWS LIGHTBOX =====
+    const decks = {
+      a: {
+        title: '0차 의료 사전',
+        slides: [
+          'assets/samples/card-a/slide_1_cover.png',
+          'assets/samples/card-a/slide_2_primary_care.png',
+          'assets/samples/card-a/slide_3_zeroth_definition.png',
+          'assets/samples/card-a/slide_4_what_we_do.png',
+          'assets/samples/card-a/slide_5_search_gives_anxiety.png',
+          'assets/samples/card-a/slide_6_why_zeroth.png',
+          'assets/samples/card-a/slide_7_healthier_is.png',
+          'assets/samples/card-a/slide_8_ending.png'
+        ]
+      },
+      b: {
+        title: 'CKD 식단 딥다이브',
+        slides: [
+          'assets/samples/card-b/slide_1_cover.png',
+          'assets/samples/card-b/slide_2_why_diet.png',
+          'assets/samples/card-b/slide_3_three_principles.png',
+          'assets/samples/card-b/slide_4_low_sodium.png',
+          'assets/samples/card-b/slide_5_low_potassium.png',
+          'assets/samples/card-b/slide_6_low_phosphorus.png',
+          'assets/samples/card-b/slide_7_consult.png',
+          'assets/samples/card-b/slide_8_ending.png'
+        ]
+      },
+      c: {
+        title: '밤 3시의 의학',
+        slides: [
+          'assets/samples/card-c/slide_1_cover.png',
+          'assets/samples/card-c/slide_2_search_bar.png',
+          'assets/samples/card-c/slide_3_stats.png',
+          'assets/samples/card-c/slide_4_real_question.png',
+          'assets/samples/card-c/slide_5_zeroth_intro.png',
+          'assets/samples/card-c/slide_6_chat_ui.png',
+          'assets/samples/card-c/slide_7_before_after.png',
+          'assets/samples/card-c/slide_8_ending.png'
+        ]
+      }
+    };
+
+    const lightbox = document.getElementById('lightbox');
+    const lbImg = document.getElementById('lb-img');
+    const lbI = document.getElementById('lb-i');
+    const lbN = document.getElementById('lb-n');
+    const lbTitle = document.getElementById('lb-title');
+    let currentDeck = null;
+    let currentIndex = 0;
+
+    function setImg(src) {
+      lbImg.classList.remove('loaded');
+      const im = new Image();
+      im.onload = () => {
+        lbImg.src = src;
+        requestAnimationFrame(() => lbImg.classList.add('loaded'));
+      };
+      im.src = src;
+    }
+
+    function openLightbox(deckKey, idx) {
+      currentDeck = deckKey;
+      currentIndex = idx || 0;
+      const d = decks[deckKey];
+      lbN.textContent = d.slides.length;
+      lbTitle.innerHTML = '<b>0' + (Object.keys(decks).indexOf(deckKey)+1) + '</b> ' + d.title;
+      updateLB();
+      lightbox.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeLightbox() {
+      lightbox.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    function updateLB() {
+      const d = decks[currentDeck];
+      setImg(d.slides[currentIndex]);
+      lbI.textContent = currentIndex + 1;
+    }
+    function next() {
+      const d = decks[currentDeck];
+      currentIndex = (currentIndex + 1) % d.slides.length;
+      updateLB();
+    }
+    function prev() {
+      const d = decks[currentDeck];
+      currentIndex = (currentIndex - 1 + d.slides.length) % d.slides.length;
+      updateLB();
+    }
+
+    document.querySelectorAll('.sample-card[data-deck]').forEach(card => {
+      card.addEventListener('click', () => {
+        openLightbox(card.dataset.deck, 0);
+      });
+    });
+    document.getElementById('lb-close').addEventListener('click', closeLightbox);
+    document.getElementById('lb-next').addEventListener('click', (e) => { e.stopPropagation(); next(); });
+    document.getElementById('lb-prev').addEventListener('click', (e) => { e.stopPropagation(); prev(); });
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) closeLightbox();
+    });
+    document.addEventListener('keydown', (e) => {
+      if (!lightbox.classList.contains('open')) return;
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowRight') next();
+      if (e.key === 'ArrowLeft') prev();
+    });
+
+    // preload first cover of each deck for snappy open
+    ['a','b','c'].forEach(k => {
+      const i = new Image();
+      i.src = decks[k].slides[0];
     });
   </script>
 </body>
