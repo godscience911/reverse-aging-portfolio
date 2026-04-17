@@ -1,655 +1,734 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>구건우 — 할머니를 1년 젊게 해드리기 프로젝트</title>
-    <meta name="description" content="Medical AI · Reverse-Aging · AI-Assisted Research">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;900&family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>구건우 — Content Marketing Designer for Mediology</title>
+  <meta name="description" content="메디올로지 콘텐츠 마케팅 디자이너 지원 포트폴리오 — 0차 의료의 브랜드 언어를 설계합니다.">
+  <meta property="og:title" content="구건우 · Mediology 지원 포트폴리오">
+  <meta property="og:description" content="0차 의료의 첫 브랜드를 함께 만들고 싶습니다.">
+  <meta property="og:image" content="/mediology-ad-poster.jpg">
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
 
-        :root {
-            --bg: #050505;
-            --surface: rgba(12,12,12,.85);
-            --glass: rgba(14,14,14,.7);
-            --border: rgba(255,255,255,.04);
-            --border-hover: rgba(255,255,255,.08);
-            --text: #f0f0f0;
-            --muted: #888888;
-            --dim: #555555;
-            --lime: #b5ff00;
-            --lime-soft: #9be000;
-            --lime-glow: rgba(181,255,0,.1);
-            --lime-glow-strong: rgba(181,255,0,.2);
-            --white: #ffffff;
-            --card-bg: rgba(16,16,16,.9);
-        }
+  <style>
+    :root {
+      --bg:        #f8f5ef;   /* warm off-white */
+      --bg-2:      #f2ede3;   /* slightly deeper cream */
+      --text:      #232e42;   /* deep navy */
+      --text-soft: #4a5568;
+      --muted:     #8b93a3;
+      --line:      #e3dcc9;
+      --sage:      #8ca98c;
+      --sage-deep: #648264;
+      --accent:    #d4a574;   /* subtle warm tone */
+      --red:       #c9524f;
+      --card:      #ffffff;
+      --shadow:    0 2px 40px rgba(35,46,66,.06);
+      --shadow-lg: 0 20px 80px rgba(35,46,66,.10);
+    }
 
-        * { margin:0; padding:0; box-sizing:border-box; }
-        html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
 
-        body {
-            font-family: 'Noto Sans KR', 'Inter', -apple-system, sans-serif;
-            background: var(--bg);
-            color: var(--text);
-            line-height: 1.7;
-            overflow-x: hidden;
-            -webkit-font-smoothing: antialiased;
-        }
+    body {
+      font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      font-feature-settings: "ss06" 1;
+    }
 
-        a { color: inherit; text-decoration: none; }
-        ::selection { background: rgba(181,255,0,.2); color: #fff; }
+    a { color: inherit; text-decoration: none; }
+    img, video { max-width: 100%; display: block; }
+    ::selection { background: var(--sage); color: #fff; }
 
-        /* ===== DNA HELIX CANVAS ===== */
-        #helixCanvas {
-            position: fixed; top: 0; left: 0;
-            width: 100%; height: 100%;
-            z-index: 0; pointer-events: none;
-            opacity: .35;
-        }
+    /* NAV */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 1.1rem 2rem;
+      display: flex; align-items: center; justify-content: space-between;
+      transition: all .35s ease;
+      background: rgba(248,245,239,0);
+    }
+    .nav.scrolled {
+      background: rgba(248,245,239,.88);
+      backdrop-filter: saturate(1.4) blur(12px);
+      -webkit-backdrop-filter: saturate(1.4) blur(12px);
+      padding: .85rem 2rem;
+      border-bottom: 1px solid rgba(227,220,201,.5);
+    }
+    .nav-brand {
+      font-weight: 700; font-size: 1rem; letter-spacing: -.01em;
+      display: flex; align-items: center; gap: .55rem;
+    }
+    .nav-brand .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--sage); }
+    .nav-links { display: flex; gap: 2rem; align-items: center; }
+    .nav-links a {
+      font-size: .88rem; color: var(--text-soft); font-weight: 500;
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--text); }
+    .nav-cta {
+      padding: .5rem 1rem; border: 1px solid var(--text); border-radius: 999px;
+      font-size: .82rem; font-weight: 600;
+      transition: all .2s;
+    }
+    .nav-cta:hover { background: var(--text); color: var(--bg); }
 
-        /* ===== NAV ===== */
-        .nav {
-            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-            padding: 1.1rem 2.5rem;
-            display: flex; align-items: center; justify-content: space-between;
-            transition: all .4s cubic-bezier(.4,0,.2,1);
-        }
-        .nav.scrolled {
-            padding: .7rem 2.5rem;
-            background: rgba(5,5,5,.92);
-            backdrop-filter: blur(24px) saturate(1.4);
-            border-bottom: 1px solid var(--border);
-        }
-        .nav-logo {
-            font-family: 'Space Grotesk', sans-serif;
-            font-weight: 700; font-size: .95rem;
-            display: flex; align-items: center; gap: .6rem;
-            letter-spacing: .02em;
-        }
-        .nav-logo .dot {
-            width: 7px; height: 7px; border-radius: 50%;
-            background: var(--lime);
-            box-shadow: 0 0 10px var(--lime);
-            animation: pulse 2.5s ease-in-out infinite;
-        }
-        @keyframes pulse {
-            0%,100% { box-shadow: 0 0 6px rgba(181,255,0,.3); opacity:.8; }
-            50% { box-shadow: 0 0 16px rgba(181,255,0,.6); opacity:1; }
-        }
-        .nav-links { display: flex; align-items: center; gap: 2.2rem; }
-        .nav-links a {
-            color: var(--muted); font-size: .8rem; font-weight: 500;
-            transition: color .3s; position: relative; letter-spacing: .01em;
-        }
-        .nav-links a:hover { color: var(--text); }
-        .nav-links a::after {
-            content: ''; position: absolute; bottom: -4px; left: 0;
-            width: 0; height: 1.5px;
-            background: var(--lime);
-            transition: width .3s;
-        }
-        .nav-links a:hover::after { width: 100%; }
-        .nav-cta {
-            display: inline-flex; align-items: center; gap: .5rem;
-            padding: 8px 22px; border-radius: 100px;
-            background: transparent;
-            color: var(--lime) !important; font-size: .78rem; font-weight: 600;
-            transition: all .3s;
-            border: 1px solid rgba(181,255,0,.3);
-        }
-        .nav-cta:hover { background: rgba(181,255,0,.06); border-color: var(--lime); transform: translateY(-1px); box-shadow: 0 4px 20px rgba(181,255,0,.1); }
-        .nav-cta::after { display: none !important; }
-        .nav-cta svg { width: 13px; height: 13px; fill: var(--lime); }
+    @media (max-width: 720px) {
+      .nav { padding: .9rem 1.2rem; }
+      .nav-links { gap: 1rem; }
+      .nav-links a:not(.nav-cta) { display: none; }
+    }
 
-        /* ===== HERO ===== */
-        .hero {
-            position: relative; z-index: 1;
-            min-height: 100vh; min-height: 100dvh;
-            display: flex; align-items: center; justify-content: center;
-            text-align: center; padding: 7rem 1.5rem 4rem;
-        }
-        .hero-inner { max-width: 820px; width: 100%; }
-        .hero-tag {
-            display: inline-flex; align-items: center; gap: .5rem;
-            padding: 7px 20px; border-radius: 100px;
-            background: rgba(181,255,0,.03);
-            border: 1px solid rgba(181,255,0,.12);
-            color: var(--lime); font-size: .72rem; font-weight: 600;
-            letter-spacing: .5px; margin-bottom: 2.2rem;
-        }
-        .hero-tag .tdot {
-            width: 5px; height: 5px; border-radius: 50%;
-            background: var(--lime); box-shadow: 0 0 6px var(--lime);
-        }
-        .hero h1 {
-            font-family: 'Space Grotesk', 'Noto Sans KR', sans-serif;
-            font-size: clamp(2.2rem, 5.5vw, 4.4rem);
-            font-weight: 700; line-height: 1.12;
-            margin-bottom: 1.6rem; letter-spacing: -.025em;
-        }
-        .hero h1 .l1 {
-            display: block; color: var(--muted);
-            font-weight: 400; font-size: .36em;
-            letter-spacing: .03em; margin-bottom: .3rem;
-        }
-        .hero h1 .l2 {
-            display: block;
-            background: linear-gradient(135deg, #fff 20%, var(--lime) 70%);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        .hero h1 .l3 {
-            display: block; color: var(--muted);
-            font-weight: 400; font-size: .26em;
-            letter-spacing: 0; margin-top: .5rem;
-            -webkit-text-fill-color: var(--muted);
-        }
-        .hero-p {
-            font-size: 1rem; color: var(--muted);
-            max-width: 540px; margin: 0 auto 2.5rem; line-height: 1.9;
-        }
-        .hero-p em { color: var(--lime-soft); font-style: normal; font-weight: 500; }
-        .hero-btns { display: flex; gap: .8rem; justify-content: center; flex-wrap: wrap; }
-        .btn-g {
-            display: inline-flex; align-items: center; gap: .5rem;
-            padding: 13px 30px; border-radius: 100px;
-            font-weight: 600; font-size: .88rem;
-            transition: all .35s; cursor: pointer; border: none; white-space: nowrap;
-        }
-        .btn-g.primary {
-            background: var(--lime);
-            color: #050505; box-shadow: 0 4px 24px rgba(181,255,0,.15);
-        }
-        .btn-g.primary:hover { transform: translateY(-2px); box-shadow: 0 8px 40px rgba(181,255,0,.25); }
-        .btn-g.secondary {
-            background: transparent; color: var(--text);
-            border: 1px solid var(--border-hover);
-        }
-        .btn-g.secondary:hover { border-color: rgba(181,255,0,.2); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(181,255,0,.06); }
+    /* LAYOUT */
+    .wrap { max-width: 1120px; margin: 0 auto; padding: 0 2rem; }
+    .wrap-narrow { max-width: 760px; margin: 0 auto; padding: 0 2rem; }
 
-        .stats-bar {
-            display: grid; grid-template-columns: repeat(4, 1fr);
-            gap: 1rem; margin-top: 3.5rem; padding-top: 2.2rem;
-            border-top: 1px solid var(--border);
-        }
-        .stat { text-align: center; }
-        .stat .sv { font-family: 'Space Grotesk'; font-size: 2rem; font-weight: 700; display: block; line-height: 1; color: var(--lime); }
-        .stat .sl { font-size: .68rem; color: var(--dim); margin-top: .35rem; line-height: 1.4; }
+    section { padding: 7rem 0; position: relative; }
+    @media (max-width: 720px) { section { padding: 4.5rem 0; } }
 
-        /* ===== SECTIONS ===== */
-        .sec {
-            max-width: 1100px; margin: 0 auto; padding: 6rem 2rem;
-            position: relative; z-index: 1;
-        }
-        .sec-eye {
-            font-family: 'Space Grotesk'; font-size: .65rem; font-weight: 700;
-            letter-spacing: 3px; text-transform: uppercase; color: var(--lime);
-            margin-bottom: .5rem; display: inline-block;
-        }
-        .sec h2 {
-            font-family: 'Space Grotesk', 'Noto Sans KR';
-            font-size: clamp(1.6rem, 3.2vw, 2.4rem);
-            font-weight: 700; margin-bottom: .5rem; line-height: 1.25; letter-spacing: -.015em;
-        }
-        .sec .lead { font-size: .92rem; color: var(--muted); max-width: 580px; margin-bottom: 3rem; line-height: 1.85; }
+    .eyebrow {
+      font-size: .75rem; font-weight: 600; letter-spacing: .12em;
+      text-transform: uppercase; color: var(--sage-deep);
+      margin-bottom: 1rem;
+    }
+    h1, h2, h3 { letter-spacing: -.025em; line-height: 1.18; font-weight: 800; }
 
-        /* ===== MISSION ===== */
-        .m-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
-        .m-card {
-            background: var(--card-bg);
-            border: 1px solid var(--border); border-radius: 16px;
-            padding: 2rem 1.6rem; transition: all .4s; position: relative; overflow: hidden;
-        }
-        .m-card::before { content: ''; position: absolute; top: 0; left: 0; width: 3px; height: 100%; background: var(--lime); opacity: 0; transition: opacity .4s; }
-        .m-card:hover::before { opacity: 1; }
-        .m-card:hover { transform: translateY(-4px); border-color: rgba(181,255,0,.1); box-shadow: 0 16px 48px rgba(0,0,0,.4); }
-        .m-card .mc-i {
-            width: 48px; height: 48px; border-radius: 12px;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 1.4rem; margin-bottom: 1rem;
-            background: rgba(181,255,0,.04); border: 1px solid rgba(181,255,0,.08);
-        }
-        .m-card h3 { font-size: .98rem; font-weight: 700; margin-bottom: .4rem; }
-        .m-card p { font-size: .82rem; color: var(--muted); line-height: 1.75; }
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex; align-items: center;
+      padding: 9rem 0 5rem;
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: ''; position: absolute;
+      top: -30%; right: -10%;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle at center, rgba(140,169,140,.18), transparent 70%);
+      pointer-events: none;
+    }
+    .hero::after {
+      content: ''; position: absolute;
+      bottom: -30%; left: -10%;
+      width: 500px; height: 500px;
+      background: radial-gradient(circle at center, rgba(212,165,116,.12), transparent 70%);
+      pointer-events: none;
+    }
+    .hero .wrap { position: relative; z-index: 1; }
+    .hero-grid {
+      display: grid; grid-template-columns: 1.1fr .9fr; gap: 5rem; align-items: center;
+    }
+    @media (max-width: 960px) {
+      .hero-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .hero { padding-top: 7rem; min-height: auto; }
+    }
 
-        /* ===== PROJECTS ===== */
-        .p-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.2rem; }
-        .p-card {
-            background: var(--card-bg);
-            border: 1px solid var(--border); border-radius: 16px;
-            overflow: hidden; transition: all .4s; display: flex; flex-direction: column;
-        }
-        .p-card:hover { transform: translateY(-4px); border-color: rgba(181,255,0,.1); box-shadow: 0 20px 50px rgba(0,0,0,.4); }
-        .p-hero { height: 190px; position: relative; display: flex; align-items: center; justify-content: center; overflow: hidden; background: rgba(181,255,0,.02); }
-        .p-hero .p-icon { font-size: 3.8rem; position: relative; z-index: 1; filter: drop-shadow(0 6px 20px rgba(0,0,0,.3)); }
-        .p-hero .p-num {
-            position: absolute; top: .8rem; left: 1rem;
-            font-family: 'Space Grotesk'; font-size: .65rem; font-weight: 700;
-            color: var(--lime); background: rgba(5,5,5,.7);
-            padding: 4px 12px; border-radius: 100px; z-index: 1; border: 1px solid rgba(181,255,0,.1);
-        }
-        .p-body { padding: 1.4rem 1.5rem 1.6rem; flex: 1; display: flex; flex-direction: column; }
-        .p-body h3 { font-family: 'Space Grotesk', 'Noto Sans KR'; font-size: 1.02rem; font-weight: 700; margin-bottom: .25rem; }
-        .p-body .p-sub { font-size: .73rem; color: var(--lime); font-weight: 600; margin-bottom: .7rem; }
-        .p-body .p-desc { font-size: .8rem; color: var(--muted); line-height: 1.7; flex: 1; }
-        .p-tags { display: flex; flex-wrap: wrap; gap: .3rem; margin-top: .8rem; }
-        .p-tag { font-size: .6rem; padding: 3px 8px; border-radius: 100px; background: rgba(181,255,0,.03); border: 1px solid rgba(181,255,0,.08); color: var(--lime-soft); font-weight: 500; }
-        .p-foot { display: flex; justify-content: space-between; align-items: center; margin-top: 1rem; padding: .8rem 1.5rem; border-top: 1px solid var(--border); }
-        .p-status { font-size: .65rem; font-weight: 700; padding: 4px 11px; border-radius: 100px; }
-        .st-live { background: rgba(181,255,0,.06); color: var(--lime); border: 1px solid rgba(181,255,0,.12); }
-        .st-soon { background: rgba(255,255,255,.03); color: var(--muted); border: 1px solid var(--border); }
-        .p-link { font-size: .78rem; font-weight: 600; color: var(--lime); display: flex; align-items: center; gap: .3rem; transition: all .3s; }
-        .p-link:hover { gap: .5rem; }
+    .hero h1 {
+      font-size: clamp(2.4rem, 5.5vw, 4.4rem);
+      margin: .8rem 0 1.6rem;
+    }
+    .hero h1 em {
+      font-style: normal; color: var(--sage-deep);
+      position: relative; display: inline-block;
+    }
+    .hero-sub {
+      font-size: 1.15rem; color: var(--text-soft); line-height: 1.7;
+      max-width: 520px; margin-bottom: 2.5rem;
+    }
+    .hero-meta {
+      display: flex; gap: 2rem; flex-wrap: wrap;
+      padding-top: 2rem; border-top: 1px solid var(--line);
+      font-size: .85rem; color: var(--text-soft);
+    }
+    .hero-meta b { color: var(--text); font-weight: 700; display: block; margin-bottom: .15rem; }
 
-        /* ===== NEWS FEED ===== */
-        .news-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem; }
-        .news-card {
-            background: var(--card-bg);
-            border: 1px solid var(--border); border-radius: 14px;
-            padding: 1.5rem; transition: all .4s;
-            display: flex; flex-direction: column;
-            cursor: pointer; text-decoration: none; color: inherit;
-        }
-        .news-card:hover { border-color: rgba(181,255,0,.2); transform: translateY(-3px); box-shadow: 0 12px 36px rgba(0,0,0,.35); }
-        .news-card:hover h4 { color: var(--lime); }
-        .news-meta { display: flex; align-items: center; gap: .5rem; margin-bottom: .8rem; }
-        .news-type {
-            font-size: .6rem; font-weight: 700; padding: 3px 10px; border-radius: 100px;
-            text-transform: uppercase; letter-spacing: .5px;
-        }
-        .news-type.paper { background: rgba(181,255,0,.06); color: var(--lime); border: 1px solid rgba(181,255,0,.1); }
-        .news-type.news { background: rgba(255,255,255,.04); color: var(--muted); border: 1px solid var(--border); }
-        .news-date { font-size: .65rem; color: var(--dim); }
-        .news-card h4 { font-size: .92rem; font-weight: 700; line-height: 1.5; margin-bottom: .5rem; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; transition: color .3s; }
-        .news-card p { font-size: .78rem; color: var(--muted); line-height: 1.65; flex: 1; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
-        .news-source { font-size: .65rem; color: var(--dim); margin-top: .8rem; padding-top: .6rem; border-top: 1px solid var(--border); }
-        .news-source a { color: var(--lime-soft); }
-        .news-empty { text-align: center; padding: 3rem 1rem; color: var(--dim); font-size: .85rem; }
-        .news-loading { display: flex; gap: .3rem; justify-content: center; align-items: center; padding: 2rem; }
-        .news-loading span { width: 6px; height: 6px; border-radius: 50%; background: var(--lime); animation: loadDot 1.2s ease-in-out infinite; }
-        .news-loading span:nth-child(2) { animation-delay: .15s; }
-        .news-loading span:nth-child(3) { animation-delay: .3s; }
-        @keyframes loadDot { 0%,80%,100%{opacity:.2;transform:scale(.8)} 40%{opacity:1;transform:scale(1.1)} }
+    /* VIDEO FRAME */
+    .video-frame {
+      position: relative;
+      border-radius: 24px; overflow: hidden;
+      background: var(--text);
+      aspect-ratio: 9 / 16;
+      max-width: 360px; margin: 0 auto;
+      box-shadow: var(--shadow-lg);
+      transition: transform .4s ease;
+    }
+    .video-frame:hover { transform: translateY(-4px); }
+    .video-frame video { width: 100%; height: 100%; object-fit: cover; }
+    .video-caption {
+      text-align: center; margin-top: 1rem;
+      font-size: .82rem; color: var(--muted);
+      letter-spacing: .02em;
+    }
+    .play-badge {
+      position: absolute; top: 1rem; left: 1rem;
+      background: rgba(255,255,255,.92); color: var(--text);
+      padding: .35rem .75rem; border-radius: 999px;
+      font-size: .72rem; font-weight: 600;
+      display: inline-flex; align-items: center; gap: .35rem;
+      backdrop-filter: blur(8px);
+    }
+    .play-badge .pulse {
+      width: 6px; height: 6px; background: var(--red); border-radius: 50%;
+      animation: pulse 1.8s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%,100% { opacity:.5; transform:scale(.9); }
+      50% { opacity:1; transform:scale(1.1); }
+    }
 
-        /* ===== QUOTE ===== */
-        .quote-sec { text-align: center; padding: 5rem 1.5rem; position: relative; z-index: 1; }
-        .quote-inner { position: relative; z-index: 1; max-width: 640px; margin: 0 auto; }
-        .q-mark { font-size: 4rem; line-height: 1; color: var(--lime); opacity: .15; font-family: Georgia, serif; }
-        .q-text { font-family: 'Space Grotesk', 'Noto Sans KR'; font-size: clamp(1.15rem, 2.5vw, 1.4rem); font-weight: 600; line-height: 1.65; margin: .2rem 0 1.2rem; }
-        .q-author { font-size: .8rem; color: var(--dim); }
+    /* SECTION HEADER */
+    .section-header {
+      text-align: left; max-width: 760px; margin-bottom: 3.5rem;
+    }
+    .section-header h2 {
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      margin-bottom: 1rem;
+    }
+    .section-header p {
+      font-size: 1.05rem; color: var(--text-soft);
+      line-height: 1.7;
+    }
 
-        /* ===== WORKFLOW ===== */
-        .wf-list { display: flex; flex-direction: column; gap: 0; position: relative; }
-        .wf-list::before { content: ''; position: absolute; left: 29px; top: 2.5rem; bottom: 2.5rem; width: 2px; background: linear-gradient(180deg, var(--lime), rgba(181,255,0,.1)); border-radius: 2px; opacity: .3; }
-        .wf-item { display: flex; gap: 1.5rem; padding: 1.8rem 0; position: relative; }
-        .wf-dot { width: 58px; height: 58px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; flex-shrink: 0; position: relative; z-index: 2; background: rgba(181,255,0,.04); border: 1px solid rgba(181,255,0,.1); }
-        .wf-text { flex: 1; min-width: 0; }
-        .wf-text .wf-label { font-family: 'Space Grotesk'; font-size: .65rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: .25rem; color: var(--lime); }
-        .wf-text h3 { font-size: .98rem; font-weight: 700; margin-bottom: .35rem; }
-        .wf-text p { font-size: .82rem; color: var(--muted); line-height: 1.75; }
-        .wf-ex { margin-top: .7rem; padding: .7rem .9rem; background: rgba(181,255,0,.02); border: 1px solid rgba(181,255,0,.06); border-radius: 10px; font-size: .74rem; color: var(--muted); line-height: 1.6; word-break: keep-all; overflow-wrap: break-word; }
-        .wf-ex strong { color: var(--lime-soft); }
+    /* THE MOMENT (context) */
+    .moment {
+      background: var(--bg-2);
+      position: relative;
+    }
+    .moment-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 4rem;
+    }
+    @media (max-width: 860px) { .moment-grid { grid-template-columns: 1fr; gap: 2.5rem; } }
+    .moment-block h3 {
+      font-size: 1.3rem; margin-bottom: .8rem;
+      color: var(--text);
+    }
+    .moment-block p {
+      font-size: 1rem; line-height: 1.8; color: var(--text-soft);
+    }
+    .moment-quote {
+      border-left: 3px solid var(--sage);
+      padding: .2rem 0 .2rem 1.2rem;
+      margin-top: 1.2rem;
+      font-size: .95rem; color: var(--text);
+      font-style: italic;
+    }
+    .moment-quote cite {
+      display: block; margin-top: .5rem;
+      font-style: normal; font-size: .82rem;
+      color: var(--muted); letter-spacing: .03em;
+    }
 
-        /* ===== CONTACT ===== */
-        .contact-wrap { text-align: center; }
-        .contact-card {
-            background: var(--card-bg);
-            border: 1px solid var(--border); border-radius: 20px;
-            padding: 3.5rem 2.5rem; max-width: 640px; margin: 0 auto;
-            position: relative; overflow: hidden;
-        }
-        .contact-card h3 { font-family: 'Space Grotesk'; font-size: 1.4rem; font-weight: 700; margin-bottom: .5rem; }
-        .contact-card .c-sub { font-size: .9rem; color: var(--muted); margin-bottom: 2rem; line-height: 1.75; }
-        .c-btns { display: flex; gap: .8rem; justify-content: center; flex-wrap: wrap; margin-bottom: 1.2rem; }
-        .c-btn { display: inline-flex; align-items: center; gap: .5rem; padding: 13px 26px; border-radius: 100px; font-weight: 600; font-size: .85rem; transition: all .35s; }
-        .c-linkedin { background: var(--lime); color: #050505; box-shadow: 0 3px 16px rgba(181,255,0,.12); border: none; }
-        .c-linkedin:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(181,255,0,.2); }
-        .c-linkedin svg { width: 16px; height: 16px; fill: #050505; }
-        .c-email { background: transparent; border: 1px solid var(--border-hover); color: var(--text); }
-        .c-email:hover { border-color: rgba(181,255,0,.2); color: var(--lime); transform: translateY(-2px); }
-        .c-note { font-size: .74rem; color: var(--dim); line-height: 1.7; font-style: italic; }
+    /* WORK SECTION */
+    .work { background: var(--bg); }
 
-        /* ===== FOOTER ===== */
-        .footer { text-align: center; padding: 2.5rem 1.5rem; border-top: 1px solid var(--border); position: relative; z-index: 1; }
-        .footer p { font-size: .7rem; color: var(--dim); }
-        .footer a { color: var(--lime-soft); }
+    .deliverable {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 2.5rem;
+      margin-bottom: 1.5rem;
+      transition: all .25s ease;
+      display: grid;
+      grid-template-columns: 100px 1fr auto;
+      gap: 2rem; align-items: center;
+    }
+    @media (max-width: 720px) {
+      .deliverable { grid-template-columns: 1fr; gap: 1.2rem; padding: 1.8rem; text-align: left; }
+    }
+    .deliverable:hover {
+      border-color: var(--sage);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow);
+    }
+    .deliverable-num {
+      font-size: 2.8rem; font-weight: 800;
+      color: var(--sage); letter-spacing: -.04em;
+      line-height: 1;
+    }
+    .deliverable-body h3 {
+      font-size: 1.3rem; margin-bottom: .35rem;
+    }
+    .deliverable-body p {
+      color: var(--text-soft); font-size: .95rem; line-height: 1.6;
+    }
+    .deliverable-tag {
+      display: inline-block; padding: .25rem .65rem;
+      background: rgba(140,169,140,.12); color: var(--sage-deep);
+      border-radius: 999px; font-size: .7rem; font-weight: 600;
+      letter-spacing: .04em; margin-bottom: .6rem;
+    }
+    .deliverable-link {
+      padding: .65rem 1.3rem;
+      background: var(--text); color: var(--bg);
+      border-radius: 999px;
+      font-size: .82rem; font-weight: 600;
+      transition: all .2s;
+      display: inline-flex; align-items: center; gap: .4rem;
+      white-space: nowrap;
+    }
+    .deliverable-link:hover { background: var(--sage-deep); }
+    @media (max-width: 720px) { .deliverable-link { justify-self: start; } }
 
-        /* ===== ANIMATIONS ===== */
-        .rv { opacity: 0; transform: translateY(24px); transition: opacity .7s cubic-bezier(.16,1,.3,1), transform .7s cubic-bezier(.16,1,.3,1); }
-        .rv.vis { opacity: 1; transform: translateY(0); }
-        .rv-d1 { transition-delay: .1s; }
-        .rv-d2 { transition-delay: .2s; }
-        .rv-d3 { transition-delay: .3s; }
+    /* STRATEGY HIGHLIGHTS */
+    .strat-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
+      margin-top: 2.5rem;
+    }
+    @media (max-width: 860px) { .strat-grid { grid-template-columns: 1fr; } }
+    .strat-card {
+      background: var(--card);
+      padding: 2rem;
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      transition: all .25s;
+    }
+    .strat-card:hover { border-color: var(--sage); transform: translateY(-3px); }
+    .strat-card .step {
+      font-size: .7rem; letter-spacing: .15em;
+      color: var(--sage-deep); font-weight: 700;
+      margin-bottom: .8rem;
+    }
+    .strat-card h4 {
+      font-size: 1.15rem; margin-bottom: .6rem; letter-spacing: -.02em;
+    }
+    .strat-card p { font-size: .9rem; color: var(--text-soft); line-height: 1.65; }
 
-        /* ===== MOBILE 768px ===== */
-        @media (max-width: 768px) {
-            .nav { padding: .8rem 1rem; }
-            .nav.scrolled { padding: .6rem 1rem; }
-            .nav-links a:not(.nav-cta) { display: none; }
-            .nav-cta { padding: 7px 16px; font-size: .72rem; }
+    /* BIG QUOTE (headline moment) */
+    .big-quote {
+      background: linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 100%);
+      text-align: center;
+      padding: 8rem 0;
+    }
+    .big-quote blockquote {
+      font-size: clamp(1.6rem, 3.5vw, 2.6rem);
+      font-weight: 800;
+      line-height: 1.35;
+      letter-spacing: -.03em;
+      max-width: 820px; margin: 0 auto;
+    }
+    .big-quote blockquote .em {
+      color: var(--sage-deep);
+    }
+    .big-quote .attr {
+      margin-top: 2rem; font-size: .9rem;
+      color: var(--muted); letter-spacing: .04em;
+    }
 
-            .hero { padding: 5.5rem 1.2rem 3rem; }
-            .hero-tag { font-size: .65rem; padding: 5px 14px; margin-bottom: 1.8rem; }
-            .hero h1 .l1 { font-size: .4em; }
-            .hero h1 .l3 { font-size: .3em; margin-top: .3rem; }
-            .hero-p { font-size: .88rem; line-height: 1.8; margin-bottom: 2rem; word-break: keep-all; }
-            .hero-btns { gap: .6rem; }
-            .btn-g { padding: 12px 24px; font-size: .82rem; }
+    /* DOMAIN BACKGROUND (existing work) */
+    .domain { background: var(--bg-2); }
+    .domain-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
+      margin-top: 2.5rem;
+    }
+    @media (max-width: 860px) { .domain-grid { grid-template-columns: 1fr; } }
+    .domain-card {
+      background: var(--card); padding: 2rem;
+      border-radius: 16px; border: 1px solid var(--line);
+      transition: all .25s;
+      display: flex; flex-direction: column;
+      min-height: 280px;
+    }
+    .domain-card:hover {
+      border-color: var(--sage);
+      transform: translateY(-4px);
+      box-shadow: var(--shadow);
+    }
+    .domain-card .cat {
+      font-size: .72rem; letter-spacing: .1em; font-weight: 700;
+      color: var(--sage-deep); margin-bottom: .8rem;
+    }
+    .domain-card h4 {
+      font-size: 1.2rem; margin-bottom: .7rem; line-height: 1.4;
+    }
+    .domain-card p {
+      font-size: .9rem; color: var(--text-soft); line-height: 1.65;
+      flex: 1; margin-bottom: 1rem;
+    }
+    .domain-card .link {
+      font-size: .85rem; font-weight: 600; color: var(--text);
+      display: inline-flex; align-items: center; gap: .3rem;
+    }
+    .domain-card .link::after {
+      content: '→'; transition: transform .2s;
+    }
+    .domain-card:hover .link::after { transform: translateX(4px); }
+    .domain-card .soon {
+      font-size: .75rem; color: var(--muted);
+      padding: .2rem .6rem; border: 1px solid var(--line);
+      border-radius: 999px; display: inline-block; width: max-content;
+    }
 
-            .stats-bar { gap: .5rem; margin-top: 2.5rem; padding-top: 1.8rem; }
-            .stat .sv { font-size: 1.5rem; }
-            .stat .sl { font-size: .6rem; }
+    /* STORY */
+    .story { background: var(--bg); }
+    .story-grid {
+      display: grid; grid-template-columns: 1fr 1.1fr; gap: 4rem; align-items: start;
+    }
+    @media (max-width: 860px) { .story-grid { grid-template-columns: 1fr; } }
+    .story-sticky { position: sticky; top: 6rem; }
+    .story-body p {
+      font-size: 1rem; line-height: 1.85; color: var(--text-soft);
+      margin-bottom: 1.3rem;
+    }
+    .story-body p strong { color: var(--text); font-weight: 700; }
+    .story-pull {
+      border-left: 3px solid var(--sage);
+      padding: 0 0 0 1.2rem; margin: 1.8rem 0;
+      font-size: 1.05rem; font-weight: 600; color: var(--text);
+      line-height: 1.6;
+    }
 
-            .sec { padding: 3.5rem 1.2rem; }
-            .sec h2 { font-size: clamp(1.4rem, 5vw, 1.8rem); }
-            .sec .lead { font-size: .85rem; margin-bottom: 2rem; word-break: keep-all; }
+    /* CONTACT */
+    .contact {
+      background: var(--text); color: var(--bg);
+      padding: 6rem 0;
+    }
+    .contact h2 {
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      margin-bottom: 1rem; letter-spacing: -.03em;
+    }
+    .contact p {
+      font-size: 1.1rem; color: rgba(248,245,239,.7);
+      max-width: 580px; margin-bottom: 2.5rem;
+    }
+    .contact-links {
+      display: flex; gap: 1rem; flex-wrap: wrap;
+    }
+    .contact-link {
+      padding: .9rem 1.8rem;
+      background: var(--bg); color: var(--text);
+      border-radius: 999px; font-weight: 600;
+      transition: all .2s;
+      display: inline-flex; align-items: center; gap: .5rem;
+    }
+    .contact-link.outline {
+      background: transparent; color: var(--bg);
+      border: 1px solid rgba(248,245,239,.3);
+    }
+    .contact-link:hover { transform: translateY(-2px); }
+    .contact-link.outline:hover { border-color: var(--bg); background: rgba(248,245,239,.1); }
 
-            .m-grid { grid-template-columns: 1fr; gap: .8rem; }
-            .m-card { padding: 1.6rem 1.3rem; }
-            .m-card .mc-i { width: 42px; height: 42px; font-size: 1.2rem; margin-bottom: .8rem; }
-            .m-card h3 { font-size: .92rem; }
-            .m-card p { font-size: .78rem; }
+    /* FOOTER */
+    footer {
+      background: var(--text); color: rgba(248,245,239,.4);
+      padding: 2.5rem 0;
+      border-top: 1px solid rgba(248,245,239,.08);
+      font-size: .82rem;
+    }
+    footer .wrap {
+      display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem;
+    }
 
-            .p-grid { grid-template-columns: 1fr; gap: 1rem; }
-            .p-hero { height: 160px; }
-            .p-hero .p-icon { font-size: 3rem; }
-            .p-body { padding: 1.2rem 1.3rem 1.4rem; }
-            .p-body h3 { font-size: .95rem; }
-            .p-body .p-desc { font-size: .78rem; }
-            .p-foot { padding: .7rem 1.3rem; }
+    /* REVEAL ANIMATION */
+    .reveal {
+      opacity: 0; transform: translateY(20px);
+      transition: opacity .9s ease, transform .9s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
 
-            .news-grid { grid-template-columns: 1fr; }
-            .news-card { padding: 1.2rem; }
-
-            .quote-sec { padding: 3.5rem 1.2rem; }
-            .q-mark { font-size: 3rem; }
-            .q-text { font-size: 1.1rem; }
-
-            .wf-item { flex-direction: column; gap: .8rem; padding: 1.4rem 0; }
-            .wf-list::before { display: none; }
-            .wf-dot { width: 48px; height: 48px; font-size: 1.1rem; }
-            .wf-text h3 { font-size: .92rem; }
-            .wf-text p { font-size: .78rem; }
-            .wf-ex { font-size: .7rem; padding: .6rem .8rem; }
-
-            .contact-card { padding: 2.2rem 1.4rem; border-radius: 18px; }
-            .contact-card h3 { font-size: 1.2rem; }
-            .contact-card .c-sub { font-size: .82rem; margin-bottom: 1.5rem; }
-            .c-btns { flex-direction: column; align-items: center; gap: .6rem; }
-            .c-btn { width: 100%; max-width: 300px; justify-content: center; padding: 12px 20px; font-size: .82rem; }
-            .c-note { font-size: .7rem; }
-        }
-
-        /* ===== iPhone SE ===== */
-        @media (max-width: 374px) {
-            .hero { padding: 5rem 1rem 2.5rem; }
-            .hero h1 { font-size: 1.9rem; }
-            .hero-p { font-size: .82rem; }
-            .btn-g { padding: 11px 20px; font-size: .78rem; }
-            .stats-bar { grid-template-columns: repeat(2, 1fr); gap: .8rem; }
-            .sec { padding: 3rem 1rem; }
-        }
-
-        /* ===== Tablet ===== */
-        @media (min-width: 769px) and (max-width: 1024px) {
-            .m-grid { grid-template-columns: 1fr 1fr; }
-            .m-card:nth-child(3) { grid-column: 1 / -1; }
-            .p-grid { grid-template-columns: repeat(2, 1fr); }
-            .p-card:nth-child(3) { grid-column: 1 / -1; max-width: 480px; margin: 0 auto; }
-        }
-
-        /* ===== Safe Area ===== */
-        @supports (padding: env(safe-area-inset-bottom)) {
-            .footer { padding-bottom: calc(2rem + env(safe-area-inset-bottom)); }
-            .nav { padding-left: max(1rem, env(safe-area-inset-left)); padding-right: max(1rem, env(safe-area-inset-right)); }
-        }
-    </style>
+    /* utility */
+    .kr-tag {
+      font-size: .72rem; color: var(--sage-deep);
+      letter-spacing: .12em; font-weight: 700;
+      text-transform: uppercase;
+    }
+  </style>
 </head>
 <body>
-    <canvas id="helixCanvas"></canvas>
 
-    <nav class="nav" id="nav">
-        <div class="nav-logo"><span class="dot"></span>구건우</div>
-        <div class="nav-links">
-            <a href="#mission">미션</a>
-            <a href="#projects">연구</a>
-            <a href="#news">뉴스</a>
-            <a href="#workflow">방법론</a>
-            <a href="#contact">연락</a>
-            <a href="https://www.linkedin.com/in/%EA%B1%B4%EC%9A%B0-%EA%B5%AC-5aa559341/" class="nav-cta" target="_blank" rel="noopener">
-                1촌 신청
-                <svg viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
-            </a>
-        </div>
-    </nav>
+  <!-- NAV -->
+  <nav class="nav" id="nav">
+    <a class="nav-brand" href="#top">
+      <span class="dot"></span>
+      <span>구건우 · Gunwoo Ku</span>
+    </a>
+    <div class="nav-links">
+      <a href="#work">Work</a>
+      <a href="#domain">Background</a>
+      <a href="#story">Story</a>
+      <a class="nav-cta" href="#contact">Contact</a>
+    </div>
+  </nav>
 
-    <section class="hero">
-        <div class="hero-inner">
-            <div class="hero-tag"><span class="tdot"></span>Medical AI · Reverse-Aging · Researcher</div>
-            <h1>
-                <span class="l1">구건우의</span>
-                <span class="l2">할머니를 1년 젊게 해드리기</span>
-                <span class="l3">프로젝트</span>
-            </h1>
-            <p class="hero-p">
-                70대 할머니의 생체나이를 되돌리고 싶은 <em>간절한 마음</em> 하나로 시작했습니다.<br>
-                AI를 연구 동료로 활용하여, 의료 AI 산업과 역노화 과학을 독학합니다.<br>
-                이 사이트는 그 여정의 기록이자, <em>함께 일하고 싶다는 제안</em>입니다.
-            </p>
-            <div class="hero-btns">
-                <a href="#projects" class="btn-g primary">연구 프로젝트 보기 ↓</a>
-                <a href="https://www.linkedin.com/in/%EA%B1%B4%EC%9A%B0-%EA%B5%AC-5aa559341/" class="btn-g secondary" target="_blank" rel="noopener">LinkedIn 연결하기</a>
+  <!-- HERO -->
+  <section class="hero" id="top">
+    <div class="wrap">
+      <div class="hero-grid">
+        <div>
+          <div class="eyebrow">For Mediology · Content Marketing Designer</div>
+          <h1>
+            <em>0차 의료</em>의 <br>
+            브랜드 언어를 <br>
+            함께 만들고 싶습니다.
+          </h1>
+          <p class="hero-sub">
+            메디올로지가 세운 "1차 의료를 넘어선 0차 의료"라는 카테고리를,
+            사람들의 새벽 3시 언어로 번역하는 일. 제가 합류한 첫 2주에
+            무엇을 할지, 이미 일부 만들어 왔습니다.
+          </p>
+          <div class="hero-meta">
+            <div>
+              <b>정설아 대표님께</b>
+              <span>LinkedIn DM 이후 후속 제출</span>
             </div>
-            <div class="stats-bar rv rv-d1">
-                <div class="stat"><span class="sv" data-t="3">0</span><span class="sl">리서치<br>프로젝트</span></div>
-                <div class="stat"><span class="sv" data-t="9">0</span><span class="sl">분석한<br>기업 수</span></div>
-                <div class="stat"><span class="sv" data-t="15">0</span><span class="sl">역노화<br>후보물질</span></div>
-                <div class="stat"><span class="sv" data-t="200">0</span><span class="sl">참고<br>논문 수</span></div>
+            <div>
+              <b>제출일</b>
+              <span>2026년 4월 17일</span>
             </div>
-        </div>
-    </section>
-
-    <section class="sec" id="mission">
-        <span class="sec-eye rv">MISSION</span>
-        <h2 class="rv">왜 이것을 하는가</h2>
-        <p class="lead rv">기술은 배울 수 있습니다. 하지만 의학과 환자를 향한 진심은 가르칠 수 없습니다.</p>
-        <div class="m-grid">
-            <div class="m-card rv rv-d1"><div class="mc-i">👵</div><h3>출발점: 할머니</h3><p>70대 할머니의 건강을 걱정되기 시작한 그 날, 저는 처음으로 "역노화"를 검색했습니다. 비전공자이지만, 가족을 위해 과학을 읽기 시작했습니다.</p></div>
-            <div class="m-card rv rv-d2"><div class="mc-i">🤖</div><h3>방법: AI와 함께 연구</h3><p>AI를 연구 동료로 활용하여, 비전공자도 논문을 읽고, 산업을 분석하고, 후보물질을 평가할 수 있다는 것을 직접 증명하고 있습니다.</p></div>
-            <div class="m-card rv rv-d3"><div class="mc-i">🚀</div><h3>목표: 함께 일하기</h3><p>이 연구를 혼자 하는 것보다, 의료 AI·역노화 스타트업에서 함께 하면 100배 빠릅니다. 도메인 이해도 + AI 활용 실행력을 가진 팀원이 되고 싶습니다.</p></div>
-        </div>
-    </section>
-
-    <section class="sec" id="projects">
-        <span class="sec-eye rv">RESEARCH PROJECTS</span>
-        <h2 class="rv">연구 프로젝트</h2>
-        <p class="lead rv">각 프로젝트는 독립된 리서치이며서, 도메인 지식과 AI 활용 능력의 증거입니다.</p>
-        <div class="p-grid">
-            <div class="p-card rv rv-d1">
-                <div class="p-hero"><div class="p-num">#01</div><div class="p-icon">🗺️</div></div>
-                <div class="p-body">
-                    <h3>AI 의료기기 글로벌 인허가 지형도 2026</h3>
-                    <span class="p-sub">Medical AI · FDA · MFDS · CE Mark</span>
-                    <p class="p-desc">FDA(1,451개)·식약처(62개)·EU 3대 규제기관의 AI 의료기기 인허가 경로를 비교. 한국 5사의 실제 인허가 현황 매핑. 2026년 규제 변화 타임라인.</p>
-                    <div class="p-tags"><span class="p-tag">FDA 510(k)</span><span class="p-tag">MFDS</span><span class="p-tag">EU AI Act</span><span class="p-tag">SaMD</span><span class="p-tag">PCCP</span></div>
-                </div>
-                <div class="p-foot"><span class="p-status st-live">LIVE</span><a href="medical_ai_regulatory_map.html" class="p-link">자세히 보기 →</a></div>
+            <div>
+              <b>포지션</b>
+              <span>Content Marketing Designer</span>
             </div>
-            <div class="p-card rv rv-d2">
-                <div class="p-hero"><div class="p-num">#02</div><div class="p-icon">🧬</div></div>
-                <div class="p-body">
-                    <h3>역노화 후보물질 연구: 12 Hallmarks × 15 Candidates</h3>
-                    <span class="p-sub">Reverse-Aging · Hallmarks · Protocol Design</span>
-                    <p class="p-desc">노화의 12가지 hallmarks에 대응하는 15가지 후보무질을 S~C 등급으로 평가. 70대 할머니 맞춤 3단계 프로토콜 설계.</p>
-                    <div class="p-tags"><span class="p-tag">Hallmarks of Aging</span><span class="p-tag">GLP-1</span><span class="p-tag">RAR</span><span class="p-tag">Rapamycin</span><span class="p-tag">Senolytics</span></div>
-                </div>
-                <div class="p-foot"><span class="p-status st-live">LIVE</span><a href="reverse_aging_candidates.html" class="p-link">자세히 보기 →</a></div>
-            </div>
-            <div class="p-card rv rv-d3">
-                <div class="p-hero"><div class="p-num">#03</div><div class="p-icon">📊</div></div>
-                <div class="p-body">
-                    <h3>한국 의료 AI · 역노화 스타트업 시장 지도</h3>
-                    <span class="p-sub">Startup Analysis · Financial · Strategy</span>
-                    <p class="p-desc">루닗·뷸노·하플사이언스 등 9개 기업의 기술·재무·전략 종합 분석. VUNO 감사보고서 해석, GLP-1RA 시장 기회 분석.</p>
-                    <div class="p-tags"><span class="p-tag">Lunit</span><span class="p-tag">VUNO</span><span class="p-tag">HaplnScience</span><span class="p-tag">K-IFRS</span></div>
-                </div>
-                <div class="p-foot"><span class="p-status st-soon">COMING SOON</span><span style="color:var(--dim);font-size:.78rem;">준비 중</span></div>
-            </div>
+          </div>
         </div>
-    </section>
 
-    <!-- ===== NEWS FEED ===== -->
-    <section class="sec" id="news">
-        <span class="sec-eye rv">RESEARCH NEWS</span>
-        <h2 class="rv">역노화 · GLP-1 최신 연구 소식</h2>
-        <p class="lead rv">매일 자동 업데이트되는 역노화/GLP-1 관련 최신 논문과 뉴스입니다.</p>
-        <div id="newsFeed" class="news-grid">
-            <div class="news-loading"><span></span><span></span><span></span></div>
+        <div>
+          <div class="video-frame">
+            <span class="play-badge"><span class="pulse"></span> 30초 광고</span>
+            <video src="/mediology-ad.mp4" poster="/mediology-ad-poster.jpg" controls preload="metadata" playsinline></video>
+          </div>
+          <p class="video-caption">Healthier 런칭 광고 — "오늘 밤, 검색창 대신" · 9:16 · 30초</p>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <section class="quote-sec">
-        <div class="quote-inner">
-            <div class="q-mark">"</div>
-            <p class="q-text">기술은 가르칠 수 있지만,<br>의학과 활자에 대한 집착은 가르칠 수 없다.</p>
-            <p class="q-author">— 의료 AI 스타트업 대표들이 공통으로 하는 말</p>
+  <!-- THE MOMENT -->
+  <section class="moment">
+    <div class="wrap">
+      <div class="section-header">
+        <div class="eyebrow">The Moment</div>
+        <h2>왜 메디올로지인가,<br>왜 지금 이 편지를 쓰는가.</h2>
+      </div>
+      <div class="moment-grid">
+        <div class="moment-block">
+          <h3>제가 본 것</h3>
+          <p>
+            대표님의 TIPS 선정 기사에서 한 줄이 제게 박혔습니다.
+            <strong>"1차 의료를 넘어선 0차 의료의 실현."</strong>
+            이건 단순한 슬로건이 아니라 <strong>카테고리의 이름을 새로 짓는 문장</strong>이었습니다.
+            지금까지 누구도 "병원 가야 할지 말지를 판단하는 그 순간"에 이름을 붙여주지 않았습니다. 사람들은 그 자리에 있을 때 구글, 지식iN, 가족에게 전화를 겁니다. 전부 의료가 아닙니다.
+          </p>
+          <div class="moment-quote">
+            "의료 전문성과 임상 의사결정에 대한 이해를 바탕으로 헬스케어 생태계와 연계되는 버티컬 AI 구현에 집중하겠다."
+            <cite>— 정설아 대표, 머니투데이 인터뷰 (2025.02)</cite>
+          </div>
         </div>
-    </section>
-
-    <section class="sec" id="workflow">
-        <span class="sec-eye rv">AI WORKFLOW</span>
-        <h2 class="rv">비전공자의 AI 리서치 방법론</h2>
-        <p class="lead rv">이 사이트의 모든 연구는 아래 4단계로 만들어졌습니다. 누구나 재현할 수 있습니다.</p>
-        <div class="wf-list">
-            <div class="wf-item rv rv-d1"><div class="wf-dot">🎯</div><div class="wf-text"><div class="wf-label">Step 1</div><h3>거대한 질문을 작은 질문으로 분해</h3><p>"한국 의료 AI 시장은?"이라는 거대한 질문을 12개의 작은 질문으로 쪸갭니다. 질문을 잘 쪼개는 능력이 AI 활용의 80%입니다.</p><div class="wf-ex"><strong>예시:</strong> "역노화 후보물질" → "hallmarks는 몇 개?" + "각 hallmark별 후보물질은?" + "70대 여성에게 안전한가?" + "임상 근거 수준은?"</div></div></div>
-     <div class="wf-item rv rv-d2"><div class="wf-dot">🤖</div><div class="wf-text"><div class="wf-label">Step 2</div><h3>AI를 "연구 동료"로 활용</h3><p>AI에게 역할을 부여합니다. "너는 FDA 규제 전문가야" — 역할 + 맥락 + 구체적 요청 = 전문가급 출력.</p><div class="wf-ex"><strong>프롬프트:</strong> "2023 Cell 논문 기준 12 hallmarks에 대응하는 후보물질을 매핑해줘. 물질별로 (1) 메커니즘 (2) 임상 근거 (3) 70대 여성 안전성 포함."</div></div></div>
-            <div class="wf-item rv rv-d3"><div class="wf-dot">✅</div><div class="wf-text"><div class="wf-label">Step 3</div><h3>3중 교차검증</h3><p>AI 출력을 3개 독립 출처에서 확인합니다. (1) 정부 공식 사이트 (2) 기업 공시자료 (3) 학술 논문. 불일치 시 가장 권위 있는 출처를 채택.</p><div class="wf-ex"><strong>실제 사례:</strong> VUNO "왜 적자?" → 감사보고서 ZIP 직접 분석 → K-IFRS 5년치 영업손실(-176억→-46억) 직접 확인.</div></div></div>
-            <div class="wf-item rv rv-d3"><div class="wf-dot">🎨</div><div class="wf-text"><div class="wf-label">Step 4</div><h3>시각화 + 공개 발행</h3><p>검증된 데이터를 인터랡티브 웹으로 시각화. "조사했다"가 아니라 "이것을 만들었다"는 결과문. 이 사이트 자체가 Step 4의 산출문입니다.</p></div></div>
+        <div class="moment-block">
+          <h3>그래서 제가 제안하는 것</h3>
+          <p>
+            콘텐츠 마케팅의 역할은 "새 브랜드를 만드는 것"이 아니라 <strong>"이미 있는 답을 사람들의 불안한 순간에 정확히 배달하는 것"</strong>이라고 봅니다. Healthier는 이미 그 답을 가지고 있습니다. 제가 해야 할 일은 그 답이 새벽 3시, 병원 가기 애매한 증상을 검색하는 사람에게 닿도록 언어·영상·카드·랜딩을 설계하는 것입니다.
+          </p>
+          <p>
+            이 포트폴리오는 "합류한 첫 2주의 저"를 미리 보여드리는 것입니다. 실제 제품이 아닌, 공개 정보만으로 만든 초안입니다. 내부에 들어가면 다르게 움직일 수 있고, 그 대화를 시작하고 싶어서 이 문서를 먼저 올립니다.
+          </p>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <section class="sec" id="contact">
-        <h2 class="rv" style="margin-bottom:.8rem;">함께 일하고 싶습니다</h2>
-        <p class="lead rv" style="margin-bottom:2rem;max-width:720px;">의료 AI·역노화 분야에서 도메인 이해도와 AI 활용 실행력을 갖춘 팀원을 찾고 계시다면, 연결해주세요.</p>
-        <div class="contact-wrap">
-            <div class="contact-card rv">
-                <div class="c-btns">
-                    <a href="https://www.linkedin.com/in/%EA%B1%B4%EC%9A%B0-%EA%B5%AC-5aa559341/" class="c-btn c-linkedin" target="_blank" rel="noopener">
-                        <svg viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
-                        LinkedIn 1촌 신청하기
-                    </a>
-                    <a href="mailto:godscience2024@gmail.com" class="c-btn c-email">godscience2024@gmail.com</a>
-                </div>
-                <p class="c-note">"귀사에 대해 제가 이렇게 이해했습니다. 틀린 부분이 있다메 알려주세요."<br>— 부탁이 아니라 기여로 시작하겠습니다.</p>
-            </div>
+  <!-- WORK: DELIVERABLES -->
+  <section class="work" id="work">
+    <div class="wrap">
+      <div class="section-header">
+        <div class="eyebrow">Built for Mediology</div>
+        <h2>공개 정보만으로<br>이 네 가지를 만들었습니다.</h2>
+        <p>메디올로지 홈페이지 · IT조선 · 머니투데이 · 매일경제 · THE VC의 공개 자료만 사용했습니다. 대표님이 공개하신 문장과 숫자 하나하나를 근거로 추적 가능한 전략을 구성했습니다.</p>
+      </div>
+
+      <div class="deliverable">
+        <div class="deliverable-num">01</div>
+        <div class="deliverable-body">
+          <span class="deliverable-tag">30초 광고 영상</span>
+          <h3>"오늘 밤, 검색창 대신"</h3>
+          <p>1080×1920 · 9:16 세로 · Python + PIL + ffmpeg로 8개 씬을 직접 프레임별 렌더링. 검색의 공포 → 정적 → 0차 의료 해답 → 브랜드의 감정 곡선을 30초에 압축.</p>
         </div>
-    </section>
+        <a class="deliverable-link" href="/mediology-ad.mp4" target="_blank">영상 재생 →</a>
+      </div>
 
-    <footer class="footer">
-        <p>구건우 — 할머니를 1년 절게 해드리기 프로젝트 &copy; 2026</p>
-        <p style="margin-top:.8rem;">Built with AI-assisted research workflow · <a href="https://www.linkedin.com/in/%EA%B1%B4%EC%9A%B0-%EA%B5%AC-5aa559341/" target="_blank" rel="noopener">LinkedIn</a></p>
-    </footer>
+      <div class="deliverable">
+        <div class="deliverable-num">02</div>
+        <div class="deliverable-body">
+          <span class="deliverable-tag">브랜드·콘텐츠 전략서</span>
+          <h3>첫 90일 로드맵</h3>
+          <p>시장 진단 · 포지셔닝("0차 의료") · 5개 페르소나 · 브랜드 보이스 · 5개 콘텐츠 기둥 · 채널 매트릭스 · KPI 가설 · 리스크. 공개 보도 4건 ↔ 전략 11개 포인트 추적 가능 매핑 부록 포함.</p>
+        </div>
+        <a class="deliverable-link" href="#strategy">전략 보기 →</a>
+      </div>
 
-    <script>
-    // ===== DNA HELIX PARTICLES =====
-    const canvas=document.getElementById('helixCanvas'),ctx=canvas.getContext('2d');
-    let w,h;
-    const isMobile=window.innerWidth<768;
-    function resize(){w=canvas.width=window.innerWidth;h=canvas.height=window.innerHeight}
-    resize();window.addEventListener('resize',resize);
+      <div class="deliverable">
+        <div class="deliverable-num">03</div>
+        <div class="deliverable-body">
+          <span class="deliverable-tag">광고 기획서 (Shot by Shot)</span>
+          <h3>30초·15초·60초 3종 동시 기획</h3>
+          <p>11개 샷 스토리보드 · 톤/무드 테이블 · 15초 숏폼 편집본 · 60초 확장본 · 후속 콘텐츠 엔진 설계 (카드뉴스·블로그 SEO·유튜브 롱폼 파생 플로우).</p>
+        </div>
+        <a class="deliverable-link" href="#story">기획 흐름 보기 →</a>
+      </div>
 
-    let time=0;
-    const dotCount=isMobile?40:80;
-    function drawHelix(){
-        ctx.clearRect(0,0,w,h);
-        time+=0.008;
-        const centerX=w*.82, amplitude=isMobile?60:120, spacing=h/(dotCount/2);
-        for(let i=0;i<dotCount;i++){
-            const y=(i*spacing+time*200)%h;
-            const phase=y*0.015+time*2;
-            const x1=centerX+Math.sin(phase)*amplitude;
-            const x2=centerX-Math.sin(phase)*amplitude;
-            const z1=(Math.cos(phase)+1)/2;
-            const z2=(Math.cos(phase+Math.PI)+1)/2;
-            // strand 1
-            ctx.beginPath();
-            ctx.arc(x1,y,z1*2.5+.5,0,Math.PI*2);
-            ctx.fillStyle=`rgba(181,255,0,${z1*.12+.02})`;
-            ctx.fill();
-            // strand 2
-            ctx.beginPath();
-            ctx.arc(x2,y,z2*2.5+.5,0,Math.PI*2);
-            ctx.fillStyle=`rgba(181,255,0,${z2*.12+.02})`;
-            ctx.fill();
-            // connection lines
-            if(i%4===0){
-                ctx.beginPath();
-                ctx.moveTo(x1,y);ctx.lineTo(x2,y);
-                ctx.strokeStyle=`rgba(181,255,0,${Math.min(z1,z2)*.04+.01})`;
-                ctx.lineWidth=.5;
-                ctx.stroke();
-            }
+      <div class="deliverable">
+        <div class="deliverable-num">04</div>
+        <div class="deliverable-body">
+          <span class="deliverable-tag">콘텐츠 샘플 세트 (제작 중)</span>
+          <h3>카드뉴스 · 숏폼 · 랜딩 카피</h3>
+          <p>Pillar별 실제 발행 가능한 샘플 3-5종. 합류 후 첫 주 내 발행을 전제로 한 실전 에셋. (제출 당일 야간 추가 업로드)</p>
+        </div>
+        <span class="soon" style="padding:.35rem .8rem; border:1px solid var(--line); border-radius:999px; font-size:.78rem; color:var(--muted);">진행 중</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- STRATEGY HIGHLIGHTS -->
+  <section id="strategy">
+    <div class="wrap">
+      <div class="section-header">
+        <div class="eyebrow">Strategy Highlights</div>
+        <h2>전략의 세 기둥.</h2>
+        <p>긴 전략서는 다운로드 / GitHub에서 보실 수 있고, 여기서는 가장 큰 세 개만 요약합니다.</p>
+      </div>
+      <div class="strat-grid">
+        <div class="strat-card">
+          <div class="step">PILLAR 01</div>
+          <h4>검색 대신 이해</h4>
+          <p>Healthier의 핵심 가치 명제를 콘텐츠로 증명. "이 증상이 뭔지"가 아니라 "지금 무엇을 할지"에 답하는 카드뉴스·숏폼 시리즈로 새벽 검색 트래픽을 흡수.</p>
+        </div>
+        <div class="strat-card">
+          <div class="step">PILLAR 02</div>
+          <h4>3AM 주치의</h4>
+          <p>국내 건강 검색의 70%가 밤 10시–새벽 3시에 발생. 불안의 시간대에 가장 먼저 떠오르는 브랜드 포지션. 릴스·숏폼의 감정 연결 밀도를 2-3배로 끌어올리는 타겟팅.</p>
+        </div>
+        <div class="strat-card">
+          <div class="step">PILLAR 03</div>
+          <h4>0차 의료 사전</h4>
+          <p>대표님이 제시하신 "0차 의료" 개념 자체를 대중의 언어로 번역. 지금 검색량 0인 키워드를 선점해 3년 뒤의 SEO 자산으로 축적. 기자·보험사·병원을 동시에 설득.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BIG QUOTE -->
+  <section class="big-quote">
+    <div class="wrap-narrow">
+      <blockquote>
+        "검색이 주는 불안이 아니라,<br>
+        <span class="em">이해가 주는 평온."</span>
+      </blockquote>
+      <div class="attr">광고 영상 및 런칭 캠페인 메인 카피 — 구건우 제안</div>
+    </div>
+  </section>
+
+  <!-- DOMAIN BACKGROUND -->
+  <section class="domain" id="domain">
+    <div class="wrap">
+      <div class="section-header">
+        <div class="eyebrow">Medical AI Domain Background</div>
+        <h2>메디올로지 지원 이전에,<br>의료 AI를 이미 공부하고 있었습니다.</h2>
+        <p>이 세 개의 프로젝트는 메디올로지를 위해 만든 것이 아닙니다. 제가 지난 몇 달간 의료 AI 카테고리를 스스로 깊게 파고 있었다는 증거입니다. 이 도메인 감각이 메디올로지의 콘텐츠 언어 설계에 바로 투입될 수 있습니다.</p>
+      </div>
+      <div class="domain-grid">
+        <div class="domain-card">
+          <div class="cat">REGULATORY · FDA / 식약처</div>
+          <h4>의료기기 인허가 규제 맵핑</h4>
+          <p>FDA · 식약처 · EU MDR 비교 + 국내 의료 AI 5사의 인허가 경로 시각화. Healthier가 SaMD 인증을 고민할 때 바로 활용 가능한 도메인 맥락.</p>
+          <a class="link" href="/medical_ai_regulatory_map.html" target="_blank">프로젝트 보기</a>
+        </div>
+        <div class="domain-card">
+          <div class="cat">RESEARCH · SENIOR CARE</div>
+          <h4>70대 맞춤 역노화 프로토콜</h4>
+          <p>할머니의 생체나이를 되돌리고 싶다는 출발점에서 시작한 리서치. Hallmarks × Candidates 매트릭스 + 개인화 프로토콜. 메디올로지의 시니어 건강관리 라인과 직접 연결되는 관점.</p>
+          <a class="link" href="/reverse_aging_candidates.html" target="_blank">프로젝트 보기</a>
+        </div>
+        <div class="domain-card">
+          <div class="cat">COMPETITIVE · MEDICAL AI 9</div>
+          <h4>국내 의료 AI 스타트업 분석</h4>
+          <p>루닛 · VUNO 등 9개사 재무·기술·포지셔닝 비교. 메디올로지가 경쟁자/협력자를 판단할 때 필요한 카테고리 지도.</p>
+          <span class="soon">분석 완료 · 시각화 준비 중</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STORY -->
+  <section class="story" id="story">
+    <div class="wrap">
+      <div class="story-grid">
+        <div class="story-sticky">
+          <div class="eyebrow">Story</div>
+          <h2 style="font-size: clamp(1.8rem, 3.5vw, 2.6rem);">저는 왜 이 일을 <br>하고 싶을까요.</h2>
+        </div>
+        <div class="story-body">
+          <p>
+            저는 개발자도 의사도 마케터 전문가도 아닙니다. 제 출발점은 <strong>70대 할머니의 생체나이를 1년이라도 돌려드리고 싶다</strong>는 아주 개인적인 마음이었습니다. 그래서 저는 역노화 논문을 읽기 시작했고, 국내외 의료 AI 스타트업들을 혼자 분석하기 시작했고, 의료기기 규제 지도를 직접 그려봤습니다. 그 과정에서 발견한 것이 하나 있습니다.
+          </p>
+          <div class="story-pull">
+            "의학 정보는 늘 두 극단 사이에 있다. 논문처럼 차갑거나, 썸네일처럼 자극적이거나. 그 사이의 '이해'는 비어 있다."
+          </div>
+          <p>
+            이 공백이 메디올로지가 말하는 <strong>0차 의료</strong>의 자리와 정확히 겹친다고 느꼈습니다. 그래서 저는 이 자리를 언어로 채우는 일을 하고 싶습니다. 카드뉴스 한 장, 릴스 30초, 랜딩 페이지 첫 문장 — 이 작은 조각들이 새벽 3시 누군가의 불안을 낮추는 일이 된다면, 그것이 제가 할 수 있는 가장 의미 있는 일이라고 생각합니다.
+          </p>
+          <p>
+            대표님의 LinkedIn을 처음 봤을 때 느낀 건 "이 분은 진짜로 사람을 돕고 싶어 하시는 분"이라는 것이었습니다. 약사로서 오랜 시간 환자를 직접 보셨고, 그 경험 위에 AI를 얹고 계시기 때문에 <strong>Healthier의 톤이 과장되지 않을 수 있다</strong>는 확신이 들었습니다. 저는 그 확신의 톤을, 콘텐츠로 증명하는 사람이 되고 싶습니다.
+          </p>
+          <p>
+            처음부터 CMO가 되어 있어야 한다고 생각하지 않습니다. 저는 지금, <strong>필요한 첫 번째 손</strong>이 되고 싶습니다. 영상도 직접 찍고, 카드도 직접 디자인하고, 랜딩 카피도 직접 쓰고, 광고 소재도 직접 테스트하는, 가장 작게 시작해서 가장 오래 남는 그런 손.
+          </p>
+          <p style="margin-top:2rem; font-size:.95rem; color:var(--muted);">— 구건우, 2026년 4월 17일</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <div class="wrap">
+      <div style="max-width: 720px;">
+        <div class="eyebrow" style="color: var(--sage);">Let's Talk</div>
+        <h2>짧은 커피 한 잔,<br>가능하실까요?</h2>
+        <p>
+          30분이면 됩니다. 이 포트폴리오에 담지 못한 내용과, 대표님이 지금 가장 필요하신 것에 대해 듣고 싶습니다. 합류 여부와 무관하게, 대화 자체가 제게 큰 배움입니다.
+        </p>
+        <div class="contact-links">
+          <a class="contact-link" href="mailto:godscience2024@gmail.com">godscience2024@gmail.com</a>
+          <a class="contact-link outline" href="https://www.linkedin.com/" target="_blank">LinkedIn</a>
+          <a class="contact-link outline" href="https://github.com/godscience911" target="_blank">GitHub</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <span>© 2026 구건우 · Gunwoo Ku</span>
+      <span>Built for Mediology · Hosted on Vercel</span>
+    </div>
+  </footer>
+
+  <script>
+    // scroll-aware nav
+    const nav = document.getElementById('nav');
+    const onScroll = () => {
+      if (window.scrollY > 40) nav.classList.add('scrolled');
+      else nav.classList.remove('scrolled');
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    // reveal animation
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          io.unobserve(e.target);
         }
-        requestAnimationFrame(drawHelix);
-    }
-    drawHelix();
-
-    // ===== NAV SCROLL =====
-    const nav=document.getElementById('nav');
-    window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>50),{passive:true});
-
-    // ===== SCROLL REVEAL =====
-    const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('vis')})},{threshold:.1});
-    document.querySelectorAll('.rv').forEach(el=>obs.observe(el));
-
-    // ===== COUNTER ANIMATION =====
-    function animNum(el,target,dur=1800){const start=performance.now();(function tick(now){const p=Math.min((now-start)/dur,1);el.textContent=Math.round(target*(1-Math.pow(1-p,3)));if(p<1)requestAnimationFrame(tick)})(start)}
-    const sObs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.querySelectorAll('.sv').forEach(a=>animNum(a,+a.dataset.t,1800));sObs.disconnect()}})},{threshold:.2});
-    sObs.observe(document.querySelector('.stats-bar'));
-
-    // ===== SMOOTH NAV =====
-    document.querySelectorAll('.nav-links a[href^="#"]').forEach(a=>{a.addEventListener('click',e=>{e.preventDefault();const t=document.querySelector(a.getAttribute('href'));if(t)t.scrollIntoView({behavior:'smooth'})})});
-
-    // ===== NEWS FEED =====
-    async function loadNews(){
-        const feed=document.getElementById('newsFeed');
-        try{
-            const res=await fetch('news_data.json?t='+Date.now());
-            if(!res.ok) throw new Error('no data');
-            const data=await res.json();
-            if(!data.articles||data.articles.length===0) throw new Error('empty');
-            renderNewsCards(feed, data.articles);
-        }catch(e){
-            renderNewsCards(feed, null);
-        }
-    }
-
-    function renderNewsCards(feed, articles){
-        const items = articles ? articles.slice(0,5) : [
-            {type:'paper',date:'2026.04',title:'GLP-1RA가 후성유전학적 노화를 역전시킬 수 있는가: 체계적 문헌고찰 및 메타분석',summary:'22개 임상시험, 50,000명+ 피험자 데이터 종합 분석. PCGrimAge -3.1년, PhenoAge -4.9년 역전 확인.',source:'KOO, GeonWoo · Preprint 2026',url:'glp1ra_meta_analysis.html'},
-            {type:'news',date:'2026.04',title:'Eli Lilly, 차세대 GLP-1/GIP/글루카곤 삼중 작용제 임상 3상 결과 발표',summary:'Retatrutide 48주 투여 시 체중 24.2% 감소, Ꞅ지방 85% 감소. 비만-NAFLD 동시 치료 가능성 확인.',source:'Nature Medicine · 2026',url:''},
-            {type:'paper',date:'2026.03',title:'Rapamycin 저용량 간헓 투여, 인간 면역노화 역전 최초 RCT 결과',summary:'건강한 65세 이상 성인 대상. 12주 간헓 투여로 인플루엔자 백신 반응률 20% 향상, T세포 기능 회복.',source:'The Lancet Healthy Longevity · 2026',url:''},
-            {type:'news',date:'2026.03',title:'한국 싽약처, AI 기반 신약 재창출 플랫폼 최초 허가 — 하플사이언스 선도',summary:'AI 기반 Drug Repurposing 플랫폼이 국내 최초로 의료기기 인허가 획득. 역노화 물질 스크리닝에 활용 기대.',source:'Medical Device Korea · 2026',url:''}
-        ];
-        feed.innerHTML=items.map(a=>{
-            const href=a.url||'#news';
-            const isExternal=a.url&&a.url.startsWith('http');
-            const target=a.url?(isExternal?' target="_blank" rel="noopener"':''):'';
-            return `
-            <a class="news-card" href="${href}"${target}>
-                <div class="news-meta">
-                    <span class="news-type ${a.type||'news'}">${a.type==='paper'?'PAPER':'NEWS'}</span>
-                    <span class="news-date">${a.date||''}</span>
-                </div>
-                <h4>${a.title}</h4>
-                <p>${a.summary||''}</p>
-                <div class="news-source">${a.source||''}${a.url?' · 원문 보기 →':''}</div>
-            </a>`;
-        }).join('');
-    }
-
-    loadNews();
-    </script>
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('section .wrap > *').forEach(el => {
+      el.classList.add('reveal');
+      io.observe(el);
+    });
+  </script>
 </body>
 </html>
