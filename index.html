@@ -1234,6 +1234,137 @@
       letter-spacing: .04em; font-weight: 500;
     }
 
+    /* Paired Shortform Campaign (두 영상 동시 노출 — 식탁 + 약봉투) */
+    .shortform-lede {
+      font-size: .98rem;
+      color: rgba(245,242,232,.62);
+      line-height: 1.72;
+      margin-bottom: 1.9rem;
+      max-width: 46em;
+    }
+    .shortform-lede b { color: #f5f2e8; font-weight: 600; }
+    .shortform-pair {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.1rem;
+      margin-bottom: 1.8rem;
+    }
+    @media (max-width: 820px) { .shortform-pair { grid-template-columns: 1fr; } }
+    .shortform-slot {
+      position: relative;
+      padding: 1.4rem 1.4rem 1.3rem;
+      border-radius: 18px;
+      background: rgba(245,242,232,.025);
+      border: 1px solid rgba(245,242,232,.07);
+      display: flex; flex-direction: column;
+      min-height: 100%;
+    }
+    .shortform-slot.slot-shinshin {
+      background: linear-gradient(160deg, rgba(31,168,104,.10), rgba(31,168,104,.02));
+      border-color: rgba(31,168,104,.32);
+    }
+    .shortform-slot.slot-healthier {
+      background: linear-gradient(160deg, rgba(15,181,181,.10), rgba(15,181,181,.02));
+      border-color: rgba(15,181,181,.32);
+    }
+    .slot-brand {
+      display: inline-flex; align-items: center; gap: .45rem;
+      font-size: .66rem; font-weight: 800;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      margin-bottom: .7rem;
+    }
+    .slot-brand .dot {
+      width: 8px; height: 8px; border-radius: 50%;
+    }
+    .slot-shinshin .slot-brand { color: #3ec48a; }
+    .slot-shinshin .slot-brand .dot { background: #1FA868; }
+    .slot-healthier .slot-brand { color: #3cd5d5; }
+    .slot-healthier .slot-brand .dot { background: #0FB5B5; }
+    .slot-teaser-tag {
+      display: inline-block;
+      font-size: .58rem; font-weight: 700; letter-spacing: .18em;
+      padding: .25rem .55rem;
+      border-radius: 999px;
+      background: rgba(15,181,181,.18);
+      color: #5ce0e0;
+      border: 1px solid rgba(15,181,181,.42);
+      margin-left: .4rem;
+      text-transform: uppercase;
+    }
+    .slot-title {
+      font-size: 1.35rem;
+      font-weight: 800;
+      letter-spacing: -.035em;
+      line-height: 1.1;
+      margin-bottom: .55rem;
+      color: #f5f2e8;
+    }
+    .slot-title em { font-style: normal; color: inherit; }
+    .slot-shinshin .slot-title em { color: #3ec48a; }
+    .slot-healthier .slot-title em { color: #3cd5d5; }
+    .slot-line {
+      font-size: .88rem;
+      line-height: 1.65;
+      color: rgba(245,242,232,.72);
+      margin-bottom: 1rem;
+      padding-left: .85rem;
+      border-left: 2px solid rgba(245,242,232,.12);
+      font-style: italic;
+      min-height: 3.4em;
+    }
+    .slot-shinshin .slot-line { border-left-color: rgba(31,168,104,.55); }
+    .slot-healthier .slot-line { border-left-color: rgba(15,181,181,.55); }
+    .slot-cta {
+      margin-top: auto;
+      display: flex; align-items: center; gap: .6rem;
+      flex-wrap: wrap;
+    }
+    .btn-play-slot {
+      appearance: none; border: 0;
+      padding: .6rem 1rem;
+      border-radius: 999px;
+      font-size: .82rem; font-weight: 700;
+      cursor: pointer;
+      display: inline-flex; align-items: center; gap: .5rem;
+      transition: all .2s;
+      font-family: inherit;
+    }
+    .slot-shinshin .btn-play-slot {
+      background: rgba(31,168,104,.16);
+      color: #3ec48a;
+      border: 1px solid rgba(31,168,104,.45);
+    }
+    .slot-shinshin .btn-play-slot:hover {
+      background: #1FA868; color: #0a0a0a;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 22px rgba(31,168,104,.25);
+    }
+    .slot-healthier .btn-play-slot {
+      background: rgba(15,181,181,.16);
+      color: #3cd5d5;
+      border: 1px solid rgba(15,181,181,.45);
+    }
+    .slot-healthier .btn-play-slot:hover {
+      background: #0FB5B5; color: #0a0a0a;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 22px rgba(15,181,181,.25);
+    }
+    .btn-play-slot .play-icon { width: 16px; height: 16px; }
+    .slot-runtime {
+      font-size: .72rem;
+      color: rgba(245,242,232,.42);
+      letter-spacing: .04em;
+      font-weight: 500;
+    }
+    .slot-routing {
+      margin-top: .7rem;
+      font-size: .7rem;
+      letter-spacing: .08em;
+      color: rgba(245,242,232,.38);
+    }
+    .slot-routing b { color: rgba(245,242,232,.58); font-weight: 600; }
+
     /* Video Modal */
     .video-modal {
       position: fixed; inset: 0;
@@ -1798,7 +1929,7 @@
         </article>
 
         <!-- Card B -->
-        <article class="sample-card" data-deck="b" data-title="CKD 식단 딥다이브 · Pillar 02">
+        <article class="sample-card" data-deck="b" data-title="CKD 식단 · Sister Track · 신신당부">
           <div class="sample-cover">
             <img src="assets/samples/card-b/slide_1_cover.png" alt="CKD 식단 카드뉴스 커버">
             <div class="sample-overlay">
@@ -1809,9 +1940,9 @@
             </div>
           </div>
           <div class="sample-body">
-            <div class="sample-label">Pillar 02 · 가족 돌봄</div>
+            <div class="sample-label">Sister Track · 만성질환 동반자 <span style="opacity:.55; margin-left:6px;">→ 신신당부</span></div>
             <h3>신장이 나쁜 엄마,<br>오늘 뭘 드셔야 할까요.</h3>
-            <p>CKD 환자 보호자 관점. 저염·저칼륨·저인 3원칙을 식탁의 언어로. 서울대병원 공동연구와 직접 연결되는 콘텐츠 축.</p>
+            <p>CKD 환자 보호자 관점. 저염·저칼륨·저인 3원칙을 식탁의 언어로. 식단 CTA는 Mediology의 자매 서비스 <b>신신당부</b>로 라우팅 — 증상은 +healthier, 식단은 신신당부.</p>
             <div class="sample-cta">
               <button class="btn-view" type="button">8장 보기</button>
               <span class="sample-duration">2분</span>
@@ -1841,39 +1972,77 @@
           </div>
         </article>
 
-        <!-- Shortform Tile -->
+        <!-- Shortform Tile — 2-App Campaign (식탁 + 약봉투) -->
         <article class="sample-text-tile shortform-tile">
           <div>
             <div class="tile-meta">
-              <span class="chip-dark">Short Form · 15 sec · 9:16</span>
+              <span class="chip-dark">Short Form · 15 sec × 2 · 9:16</span>
               <span class="tile-format">Instagram Reels · TikTok · YouTube Shorts</span>
             </div>
-            <h3>엄마의<br><em>약봉투</em>.</h3>
-            <div class="tile-quote">
-              "엄마가 세 개의 약봉투를 식탁에 꺼내놓는다.<br>
-              딸이 약 사진을 헬시어에 찍어 올린다.<br>
-              그리고, 엄마가 웃는다."
-            </div>
-            <div class="shortform-cta">
-              <button class="btn-play" type="button" data-video="/mom-medicine-pouch.mp4" data-title="엄마의 약봉투 · 15초">
-                <span class="play-icon"></span>
-                15초 영상 보기
-              </button>
-              <span class="shortform-runtime">실제 제작 완료 · 0.6 MB</span>
+            <h3>엄마의 <em>식탁</em>,<br>엄마의 <em>약봉투</em>.</h3>
+            <p class="shortform-lede">
+              같은 자녀 타깃, 같은 15초 포맷 — 그러나 <b>CTA는 갈라집니다.</b>
+              식단은 Mediology의 자매 서비스 <b>신신당부</b>로, 복약은 <b>+healthier</b>의 곧 출시될 기능 티저로.
+              한 캠페인이 두 앱의 퍼널을 동시에 돌리는 구조.
+            </p>
+            <div class="shortform-pair">
+              <!-- Slot 1: 엄마의 식탁 (신신당부) -->
+              <div class="shortform-slot slot-shinshin">
+                <div class="slot-brand">
+                  <span class="dot"></span>신신당부 · CKD 식단
+                </div>
+                <div class="slot-title">엄마의 <em>식탁</em>.</div>
+                <div class="slot-line">
+                  "국 한 그릇이<br>나트륨 하루치라는 걸,<br>그때야 알았다."
+                </div>
+                <div class="slot-cta">
+                  <button class="btn-play btn-play-slot" type="button"
+                          data-video="/mom-dining-table.mp4"
+                          data-title="엄마의 식탁 · 15초 (신신당부)"
+                          data-brand="shinshin">
+                    <span class="play-icon"></span>
+                    15초 영상
+                  </button>
+                  <span class="slot-runtime">제작 완료 · 0.9 MB</span>
+                </div>
+                <div class="slot-routing">CTA → <b>신신당부 앱</b> · 식단 기록 & 저염·저칼륨·저인 피드백</div>
+              </div>
+              <!-- Slot 2: 엄마의 약봉투 (Healthier Coming Soon) -->
+              <div class="shortform-slot slot-healthier">
+                <div class="slot-brand">
+                  <span class="dot"></span>+healthier
+                  <span class="slot-teaser-tag">Coming Soon</span>
+                </div>
+                <div class="slot-title">엄마의 <em>약봉투</em>.</div>
+                <div class="slot-line">
+                  "세 개의 약봉투.<br>언제 뭘 드셔야 하는지,<br>엄마 대신 답해 줄 AI를 준비 중."
+                </div>
+                <div class="slot-cta">
+                  <button class="btn-play btn-play-slot" type="button"
+                          data-video="/mom-medicine-pouch.mp4"
+                          data-title="엄마의 약봉투 · 15초 (+healthier 티저)"
+                          data-brand="healthier">
+                    <span class="play-icon"></span>
+                    15초 티저
+                  </button>
+                  <span class="slot-runtime">제작 완료 · 0.9 MB</span>
+                </div>
+                <div class="slot-routing">CTA → <b>+healthier 사전예약</b> · 복약 상호작용 AI (개발 중 · 티저 고지)</div>
+              </div>
             </div>
           </div>
           <div class="tile-specs">
             <div class="spec">
               <span class="spec-label">Target</span>
-              <span>25–40세<br>자녀 세대</span>
+              <span>25–40세<br>부모 건강 돌보는<br>자녀 세대</span>
             </div>
             <div class="spec">
               <span class="spec-label">Hook 2s</span>
-              <span>"어라, 약이<br>많네…"</span>
+              <span>식탁: "국 한 그릇…"<br>약봉투: "어라, 약이<br>많네…"</span>
             </div>
             <div class="spec">
               <span class="spec-label">Series</span>
-              <span>#오늘의약봉투<br>연작 가능</span>
+              <span>#오늘의엄마식탁<br>#오늘의약봉투<br>연작 포맷</span>
             </div>
           </div>
         </article>
@@ -2131,7 +2300,7 @@
   </footer>
 
   <!-- VIDEO MODAL (Shortform Reel) -->
-  <div class="video-modal" id="videoModal" role="dialog" aria-modal="true" aria-label="엄마의 약봉투 15초 영상">
+  <div class="video-modal" id="videoModal" role="dialog" aria-modal="true" aria-label="숏폼 15초 영상 재생">
     <div class="video-modal-inner">
       <button class="video-modal-close" id="videoModalClose" aria-label="닫기">✕</button>
       <video id="videoModalPlayer" playsinline controls preload="metadata"></video>
@@ -2206,7 +2375,7 @@
           'assets/samples/card-b/slide_4_low_sodium.png',
           'assets/samples/card-b/slide_5_low_potassium.png',
           'assets/samples/card-b/slide_6_low_phosphorus.png',
-          'assets/samples/card-b/slide_7_consult.png',
+          'assets/samples/card-b/slide_7_sinsindangbu.png',
           'assets/samples/card-b/slide_8_ending.png'
         ]
       },
