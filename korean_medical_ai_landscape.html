@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>국내 의료 AI 9개사 · 경쟁자·협력자 카테고리 지도 2026 | 구건우</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;900&family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+  :root {
+    --bg:#0a0e1a; --surface:#111827; --surface2:#1a2235; --border:#1e293b;
+    --text:#e2e8f0; --muted:#94a3b8; --dim:#64748b;
+    --blue:#3b82f6; --cyan:#06b6d4; --purple:#8b5cf6; --green:#10b981;
+    --orange:#f59e0b; --red:#ef4444; --pink:#ec4899; --lime:#84cc16;
+    --teal:#14b8a6; --indigo:#6366f1;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'Noto Sans KR','Inter',sans-serif; background:var(--bg); color:var(--text); line-height:1.7; overflow-x:hidden; }
+
+  /* ===== HOME LINK ===== */
+  .home-link { color:var(--cyan); text-decoration:none; font-size:.85rem; font-weight:500; padding:5px 14px; border-radius:100px; border:1px solid rgba(6,182,212,.2); background:rgba(6,182,212,.06); transition:all .3s; white-space:nowrap; }
+  .home-link:hover { background:rgba(6,182,212,.15); border-color:rgba(6,182,212,.4); transform:translateX(-2px); }
+
+  /* ===== TOP BAR ===== */
+  .top-bar { position:fixed; top:0; left:0; right:0; z-index:1000; display:flex; align-items:center; justify-content:space-between; padding:.6rem 2rem; background:rgba(10,14,26,.85); backdrop-filter:blur(20px); border-bottom:1px solid rgba(59,130,246,.15); }
+  .top-bar .author-name { font-weight:600; font-size:.9rem; color:var(--text); display:flex; align-items:center; gap:.5rem; }
+  .top-bar .author-name .dot { width:8px; height:8px; border-radius:50%; background:var(--green); display:inline-block; animation:pulse-dot 2s infinite; }
+  @keyframes pulse-dot { 0%,100% { opacity:1; box-shadow:0 0 0 0 rgba(16,185,129,.4); } 50% { opacity:.8; box-shadow:0 0 0 6px rgba(16,185,129,0); } }
+  .linkedin-btn { display:inline-flex; align-items:center; gap:.5rem; padding:7px 20px; background:linear-gradient(135deg,#0077B5,#0a66c2); color:white; text-decoration:none; border-radius:100px; font-size:.82rem; font-weight:600; transition:transform .3s,box-shadow .3s; box-shadow:0 2px 12px rgba(0,119,181,.3); }
+  .linkedin-btn:hover { transform:translateY(-2px); box-shadow:0 6px 24px rgba(0,119,181,.5); }
+  .linkedin-btn svg { width:16px; height:16px; fill:white; }
+
+  /* ===== HERO ===== */
+  .hero { position:relative; min-height:100vh; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; padding:6rem 2rem 3rem; overflow:hidden; }
+  .hero::before { content:''; position:absolute; top:-50%; left:-50%; width:200%; height:200%;
+    background:radial-gradient(ellipse at 25% 25%, rgba(6,182,212,.08) 0%, transparent 50%),
+               radial-gradient(ellipse at 75% 75%, rgba(59,130,246,.06) 0%, transparent 50%),
+               radial-gradient(ellipse at 50% 50%, rgba(139,92,246,.04) 0%, transparent 60%);
+    animation:bgShift 22s ease-in-out infinite alternate; }
+  @keyframes bgShift { 0% { transform:translate(0,0) rotate(0); } 100% { transform:translate(-2%,2%) rotate(1deg); } }
+  .hero-content { position:relative; z-index:1; max-width:920px; }
+  .hero-badge { display:inline-block; padding:6px 18px; border-radius:100px; background:rgba(6,182,212,.12); border:1px solid rgba(6,182,212,.25); color:var(--cyan); font-size:.82rem; font-weight:500; letter-spacing:.5px; margin-bottom:2rem; backdrop-filter:blur(10px); }
+  .hero h1 { font-size:clamp(2.2rem,5vw,3.7rem); font-weight:900; line-height:1.2; margin-bottom:1.5rem;
+    background:linear-gradient(135deg,#e2e8f0,#06b6d4,#3b82f6); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+  .hero p { font-size:1.1rem; color:var(--muted); max-width:680px; margin:0 auto 2.5rem; line-height:1.9; }
+  .hero-stats { display:flex; gap:1.5rem; justify-content:center; flex-wrap:wrap; margin-top:1rem; }
+  .hero-stat { text-align:center; padding:1.3rem 1.8rem; background:var(--surface); border:1px solid var(--border); border-radius:16px; min-width:150px; transition:transform .3s,box-shadow .3s; }
+  .hero-stat:hover { transform:translateY(-3px); box-shadow:0 8px 30px rgba(6,182,212,.12); }
+  .hero-stat .number { font-family:'Inter',sans-serif; font-size:2.2rem; font-weight:800; display:block; margin-bottom:.2rem; }
+  .hero-stat:nth-child(1) .number { color:var(--cyan); }
+  .hero-stat:nth-child(2) .number { color:var(--blue); }
+  .hero-stat:nth-child(3) .number { color:var(--purple); }
+  .hero-stat:nth-child(4) .number { color:var(--green); }
+  .hero-stat .label { font-size:.78rem; color:var(--muted); font-weight:400; line-height:1.5; }
+
+  .scroll-indicator { position:absolute; bottom:2rem; left:50%; transform:translateX(-50%); z-index:2; animation:bounce 2s infinite; color:var(--muted); font-size:.8rem; text-align:center; }
+  .scroll-indicator svg { display:block; margin:.5rem auto 0; width:24px; }
+  @keyframes bounce { 0%,100% { transform:translateX(-50%) translateY(0); } 50% { transform:translateX(-50%) translateY(8px); } }
+
+  /* ===== SECTIONS ===== */
+  .section { max-width:1240px; margin:0 auto; padding:5rem 2rem; }
+  .section-label { display:inline-block; font-size:.72rem; font-weight:600; letter-spacing:2px; text-transform:uppercase; color:var(--cyan); margin-bottom:.7rem; }
+  .section h2 { font-size:clamp(1.8rem,3.5vw,2.6rem); font-weight:800; margin-bottom:1rem; line-height:1.3; }
+  .section .subtitle { font-size:1.02rem; color:var(--muted); max-width:720px; margin-bottom:3rem; line-height:1.8; }
+
+  /* ===== CATEGORY OVERVIEW ===== */
+  .cat-overview { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:1.2rem; margin-top:2rem; }
+  .cat-tile { background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:1.5rem; position:relative; overflow:hidden; transition:transform .3s,box-shadow .3s; }
+  .cat-tile::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; }
+  .cat-tile:hover { transform:translateY(-3px); }
+  .cat-tile.imaging::before { background:linear-gradient(90deg,var(--blue),var(--cyan)); }
+  .cat-tile.imaging:hover { box-shadow:0 8px 30px rgba(59,130,246,.1); }
+  .cat-tile.genomics::before { background:linear-gradient(90deg,var(--purple),var(--pink)); }
+  .cat-tile.genomics:hover { box-shadow:0 8px 30px rgba(139,92,246,.1); }
+  .cat-tile.device::before { background:linear-gradient(90deg,var(--green),var(--teal)); }
+  .cat-tile.device:hover { box-shadow:0 8px 30px rgba(16,185,129,.1); }
+  .cat-tile.platform::before { background:linear-gradient(90deg,var(--orange),var(--red)); }
+  .cat-tile.platform:hover { box-shadow:0 8px 30px rgba(245,158,11,.1); }
+  .cat-tile .cat-count { font-family:'Inter',sans-serif; font-size:2.2rem; font-weight:800; line-height:1; margin-bottom:.3rem; }
+  .cat-tile.imaging .cat-count { color:var(--cyan); }
+  .cat-tile.genomics .cat-count { color:var(--purple); }
+  .cat-tile.device .cat-count { color:var(--green); }
+  .cat-tile.platform .cat-count { color:var(--orange); }
+  .cat-tile .cat-title { font-size:1rem; font-weight:700; margin-bottom:.3rem; }
+  .cat-tile .cat-desc { font-size:.8rem; color:var(--muted); line-height:1.6; }
+
+  /* ===== COMPANY CARDS ===== */
+  .company-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(360px,1fr)); gap:1.5rem; margin-top:2rem; }
+  .co-card { background:var(--surface); border:1px solid var(--border); border-radius:18px; padding:1.8rem; transition:transform .3s,box-shadow .3s; position:relative; overflow:hidden; }
+  .co-card::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; }
+  .co-card:hover { transform:translateY(-3px); box-shadow:0 8px 30px rgba(59,130,246,.08); }
+  .co-card.t-imaging::before { background:linear-gradient(90deg,var(--blue),var(--cyan)); }
+  .co-card.t-genomics::before { background:linear-gradient(90deg,var(--purple),var(--pink)); }
+  .co-card.t-device::before { background:linear-gradient(90deg,var(--green),var(--teal)); }
+  .co-card.t-platform::before { background:linear-gradient(90deg,var(--orange),var(--red)); }
+
+  .co-head { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:.7rem; gap:.7rem; }
+  .co-name { font-size:1.2rem; font-weight:800; }
+  .co-name .en { display:block; font-size:.78rem; color:var(--muted); font-weight:500; margin-top:.1rem; font-family:'Inter'; letter-spacing:.2px; }
+  .co-ticker { font-size:.7rem; color:var(--cyan); background:rgba(6,182,212,.1); padding:3px 10px; border-radius:100px; font-weight:500; flex-shrink:0; font-family:'Inter'; white-space:nowrap; }
+  .co-ticker.private { color:var(--muted); background:rgba(148,163,184,.08); }
+
+  .co-tag-row { display:flex; flex-wrap:wrap; gap:.4rem; margin-bottom:1rem; }
+  .co-tag { font-size:.68rem; font-weight:600; padding:3px 9px; border-radius:100px; letter-spacing:.3px; }
+  .tag-img { background:rgba(59,130,246,.12); color:var(--blue); }
+  .tag-gen { background:rgba(139,92,246,.12); color:var(--purple); }
+  .tag-dev { background:rgba(16,185,129,.12); color:var(--green); }
+  .tag-plt { background:rgba(245,158,11,.12); color:var(--orange); }
+  .tag-b2b { background:rgba(6,182,212,.1); color:var(--cyan); border:1px solid rgba(6,182,212,.2); }
+  .tag-b2c { background:rgba(236,72,153,.1); color:var(--pink); border:1px solid rgba(236,72,153,.2); }
+
+  .co-focus { font-size:.9rem; color:var(--text); line-height:1.7; margin-bottom:1rem; }
+  .co-focus .hl { color:var(--cyan); font-weight:600; }
+
+  .co-metrics { display:grid; grid-template-columns:repeat(3,1fr); gap:.5rem; margin-bottom:1rem; padding:.8rem; background:var(--surface2); border-radius:12px; }
+  .metric { text-align:center; }
+  .metric .m-val { font-family:'Inter'; font-weight:700; font-size:1rem; }
+  .co-card.t-imaging .m-val { color:var(--cyan); }
+  .co-card.t-genomics .m-val { color:var(--purple); }
+  .co-card.t-device .m-val { color:var(--green); }
+  .co-card.t-platform .m-val { color:var(--orange); }
+  .metric .m-lbl { font-size:.65rem; color:var(--muted); margin-top:.1rem; line-height:1.3; }
+
+  .co-approvals { margin-top:.7rem; padding-top:.9rem; border-top:1px solid var(--border); }
+  .co-approvals .al { font-size:.7rem; color:var(--dim); text-transform:uppercase; letter-spacing:1px; margin-bottom:.4rem; }
+  .co-approvals .appr-list { display:flex; flex-wrap:wrap; gap:.4rem; }
+  .appr { font-size:.65rem; font-weight:700; padding:3px 8px; border-radius:100px; letter-spacing:.2px; }
+  .appr-510k { background:rgba(59,130,246,.15); color:var(--blue); }
+  .appr-mfds { background:rgba(236,72,153,.15); color:var(--pink); }
+  .appr-ce { background:rgba(16,185,129,.15); color:var(--green); }
+  .appr-pmda { background:rgba(139,92,246,.15); color:var(--purple); }
+  .appr-tga { background:rgba(6,182,212,.15); color:var(--cyan); }
+  .appr-denovo { background:rgba(245,158,11,.15); color:var(--orange); }
+
+  /* ===== POSITIONING MATRIX ===== */
+  .matrix-wrap { background:var(--surface); border:1px solid var(--border); border-radius:24px; padding:2rem 1.5rem; margin-top:2.5rem; position:relative; }
+  .matrix-head { text-align:center; margin-bottom:1.5rem; }
+  .matrix-head h3 { font-size:1.2rem; font-weight:700; margin-bottom:.3rem; }
+  .matrix-head p { font-size:.85rem; color:var(--muted); }
+
+  .matrix { position:relative; width:100%; max-width:860px; margin:0 auto; aspect-ratio:1/1; background:var(--surface2); border-radius:16px; border:1px solid var(--border); }
+  .matrix-axis-x, .matrix-axis-y { position:absolute; color:var(--dim); font-size:.72rem; font-weight:600; letter-spacing:1px; text-transform:uppercase; }
+  .matrix-axis-x { left:50%; transform:translateX(-50%); }
+  .matrix-axis-x.top { top:.9rem; }
+  .matrix-axis-x.bottom { bottom:.9rem; }
+  .matrix-axis-y { top:50%; transform:translateY(-50%) rotate(-90deg); transform-origin:center; }
+  .matrix-axis-y.left { left:1rem; }
+  .matrix-axis-y.right { right:1rem; }
+
+  .matrix-grid-line { position:absolute; background:rgba(148,163,184,.1); }
+  .matrix-grid-line.h { left:0; right:0; height:1px; top:50%; }
+  .matrix-grid-line.v { top:0; bottom:0; width:1px; left:50%; }
+
+  .quad-label { position:absolute; font-size:.68rem; color:var(--dim); letter-spacing:.5px; text-transform:uppercase; }
+  .quad-label.tl { top:3rem; left:3rem; }
+  .quad-label.tr { top:3rem; right:3rem; }
+  .quad-label.bl { bottom:3rem; left:3rem; }
+  .quad-label.br { bottom:3rem; right:3rem; }
+
+  .dot { position:absolute; transform:translate(-50%,-50%); display:flex; flex-direction:column; align-items:center; cursor:default; }
+  .dot .circ { width:14px; height:14px; border-radius:50%; border:2px solid var(--bg); box-shadow:0 2px 8px rgba(0,0,0,.4); }
+  .dot .lbl { font-size:.68rem; font-weight:600; margin-top:.3rem; background:rgba(10,14,26,.8); padding:2px 7px; border-radius:4px; white-space:nowrap; }
+  .dot.imaging .circ { background:var(--cyan); }
+  .dot.imaging .lbl { color:var(--cyan); }
+  .dot.genomics .circ { background:var(--purple); }
+  .dot.genomics .lbl { color:var(--purple); }
+  .dot.device .circ { background:var(--green); }
+  .dot.device .lbl { color:var(--green); }
+  .dot.platform .circ { background:var(--orange); }
+  .dot.platform .lbl { color:var(--orange); }
+  .dot.mediology .circ { background:linear-gradient(135deg,var(--pink),var(--purple)); width:22px; height:22px; box-shadow:0 0 0 4px rgba(236,72,153,.25), 0 0 20px rgba(236,72,153,.6); animation:pulse-m 2.2s infinite; }
+  @keyframes pulse-m { 0%,100% { box-shadow:0 0 0 4px rgba(236,72,153,.25), 0 0 20px rgba(236,72,153,.6); } 50% { box-shadow:0 0 0 10px rgba(236,72,153,0), 0 0 30px rgba(236,72,153,.4); } }
+  .dot.mediology .lbl { color:var(--pink); font-weight:800; }
+
+  .matrix-legend { display:flex; flex-wrap:wrap; justify-content:center; gap:1.2rem; margin-top:1.5rem; font-size:.78rem; }
+  .leg-item { display:flex; align-items:center; gap:.4rem; color:var(--muted); }
+  .leg-dot { width:10px; height:10px; border-radius:50%; }
+  .leg-dot.imaging { background:var(--cyan); }
+  .leg-dot.genomics { background:var(--purple); }
+  .leg-dot.device { background:var(--green); }
+  .leg-dot.platform { background:var(--orange); }
+  .leg-dot.mediology { background:linear-gradient(135deg,var(--pink),var(--purple)); }
+
+  /* ===== COMPARISON TABLE ===== */
+  .cmp-table { margin-top:2rem; background:var(--surface); border:1px solid var(--border); border-radius:16px; overflow:hidden; }
+  .cmp-table table { width:100%; border-collapse:collapse; font-size:.85rem; }
+  .cmp-table thead th { background:var(--surface2); color:var(--cyan); font-weight:600; font-size:.75rem; letter-spacing:1px; text-transform:uppercase; padding:.9rem 1rem; text-align:left; border-bottom:1px solid var(--border); }
+  .cmp-table tbody td { padding:.9rem 1rem; border-bottom:1px solid rgba(30,41,59,.5); color:var(--text); }
+  .cmp-table tbody tr:last-child td { border-bottom:none; }
+  .cmp-table tbody tr:hover { background:rgba(59,130,246,.03); }
+  .cmp-table .c-name { font-weight:700; }
+  .cmp-table .c-muted { color:var(--muted); font-size:.78rem; }
+  .cmp-table .c-pos { display:inline-block; padding:3px 10px; border-radius:100px; font-size:.7rem; font-weight:600; }
+  .cmp-table .pos-comp { background:rgba(239,68,68,.12); color:var(--red); }
+  .cmp-table .pos-neut { background:rgba(148,163,184,.12); color:var(--muted); }
+  .cmp-table .pos-coop { background:rgba(16,185,129,.12); color:var(--green); }
+
+  /* ===== INSIGHT BOX ===== */
+  .insight-box { background:linear-gradient(135deg, rgba(6,182,212,.08), rgba(59,130,246,.08)); border:1px solid rgba(6,182,212,.2); border-radius:20px; padding:2.5rem; margin-top:3rem; }
+  .insight-box h3 { font-size:1.2rem; font-weight:700; margin-bottom:1rem; display:flex; align-items:center; gap:.5rem; }
+  .insight-box p { font-size:.95rem; color:var(--muted); line-height:1.9; margin-bottom:.8rem; }
+  .insight-box .highlight { color:var(--cyan); font-weight:600; }
+  .insight-box .mediology-hl { color:var(--pink); font-weight:700; }
+
+  /* ===== METHODOLOGY ===== */
+  .method-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:1rem; margin-top:2rem; }
+  .method-card { background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:1.3rem; text-align:center; transition:transform .3s; }
+  .method-card:hover { transform:translateY(-3px); }
+  .method-card .m-icon { font-size:1.7rem; margin-bottom:.5rem; }
+  .method-card .m-title { font-weight:600; font-size:.9rem; margin-bottom:.3rem; }
+  .method-card .m-desc { font-size:.78rem; color:var(--muted); line-height:1.6; }
+
+  /* ===== AUTHOR ===== */
+  .author-section { background:linear-gradient(135deg,var(--surface),var(--surface2)); border:1px solid var(--border); border-radius:24px; padding:3rem; margin-top:4rem; text-align:center; }
+  .author-section h3 { font-size:1.3rem; font-weight:700; margin-bottom:1rem; }
+  .author-section .author-story { font-size:.98rem; color:var(--muted); max-width:720px; margin:0 auto 1.5rem; line-height:2; }
+  .author-section .author-story em { color:var(--text); font-style:normal; font-weight:500; }
+  .author-cta { display:inline-block; padding:12px 32px; background:linear-gradient(135deg,var(--cyan),var(--blue)); color:white; text-decoration:none; border-radius:100px; font-weight:600; font-size:.95rem; transition:transform .3s,box-shadow .3s; }
+  .author-cta:hover { transform:translateY(-2px); box-shadow:0 8px 30px rgba(6,182,212,.3); }
+
+  /* ===== FOOTER ===== */
+  .footer { text-align:center; padding:3rem 2rem; color:var(--muted); font-size:.78rem; border-top:1px solid var(--border); margin-top:3rem; }
+  .footer a { color:var(--cyan); text-decoration:none; }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width:768px) {
+    .hero-stats { gap:1rem; }
+    .hero-stat { min-width:140px; padding:1rem 1.2rem; }
+    .hero-stat .number { font-size:1.8rem; }
+    .company-grid { grid-template-columns:1fr; }
+    .section { padding:3rem 1.2rem; }
+    .matrix { aspect-ratio:auto; height:520px; }
+    .quad-label { font-size:.6rem; }
+    .quad-label.tl, .quad-label.tr, .quad-label.bl, .quad-label.br { top:auto; bottom:auto; left:1rem; right:1rem; }
+    .cmp-table table { font-size:.78rem; }
+    .cmp-table thead th, .cmp-table tbody td { padding:.7rem .5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== FLOATING TOP BAR ===== -->
+<div class="top-bar">
+  <a href="index.html" class="home-link">&larr; 포트폴리오 홈</a>
+  <div class="author-name">
+    <span class="dot"></span> 구건우 &mdash; 의료 AI 카테고리 리서치
+  </div>
+  <a class="linkedin-btn" href="https://www.linkedin.com/in/%EA%B1%B4%EC%9A%B0-%EA%B5%AC-5aa559341/" target="_blank" rel="noopener">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.3 6.5a1.78 1.78 0 01-1.8 1.75zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0013 14.19a.66.66 0 000 .14V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.36.86 3.36 3.66z"/></svg>
+    1촌 신청하기
+  </a>
+</div>
+
+<!-- ===== HERO ===== -->
+<div class="hero">
+  <div class="hero-content">
+    <span class="hero-badge">Portfolio Piece #3 &mdash; 구건우 &middot; Medical AI Category Map</span>
+    <h1>국내 의료 AI 9개사,<br>경쟁자·협력자 카테고리 지도</h1>
+    <p>
+      루닛&middot;뷰노&middot;제이엘케이부터 코어라인&middot;딥노이드까지.<br>
+      각 사가 어떤 기술&middot;시장&middot;포지션에 있는지, 그리고 <strong>메디올로지의 "0차 의료"가 어느 빈 공간에 들어서는지</strong>를 지도로 읽습니다.
+    </p>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <span class="number">9</span>
+        <span class="label">분석 대상<br>국내 의료 AI 기업</span>
+      </div>
+      <div class="hero-stat">
+        <span class="number">4</span>
+        <span class="label">카테고리 분류<br>영상·유전체·장비·플랫폼</span>
+      </div>
+      <div class="hero-stat">
+        <span class="number">2</span>
+        <span class="label">상장사<br>(KOSDAQ)</span>
+      </div>
+      <div class="hero-stat">
+        <span class="number">1</span>
+        <span class="label">B2C 0차 의료<br>블루오션 (메디올로지)</span>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-indicator">
+    아래로 스크롤
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M19 14l-7 7m0 0l-7-7m7 7V3"/></svg>
+  </div>
+</div>
+
+<!-- ===== SECTION 1: 카테고리 개요 ===== -->
+<div class="section" id="categories">
+  <span class="section-label">Section 01</span>
+  <h2>먼저 카테고리를 가른다</h2>
+  <p class="subtitle">
+    국내 의료 AI 스타트업은 "영상 AI" 한 범주로 뭉뚱그려 보이지만, 실제로는 4개의 구분되는 하위 시장에서 경쟁합니다. 메디올로지가 어느 카테고리와 맞닿는지부터 정렬합니다.
+  </p>
+
+  <div class="cat-overview">
+    <div class="cat-tile imaging">
+      <div class="cat-count">6</div>
+      <div class="cat-title">의료영상 AI</div>
+      <div class="cat-desc">CT&middot;MRI&middot;X-ray 판독 보조. FDA 510(k)가 가장 많이 발행되는 영역이자, 국내 의료 AI의 주력 전선입니다.</div>
+    </div>
+    <div class="cat-tile genomics">
+      <div class="cat-count">1</div>
+      <div class="cat-title">유전체·정밀의료 AI</div>
+      <div class="cat-desc">NGS 데이터 해석&middot;암 변이 분석. 임상 리포트와 신약 동반진단 쪽으로 확장되는 하이 마진 카테고리.</div>
+    </div>
+    <div class="cat-tile device">
+      <div class="cat-count">1</div>
+      <div class="cat-title">영상 장비 + AI</div>
+      <div class="cat-desc">디텍터&middot;3D 해부 시각화 등 하드웨어/엣지 장비 기반. AI는 "부가 기능"으로 번들.</div>
+    </div>
+    <div class="cat-tile platform">
+      <div class="cat-count">1</div>
+      <div class="cat-title">플랫폼·노이즈 저감 AI</div>
+      <div class="cat-desc">영상 노이즈 저감&middot;개발자 플랫폼 등 개별 제품보다 "수평 레이어"를 지향하는 기업.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SECTION 2: 9개사 상세 ===== -->
+<div class="section" id="companies">
+  <span class="section-label">Section 02</span>
+  <h2>9개사, 하나씩 카드로 뜯는다</h2>
+  <p class="subtitle">
+    각 사의 <strong>핵심 기술&middot;주력 시장&middot;2024~2025 재무&middot;해외 인허가</strong>를 공개된 자료 기준으로 정리했습니다. 숫자는 연도에 따라 편차가 있으므로 "방향성 판단용"으로 봐 주세요.
+  </p>
+
+  <div class="company-grid">
+
+    <!-- 1. 루닛 -->
+    <div class="co-card t-imaging">
+      <div class="co-head">
+        <div class="co-name">루닛<span class="en">Lunit Inc.</span></div>
+        <div class="co-ticker">KOSDAQ 328130</div>
+      </div>
+      <div class="co-tag-row">
+        <span class="co-tag tag-img">의료영상 AI</span>
+        <span class="co-tag tag-b2b">B2B · 병원</span>
+      </div>
+      <p class="co-focus">
+        유방촬영술&middot;흉부X-ray 판독 AI <span class="hl">Lunit INSIGHT</span>와 병리 AI <span class="hl">Lunit SCOPE</span>로 두 축을 가진 국내 의료 AI 대표 주자. 2023년 볼파라 인수로 미국 유통 채널 확보.
+      </p>
+      <div class="co-metrics">
+        <div class="metric"><div class="m-val">2013</div><div class="m-lbl">설립</div></div>
+        <div class="metric"><div class="m-val">2022</div><div class="m-lbl">상장(KOSDAQ)</div></div>
+        <div class="metric"><div class="m-val">40+</div><div class="m-lbl">진출 국가</div></div>
+      </div>
+      <div class="co-approvals">
+        <div class="al">해외 인허가</div>
+        <div class="appr-list">
+          <span class="appr appr-510k">FDA 510(k)</span>
+          <span class="appr appr-mfds">MFDS</span>
+          <span class="appr appr-ce">CE</span>
+          <span class="appr appr-pmda">PMDA</span>
+          <span class="appr appr-tga">TGA</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. 뷰노 -->
+    <div class="co-card t-imaging">
+      <div class="co-head">
+        <div class="co-name">뷰노<span class="en">VUNO Inc.</span></div>
+        <div class="co-ticker">KOSDAQ 338220</div>
+      </div>
+      <div class="co-tag-row">
+        <span class="co-tag tag-img">의료영상·바이오시그널</span>
+        <span class="co-tag tag-b2b">B2B · 병원</span>
+      </div>
+      <p class="co-focus">
+        흉부X-ray&middot;뇌MRI&middot;심전도까지 다수 적응증의 <span class="hl">VUNO Med</span> 포트폴리오 보유. 특히 심정지 조기 예측 <span class="hl">DeepCARS</span>로 병원 EMR 통합 레퍼런스가 두껍습니다.
+      </p>
+      <div class="co-metrics">
+        <div class="metric"><div class="m-val">2014</div><div class="m-lbl">설립</div></div>
+        <div class="metric"><div class="m-val">2021</div><div class="m-lbl">상장(KOSDAQ)</div></div>
+        <div class="metric"><div class="m-val">10+</div><div class="m-lbl">MFDS 허가 제품</div></div>
+      </div>
+      <div class="co-approvals">
+        <div class="al">해외 인허가</div>
+        <div class="appr-list">
+          <span class="appr appr-510k">FDA 510(k)</span>
+          <span class="appr appr-mfds">MFDS</span>
+          <span class="appr appr-ce">CE</span>
+          <span class="appr appr-pmda">PMDA</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. 제이엘케이 -->
+    <div class="co-card t-imaging">
+      <div class="co-head">
+        <div class="co-name">제이엘케이<span class="en">JLK Inc.</span></div>
+        <div class="co-ticker">KOSDAQ 322510</div>
+      </div>
+      <div class="co-tag-row">
+        <span class="co-tag tag-img">뇌 MRI·뇌졸중 AI</span>
+        <span class="co-tag tag-b2b">B2B · 병원</span>
+      </div>
+      <p class="co-focus">
+        뇌질환 올인원 플랫폼 <span class="hl">JBS-01K</span>를 중심으로 뇌졸중 아형 분류&middot;출혈 감지&middot;뇌동맥류 등 <strong>뇌 영상 단일 카테고리에 집중 특화</strong>. 국내 최초 뇌졸중 AI MFDS 허가.
+      </p>
+      <div class="co-metrics">
+        <div class="metric"><div class="m-val">2014</div><div class="m-lbl">설립</div></div>
+        <div class="metric"><div class="m-val">2019</div><div class="m-lbl">상장(KOSDAQ)</div></div>
+        <div class="metric"><div class="m-val">뇌</div><div class="m-lbl">단일 버티컬</div></div>
+      </div>
+      <div class="co-approvals">
+        <div class="al">해외 인허가</div>
+        <div class="appr-list">
+          <span class="appr appr-510k">FDA 510(k)</span>
+          <span class="appr appr-mfds">MFDS</span>
+          <span class="appr appr-ce">CE</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. 코어라인소프트 -->
+    <div class="co-card t-imaging">
+      <div class="co-head">
+        <div class="co-name">코어라인소프트<span class="en">Coreline Soft</span></div>
+        <div class="co-ticker private">Private / 성장기</div>
+      </div>
+      <div class="co-tag-row">
+        <span class="co-tag tag-img">폐 CT·흉부 AI</span>
+        <span class="co-tag tag-b2b">B2B · 검진</span>
+      </div>
+      <p class="co-focus">
+        저선량 폐암 검진 <span class="hl">AVIEW LCS</span>로 유럽 다기관 검진 프로젝트(4-IN-THE-LUNG-RUN 등)에 선정된 이력. <strong>"검진 프로그램 단위"</strong>에 파고드는 포지셔닝이 특징.
+      </p>
+      <div class="co-metrics">
+        <div class="metric"><div class="m-val">2012</div><div class="m-lbl">설립</div></div>
+        <div class="metric"><div class="m-val">폐암 검진</div><div class="m-lbl">주력 도메인</div></div>
+        <div class="metric"><div class="m-val">EU</div><div class="m-lbl">다기관 레퍼런스</div></div>
+      </div>
+      <div class="co-approvals">
+        <div class="al">해외 인허가</div>
+        <div class="appr-list">
+          <span class="appr appr-510k">FDA 510(k)</span>
+          <span class="appr appr-mfds">MFDS</span>
+          <span class="appr appr-ce">CE</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. 딥노이드 -->
+    <div class="co-card t-platform">
+      <div class="co-head">
+        <div class="co-name">딥노이드<span class="en">Deepnoid Inc.</span></div>
+        <div class="co-ticker">KOSDAQ 315640</div>
+      </div>
+      <div class="co-tag-row">
+        <span class="co-tag tag-plt">AI 플랫폼</span>
+        <span class="co-tag tag-img">의료영상</span>
+        <span class="co-tag tag-b2b">B2B · 개발자</span>
+      </div>
+      <p class="co-focus">
+        영상 진단 AI와 함께 <span class="hl">DEEP:PHI</span> 같은 <strong>의료 AI 개발 플랫폼</strong>을 제공. "제품"보다 "툴&middot;플랫폼"에 가까워 다른 의료 AI 스타트업이 위에 올라타는 구조를 지향.
+      </p>
+      <div class="co-metrics">
+        <div class="metric"><div class="m-val">2008</div><div class="m-lbl">설립</div></div>
+        <div class="metric"><div class="m-val">2021</div><div class="m-lbl">상장(KOSDAQ)</div></div>
+        <div class="metric"><div class="m-val">플랫폼</div><div class="m-lbl">지향</div></div>
+      </div>
+      <div class="co-approvals">
+        <div class="al">해외 인허가</div>
+        <div class="appr-list">
+          <span class="appr appr-510k">FDA 510(k)</span>
+          <span class="appr appr-mfds">MFDS</span>
+          <span class="appr appr-ce">CE</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6. 메디컬아이피 -->
+    <div class="co-card t-device">
+      <div class="co-head">
+        <div class="co-name">메디컬아이피<span class="en">MEDICALIP</span></div>
+        <div class="co-ticker private">Private / 시리즈</div>
+      </div>
+      <div class="co-tag-row">
+        <span class="co-tag tag-dev">3D 해부 이미징</span>
+        <span class="co-tag tag-b2b">B2B · 교육·수술</span>
+      </div>
+      <p class="co-focus">
+        CT/MRI를 <span class="hl">3D 해부 모델</span>로 변환하는 <strong>MDBOX&middot;TiSepX</strong> 시리즈. 단순 판독 보조가 아닌 "의료 교육&middot;수술 계획"까지 확장되는 <strong>시각화 레이어</strong> 포지션.
+      </p>
+      <div class="co-metrics">
+        <div class="metric"><div class="m-val">2015</div><div class="m-lbl">설립</div></div>
+        <div class="metric"><div class="m-val">3D</div><div class="m-lbl">해부·수술 계획</div></div>
+        <div class="metric"><div class="m-val">교육</div><div class="m-lbl">확장 축</div></div>
+      </div>
+      <div class="co-approvals">
+        <div class="al">해외 인허가</div>
+        <div class="appr-list">
+          <span class="appr appr-510k">FDA 510(k)</span>
+          <span class="appr appr-mfds">MFDS</span>
+          <span class="appr appr-ce">CE</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 7. 뷰웍스 -->
+    <div class="co-card t-device">
+      <div class="co-head">
+        <div class="co-name">뷰웍스<span class="en">Vieworks Co.,Ltd.</span></div>
+        <div class="co-ticker">KOSDAQ 100120</div>
+      </div>
+      <div class="co-tag-row">
+        <span class="co-tag tag-dev">영상 장비 + AI</span>
+        <span class="co-tag tag-b2b">B2B · 장비 제조</span>
+      </div>
+      <p class="co-focus">
+        디지털 X-ray 디텍터&middot;방사선 장비 글로벌 공급사. 본업은 <strong>하드웨어</strong>지만 최근 <span class="hl">AI 부가 기능</span>을 장비 번들로 얹는 전략이 가팔라지고 있어, 순수 SW 기업과 성격이 다릅니다.
+      </p>
+      <div class="co-metrics">
+        <div class="metric"><div class="m-val">1999</div><div class="m-lbl">설립</div></div>
+        <div class="metric"><div class="m-val">2014</div><div class="m-lbl">상장(KOSDAQ)</div></div>
+        <div class="metric"><div class="m-val">장비</div><div class="m-lbl">본업</div></div>
+      </div>
+      <div class="co-approvals">
+        <div class="al">해외 인허가</div>
+        <div class="appr-list">
+          <span class="appr appr-510k">FDA 510(k)</span>
+          <span class="appr appr-mfds">MFDS</span>
+          <span class="appr appr-ce">CE</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 8. 클라리파이 -->
+    <div class="co-card t-platform">
+      <div class="co-head">
+        <div class="co-name">클라리파이<span class="en">ClariPi Inc.</span></div>
+        <div class="co-ticker private">Private / 시리즈</div>
+      </div>
+      <div class="co-tag-row">
+        <span class="co-tag tag-plt">저선량 CT 노이즈 저감</span>
+        <span class="co-tag tag-b2b">B2B · 영상의학과</span>
+      </div>
+      <p class="co-focus">
+        CT 저선량 촬영의 <span class="hl">노이즈를 AI로 복원</span>하는 <strong>ClariCT.AI</strong>. "진단 AI" 경쟁이 아니라 <strong>영상 품질 레이어</strong>에 포지셔닝해 다른 진단 AI와 중복되지 않는 틈새를 차지.
+      </p>
+      <div class="co-metrics">
+        <div class="metric"><div class="m-val">2016</div><div class="m-lbl">설립</div></div>
+        <div class="metric"><div class="m-val">품질</div><div class="m-lbl">레이어 포지션</div></div>
+        <div class="metric"><div class="m-val">CT</div><div class="m-lbl">단일 모달리티</div></div>
+      </div>
+      <div class="co-approvals">
+        <div class="al">해외 인허가</div>
+        <div class="appr-list">
+          <span class="appr appr-510k">FDA 510(k)</span>
+          <span class="appr appr-mfds">MFDS</span>
+          <span class="appr appr-ce">CE</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 9. 아이크로진 -->
+    <div class="co-card t-genomics">
+      <div class="co-head">
+        <div class="co-name">아이크로진<span class="en">iCroGen</span></div>
+        <div class="co-ticker private">Private / 시리즈</div>
+      </div>
+      <div class="co-tag-row">
+        <span class="co-tag tag-gen">유전체·정밀의료</span>
+        <span class="co-tag tag-b2b">B2B · 임상 리포트</span>
+      </div>
+      <p class="co-focus">
+        NGS 기반 <span class="hl">유전체 변이 해석 AI</span>로 <strong>암 정밀의료 리포트</strong>에 특화. 영상 AI 군과 직접 부딪히지 않는 <strong>유전체 축</strong>의 대표 플레이어이자, 신약 동반진단으로의 확장 경로가 열려 있는 카테고리.
+      </p>
+      <div class="co-metrics">
+        <div class="metric"><div class="m-val">유전체</div><div class="m-lbl">NGS 해석</div></div>
+        <div class="metric"><div class="m-val">암</div><div class="m-lbl">정밀의료</div></div>
+        <div class="metric"><div class="m-val">신약</div><div class="m-lbl">동반진단 확장</div></div>
+      </div>
+      <div class="co-approvals">
+        <div class="al">해외 인허가</div>
+        <div class="appr-list">
+          <span class="appr appr-mfds">MFDS</span>
+          <span class="appr appr-ce">CE</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ===== SECTION 3: 포지셔닝 매트릭스 ===== -->
+<div class="section" id="positioning">
+  <span class="section-label">Section 03</span>
+  <h2>그리고 지도 위에 얹어본다</h2>
+  <p class="subtitle">
+    X축은 <strong>사용자 층위(전문의 &rarr; 소비자)</strong>, Y축은 <strong>적응증 너비(단일 질환 &rarr; 생활 건강 전반)</strong>. 9개사를 올려놓으면 국내 의료 AI가 사실상 <strong>좌상단</strong>에 과집중되어 있다는 게 한눈에 보입니다. 그리고 우하단이 비어 있습니다.
+  </p>
+
+  <div class="matrix-wrap">
+    <div class="matrix-head">
+      <h3>국내 의료 AI 포지셔닝 매트릭스</h3>
+      <p>전문의용&middot;단일질환 ↔ 소비자용&middot;생활 건강 전반</p>
+    </div>
+    <div class="matrix">
+      <div class="matrix-grid-line h"></div>
+      <div class="matrix-grid-line v"></div>
+
+      <div class="matrix-axis-x top">단일 질환 / 단일 모달리티</div>
+      <div class="matrix-axis-x bottom">생활 건강 전반 / 다중 터치포인트</div>
+      <div class="matrix-axis-y left">전문의·병원용 (B2B)</div>
+      <div class="matrix-axis-y right">소비자·가족용 (B2C)</div>
+
+      <div class="quad-label tl">전문의 × 단일질환</div>
+      <div class="quad-label tr">소비자 × 단일질환</div>
+      <div class="quad-label bl">전문의 × 통합</div>
+      <div class="quad-label br">소비자 × 통합&nbsp;&middot;&nbsp;BLUE OCEAN</div>
+
+      <!-- 9 companies positions -->
+      <div class="dot imaging" style="top:22%; left:18%;"><div class="circ"></div><div class="lbl">루닛</div></div>
+      <div class="dot imaging" style="top:30%; left:28%;"><div class="circ"></div><div class="lbl">뷰노</div></div>
+      <div class="dot imaging" style="top:18%; left:14%;"><div class="circ"></div><div class="lbl">제이엘케이</div></div>
+      <div class="dot imaging" style="top:25%; left:22%;"><div class="circ"></div><div class="lbl">코어라인</div></div>
+      <div class="dot platform" style="top:40%; left:32%;"><div class="circ"></div><div class="lbl">딥노이드</div></div>
+      <div class="dot device" style="top:28%; left:38%;"><div class="circ"></div><div class="lbl">메디컬아이피</div></div>
+      <div class="dot device" style="top:20%; left:45%;"><div class="circ"></div><div class="lbl">뷰웍스</div></div>
+      <div class="dot platform" style="top:34%; left:16%;"><div class="circ"></div><div class="lbl">클라리파이</div></div>
+      <div class="dot genomics" style="top:24%; left:35%;"><div class="circ"></div><div class="lbl">아이크로진</div></div>
+
+      <!-- Mediology (highlighted) -->
+      <div class="dot mediology" style="top:72%; left:78%;"><div class="circ"></div><div class="lbl">메디올로지&nbsp;&middot;&nbsp;Healthier</div></div>
+    </div>
+
+    <div class="matrix-legend">
+      <div class="leg-item"><span class="leg-dot imaging"></span>영상 AI</div>
+      <div class="leg-item"><span class="leg-dot genomics"></span>유전체 AI</div>
+      <div class="leg-item"><span class="leg-dot device"></span>장비·3D</div>
+      <div class="leg-item"><span class="leg-dot platform"></span>플랫폼·품질</div>
+      <div class="leg-item"><span class="leg-dot mediology"></span>메디올로지 (0차 의료 · B2C)</div>
+    </div>
+  </div>
+
+  <div class="insight-box">
+    <h3>🧭 이 지도가 말하는 것</h3>
+    <p>
+      9개사 중 <span class="highlight">8개사는 좌상단 "전문의 × 단일질환/모달리티"</span> 사분면에 몰려 있습니다. 그 이유는 명확합니다 — FDA 510(k)&middot;MFDS 허가를 따기 가장 쉬운 자리이고, 병원 수가 체계에 붙여야 매출이 나기 때문입니다.
+    </p>
+    <p>
+      반면 <span class="mediology-hl">우하단 "소비자 × 생활 건강 전반"</span>은 거의 비어 있습니다. 의료 AI가 소비자에게 직접 말을 거는 경험&mdash;"새벽 3시 이 증상, 병원 가야 할지"&mdash;을 <strong>제품화한 국내 플레이어가 사실상 없습니다.</strong>
+    </p>
+    <p>
+      메디올로지가 <strong>TIPS 공식 페이지에 "1차 의료를 넘어선 0차 의료의 실현"</strong>을 모토로 등재한 건, 이 빈 사분면에 이름을 붙이는 행위라고 저는 읽었습니다. 지도 위에서 보면 그 판단이 왜 전략적인지가 더 또렷해집니다.
+    </p>
+  </div>
+</div>
+
+<!-- ===== SECTION 4: 경쟁 / 협력 판단표 ===== -->
+<div class="section" id="compete-cooperate">
+  <span class="section-label">Section 04</span>
+  <h2>경쟁인가, 협력인가</h2>
+  <p class="subtitle">
+    "의료 AI"라는 한 덩어리로 보면 전부 경쟁자로 보이지만, 메디올로지의 0차 의료&middot;B2C 축에서 보면 <strong>대부분이 협력 가능한 레이어</strong>입니다. 각 사가 메디올로지에게 어떤 관계인지를 한 줄로 정리합니다.
+  </p>
+
+  <div class="cmp-table">
+    <table>
+      <thead>
+        <tr>
+          <th style="width:20%">회사</th>
+          <th style="width:18%">핵심 축</th>
+          <th style="width:14%">메디올로지와의 관계</th>
+          <th>한 줄 판단</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><div class="c-name">루닛</div><div class="c-muted">Lunit</div></td>
+          <td>병원 영상 AI</td>
+          <td><span class="c-pos pos-neut">직접 경쟁 아님</span></td>
+          <td>B2B 병원 판독 도메인. Healthier의 검색&middot;상담 플로우와 거의 겹치지 않음. 장기적으로 "병원 내 판독 결과 &rarr; 환자 가정용 요약"의 콘텐츠 연계 가능성.</td>
+        </tr>
+        <tr>
+          <td><div class="c-name">뷰노</div><div class="c-muted">VUNO</div></td>
+          <td>병원 영상&middot;바이오시그널</td>
+          <td><span class="c-pos pos-neut">직접 경쟁 아님</span></td>
+          <td>DeepCARS 등 병원 조기 경보. 개인&middot;가정 접점 아님. 역시 "임상 결과 &rarr; 환자 언어" 번역 레이어로 협력 여지.</td>
+        </tr>
+        <tr>
+          <td><div class="c-name">제이엘케이</div><div class="c-muted">JLK</div></td>
+          <td>뇌질환 특화</td>
+          <td><span class="c-pos pos-coop">잠재 협력</span></td>
+          <td>뇌졸중&middot;출혈 신호는 <strong>가족 보호자가 가장 불안해하는 주제</strong>. 메디올로지 Healthier 콘텐츠&middot;Copilot에 증상 분류 레퍼런스로 붙을 가능성.</td>
+        </tr>
+        <tr>
+          <td><div class="c-name">코어라인</div><div class="c-muted">Coreline Soft</div></td>
+          <td>폐암 검진</td>
+          <td><span class="c-pos pos-coop">잠재 협력</span></td>
+          <td>건강검진 결과 &rarr; 일상 관리 플로우. 검진 후 "이 다음 무엇을 해야 하는가"를 Healthier가 이어받는 구조가 자연.</td>
+        </tr>
+        <tr>
+          <td><div class="c-name">딥노이드</div><div class="c-muted">Deepnoid</div></td>
+          <td>AI 개발 플랫폼</td>
+          <td><span class="c-pos pos-coop">잠재 협력</span></td>
+          <td>플랫폼/툴 레이어. Healthier의 내부 AI 파이프라인에 부품으로 붙을 수 있고 직접 고객 경쟁 대상 아님.</td>
+        </tr>
+        <tr>
+          <td><div class="c-name">메디컬아이피</div><div class="c-muted">MEDICALIP</div></td>
+          <td>3D 해부&middot;교육</td>
+          <td><span class="c-pos pos-coop">잠재 협력</span></td>
+          <td>"내 몸을 이해시키는" 3D 시각화는 Healthier의 설명 콘텐츠와 정서적으로 같은 방향. 공동 콘텐츠 제작 가능 후보.</td>
+        </tr>
+        <tr>
+          <td><div class="c-name">뷰웍스</div><div class="c-muted">Vieworks</div></td>
+          <td>영상 장비</td>
+          <td><span class="c-pos pos-neut">경쟁 무관</span></td>
+          <td>하드웨어 중심. 소비자 접점 거의 없음.</td>
+        </tr>
+        <tr>
+          <td><div class="c-name">클라리파이</div><div class="c-muted">ClariPi</div></td>
+          <td>영상 품질 레이어</td>
+          <td><span class="c-pos pos-neut">경쟁 무관</span></td>
+          <td>수평 품질 레이어. 소비자 브랜드와 충돌 없음.</td>
+        </tr>
+        <tr>
+          <td><div class="c-name">아이크로진</div><div class="c-muted">iCroGen</div></td>
+          <td>유전체&middot;정밀의료</td>
+          <td><span class="c-pos pos-coop">잠재 협력</span></td>
+          <td>유전체 리포트를 "환자에게 설명하는 언어"로 번역하는 레이어가 Healthier에 맞물릴 수 있음. 가족력 이야기의 전제가 되는 카테고리.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p style="font-size:.82rem; color:var(--dim); margin-top:1rem; line-height:1.7;">
+    &lowast; "경쟁 아님 / 잠재 협력" 판단은 2026년 4월 시점 공개 자료(회사 홈페이지&middot;IR&middot;언론 보도) 기준의 제 개인 해석입니다. 실제 제휴 논의 이력을 반영한 것이 아님을 분명히 밝힙니다.
+  </p>
+</div>
+
+<!-- ===== SECTION 5: 메디올로지 전략 함의 ===== -->
+<div class="section" id="implications">
+  <span class="section-label">Section 05</span>
+  <h2>그래서 메디올로지의 콘텐츠 전략은</h2>
+  <p class="subtitle">
+    이 지도에서 <strong>세 가지 콘텐츠 마케팅 원칙</strong>이 자동으로 따라옵니다. 제가 지원서와 포트폴리오 전체에서 반복해 온 주장과 같은 결론입니다.
+  </p>
+
+  <div class="company-grid" style="grid-template-columns:repeat(auto-fit,minmax(320px,1fr));">
+    <div class="co-card t-imaging">
+      <div class="co-head"><div class="co-name">01<span class="en">Don't Compete on B2B Approvals</span></div></div>
+      <p class="co-focus">
+        8개사가 이미 <span class="hl">510(k)&middot;MFDS&middot;CE</span> 인허가 트랙에서 경쟁 중입니다. Healthier는 <strong>"허가 숫자"로 승부 보지 않습니다.</strong> 메디올로지의 무기는 허가가 아니라 <span class="hl">톤&middot;언어&middot;생활 접점</span>.
+      </p>
+    </div>
+    <div class="co-card t-platform">
+      <div class="co-head"><div class="co-name">02<span class="en">Own the Consumer Moment</span></div></div>
+      <p class="co-focus">
+        "새벽 3시 검색창 대신 Healthier"는 9개사 중 <strong>누구도 하지 않는 포지션</strong>입니다. 콘텐츠는 병원도, 의사도 아닌 <span class="hl">불안한 개인</span>을 향해야 합니다. 이 주장은 경쟁사 한 곳도 이 자리에 없다는 지도가 뒷받침합니다.
+      </p>
+    </div>
+    <div class="co-card t-genomics">
+      <div class="co-head"><div class="co-name">03<span class="en">Frame Others as Partners</span></div></div>
+      <p class="co-focus">
+        경쟁이 아니라 <span class="hl">"전문 판독 &rarr; 환자 언어 번역"</span>의 보조 레이어로 메디올로지를 포지셔닝하면, <strong>9개사 중 5개사가 잠재 파트너</strong>가 됩니다. B2B 1-pager&middot;의료진 Copilot 아이디어는 여기서 나옵니다.
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SECTION 6: 방법론 ===== -->
+<div class="section" id="methodology">
+  <span class="section-label">Section 06</span>
+  <h2>조사 방법론</h2>
+  <p class="subtitle">이 문서는 내부 자료나 비공개 DB를 사용하지 않았습니다. 공개된 자료로 어디까지 카테고리 지도가 그려지는지를 스스로 확인하려는 시도였습니다.</p>
+
+  <div class="method-grid">
+    <div class="method-card">
+      <div class="m-icon">📑</div>
+      <div class="m-title">공식 홈페이지&middot;IR</div>
+      <div class="m-desc">각 사의 기술 페이지&middot;사업보고서&middot;IR 자료를 1차 소스로 사용했습니다.</div>
+    </div>
+    <div class="method-card">
+      <div class="m-icon">📰</div>
+      <div class="m-title">언론 보도</div>
+      <div class="m-desc">머니투데이&middot;매일경제&middot;IT조선&middot;THE VC 등 2024~2025 기사 기반.</div>
+    </div>
+    <div class="method-card">
+      <div class="m-icon">📊</div>
+      <div class="m-title">KOSDAQ 공시</div>
+      <div class="m-desc">상장사 3개(루닛&middot;뷰노&middot;제이엘케이&middot;딥노이드&middot;뷰웍스)는 DART 공시 참고.</div>
+    </div>
+    <div class="method-card">
+      <div class="m-icon">🩺</div>
+      <div class="m-title">규제 DB</div>
+      <div class="m-desc">FDA 510(k) 데이터베이스&middot;MFDS 의료기기 허가 목록을 교차 확인.</div>
+    </div>
+  </div>
+
+  <p style="font-size:.82rem; color:var(--dim); margin-top:1.5rem; line-height:1.8;">
+    &lowast; 숫자 중 일부(설립 연도&middot;상장 연도&middot;진출 국가 수)는 2024~2025 공개 자료 기준이며, 재무 디테일은 "방향성 판단"용으로 기재했습니다. 면접 자리에서 각 사의 최신 분기 실적&middot;핵심 제품 라인업을 업데이트해 말씀드릴 수 있습니다.
+  </p>
+</div>
+
+<!-- ===== AUTHOR ===== -->
+<div class="section">
+  <div class="author-section">
+    <h3>이 지도를 그린 이유</h3>
+    <p class="author-story">
+      메디올로지를 알고 난 뒤, 저는 먼저 이 질문을 스스로에게 던졌습니다. <em>"9개 국내 의료 AI 스타트업 중 왜 하필 메디올로지인가."</em><br>
+      수치와 인허가만 보면 루닛&middot;뷰노가 압도적입니다. 하지만 <em>지도 위에 올려놓자</em> 답이 달라졌습니다. 거의 모두가 좌상단에 몰려 있고, 우하단이 비어 있었습니다. <strong>그 빈 자리에 메디올로지가 이름을 붙이고 있습니다.</strong><br>
+      저는 그 빈 공간을 <em>콘텐츠&middot;톤&middot;언어</em>로 채우고 싶어서 지원합니다. 이 지도는 제 지원 동기를 스스로에게 설득시킨 도구이기도 합니다.
+    </p>
+    <a class="author-cta" href="index.html#contact">&larr; 포트폴리오로 돌아가기</a>
+  </div>
+</div>
+
+<!-- ===== FOOTER ===== -->
+<div class="footer">
+  구건우 &middot; Medical AI Category Research &middot; 2026.04<br>
+  공개된 자료만으로 만든 지도입니다. 정확한 수치는 각 사의 공식 IR&middot;규제 DB로 최종 확인 바랍니다.<br>
+  <a href="index.html">&larr; 포트폴리오 홈</a>
+</div>
+
+</body>
+</html>
