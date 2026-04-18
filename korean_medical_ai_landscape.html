@@ -63,6 +63,10 @@
   .section h2 { font-size:clamp(1.8rem,3.5vw,2.6rem); font-weight:800; margin-bottom:1rem; line-height:1.3; }
   .section .subtitle { font-size:1.02rem; color:var(--muted); max-width:720px; margin-bottom:3rem; line-height:1.8; }
 
+  .mediology-note { max-width:760px; margin:0 0 2rem; padding:1.1rem 1.3rem; background:linear-gradient(135deg,rgba(6,182,212,.08),rgba(16,185,129,.06)); border:1px solid rgba(6,182,212,.22); border-left:3px solid var(--cyan); border-radius:12px; font-size:.92rem; color:var(--text); line-height:1.75; }
+  .mediology-note .tag { display:inline-block; font-size:.68rem; font-weight:700; letter-spacing:1.2px; color:var(--cyan); background:rgba(6,182,212,.15); padding:3px 10px; border-radius:100px; margin-right:.6rem; text-transform:uppercase; vertical-align:middle; }
+  .mediology-note strong { color:var(--text); }
+
   /* ===== CATEGORY OVERVIEW ===== */
   .cat-overview { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:1.2rem; margin-top:2rem; }
   .cat-tile { background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:1.5rem; position:relative; overflow:hidden; transition:transform .3s,box-shadow .3s; }
@@ -589,6 +593,10 @@
 <div class="section" id="positioning">
   <span class="section-label">Section 03</span>
   <h2>그리고 지도 위에 얹어본다</h2>
+  <div class="mediology-note">
+    <span class="tag">여기부터 추가분</span>
+    이 문서는 원래 제가 의료 AI 카테고리를 <strong>혼자 공부하며 남긴 기록</strong>이었습니다. 메디올로지 지원 포트폴리오로 이 웹사이트를 재구성하면서, 같은 데이터를 <strong>&ldquo;메디올로지는 이 지도 위 어디에 서 있는가&rdquo;</strong>라는 질문으로 다시 읽어 Section 3부터 새로 덧붙였습니다.
+  </div>
   <p class="subtitle">
     X축은 <strong>사용자 층위(전문의 &rarr; 소비자)</strong>, Y축은 <strong>적응증 너비(단일 질환 &rarr; 생활 건강 전반)</strong>. 9개사를 올려놓으면 국내 의료 AI가 사실상 <strong>좌상단</strong>에 과집중되어 있다는 게 한눈에 보입니다. 그리고 우하단이 비어 있습니다.
   </p>
