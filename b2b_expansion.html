@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>0차 의료 B2B 확장 · 보험사·의료진 번역본 2026 | 구건우</title>
+<meta name="description" content="B2C에서 증명된 '0차 의료'를 보험사의 리스크 모델과 의료진의 진료창 언어로 번역한 최초 문서. 90일 롤아웃까지 포함.">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;900&family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+  :root {
+    --bg:#0a0e1a; --surface:#111827; --surface2:#1a2235; --border:#1e293b;
+    --text:#e2e8f0; --muted:#94a3b8; --dim:#64748b;
+    --blue:#3b82f6; --cyan:#06b6d4; --purple:#8b5cf6; --green:#10b981;
+    --orange:#f59e0b; --red:#ef4444; --pink:#ec4899; --lime:#84cc16;
+    --teal:#14b8a6; --indigo:#6366f1;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'Noto Sans KR','Inter',sans-serif; background:var(--bg); color:var(--text); line-height:1.7; overflow-x:hidden; }
+
+  /* ===== HOME LINK ===== */
+  .home-link { color:var(--cyan); text-decoration:none; font-size:.85rem; font-weight:500; padding:5px 14px; border-radius:100px; border:1px solid rgba(6,182,212,.2); background:rgba(6,182,212,.06); transition:all .3s; white-space:nowrap; }
+  .home-link:hover { background:rgba(6,182,212,.15); border-color:rgba(6,182,212,.4); transform:translateX(-2px); }
+
+  /* ===== TOP BAR ===== */
+  .top-bar { position:fixed; top:0; left:0; right:0; z-index:1000; display:flex; align-items:center; justify-content:space-between; padding:.6rem 2rem; background:rgba(10,14,26,.85); backdrop-filter:blur(20px); border-bottom:1px solid rgba(59,130,246,.15); }
+  .top-bar .author-name { font-weight:600; font-size:.9rem; color:var(--text); display:flex; align-items:center; gap:.5rem; }
+  .top-bar .author-name .dot { width:8px; height:8px; border-radius:50%; background:var(--pink); display:inline-block; animation:pulse-dot 2s infinite; }
+  @keyframes pulse-dot { 0%,100% { opacity:1; box-shadow:0 0 0 0 rgba(236,72,153,.4); } 50% { opacity:.8; box-shadow:0 0 0 6px rgba(236,72,153,0); } }
+  .linkedin-btn { display:inline-flex; align-items:center; gap:.5rem; padding:7px 20px; background:linear-gradient(135deg,#0077B5,#0a66c2); color:white; text-decoration:none; border-radius:100px; font-size:.82rem; font-weight:600; transition:transform .3s,box-shadow .3s; box-shadow:0 2px 12px rgba(0,119,181,.3); }
+  .linkedin-btn:hover { transform:translateY(-2px); box-shadow:0 6px 24px rgba(0,119,181,.5); }
+  .linkedin-btn svg { width:16px; height:16px; fill:white; }
+
+  /* ===== HERO ===== */
+  .hero { position:relative; min-height:100vh; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; padding:6rem 2rem 3rem; overflow:hidden; }
+  .hero::before { content:''; position:absolute; top:-50%; left:-50%; width:200%; height:200%;
+    background:radial-gradient(ellipse at 25% 25%, rgba(236,72,153,.08) 0%, transparent 50%),
+               radial-gradient(ellipse at 75% 75%, rgba(139,92,246,.06) 0%, transparent 50%),
+               radial-gradient(ellipse at 50% 50%, rgba(6,182,212,.04) 0%, transparent 60%);
+    animation:bgShift 22s ease-in-out infinite alternate; }
+  @keyframes bgShift { 0% { transform:translate(0,0) rotate(0); } 100% { transform:translate(-2%,2%) rotate(1deg); } }
+  .hero-content { position:relative; z-index:1; max-width:960px; }
+  .hero-badge { display:inline-block; padding:6px 18px; border-radius:100px; background:rgba(236,72,153,.12); border:1px solid rgba(236,72,153,.25); color:var(--pink); font-size:.82rem; font-weight:500; letter-spacing:.5px; margin-bottom:2rem; backdrop-filter:blur(10px); }
+  .hero h1 { font-size:clamp(2rem,4.5vw,3.4rem); font-weight:900; line-height:1.25; margin-bottom:1.5rem;
+    background:linear-gradient(135deg,#e2e8f0,#ec4899,#8b5cf6); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+  .hero-lead { font-size:1.08rem; color:var(--muted); max-width:760px; margin:0 auto 1.8rem; line-height:1.9; }
+  .hero-lead strong { color:var(--text); font-weight:600; }
+  .hero-lead .hl { color:var(--pink); font-weight:600; }
+
+  .hero-quote { max-width:720px; margin:2rem auto 0; padding:1.2rem 1.4rem; background:var(--surface); border:1px solid var(--border); border-left:3px solid var(--pink); border-radius:12px; font-size:.92rem; color:var(--muted); line-height:1.8; text-align:left; }
+  .hero-quote cite { display:block; margin-top:.6rem; font-size:.78rem; color:var(--dim); font-style:normal; }
+
+  .scroll-indicator { position:absolute; bottom:2rem; left:50%; transform:translateX(-50%); z-index:2; animation:bounce 2s infinite; color:var(--muted); font-size:.8rem; text-align:center; }
+  .scroll-indicator svg { display:block; margin:.5rem auto 0; width:24px; }
+  @keyframes bounce { 0%,100% { transform:translateX(-50%) translateY(0); } 50% { transform:translateX(-50%) translateY(8px); } }
+
+  /* ===== SECTIONS ===== */
+  .section { max-width:1180px; margin:0 auto; padding:5rem 2rem; }
+  .section-label { display:inline-block; font-size:.72rem; font-weight:600; letter-spacing:2px; text-transform:uppercase; color:var(--pink); margin-bottom:.7rem; }
+  .section h2 { font-size:clamp(1.7rem,3.4vw,2.5rem); font-weight:800; margin-bottom:1rem; line-height:1.3; }
+  .section h2 strong { color:var(--pink); }
+  .section .subtitle { font-size:1rem; color:var(--muted); max-width:760px; margin-bottom:2.8rem; line-height:1.85; }
+  .section .subtitle strong { color:var(--text); }
+
+  .mediology-note { max-width:820px; margin:0 0 2rem; padding:1.1rem 1.3rem; background:linear-gradient(135deg,rgba(236,72,153,.08),rgba(139,92,246,.06)); border:1px solid rgba(236,72,153,.22); border-left:3px solid var(--pink); border-radius:12px; font-size:.92rem; color:var(--text); line-height:1.75; }
+  .mediology-note .tag { display:inline-block; font-size:.68rem; font-weight:700; letter-spacing:1.2px; color:var(--pink); background:rgba(236,72,153,.15); padding:3px 10px; border-radius:100px; margin-right:.6rem; text-transform:uppercase; vertical-align:middle; }
+  .mediology-note strong { color:var(--text); }
+
+  /* ===== WHY BLOCK ===== */
+  .why-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:1.2rem; margin-top:2rem; }
+  .why-card { background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:1.5rem; position:relative; overflow:hidden; }
+  .why-card::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; background:linear-gradient(90deg,var(--pink),var(--purple)); }
+  .why-card .wc-num { font-family:'Inter'; font-size:.7rem; font-weight:700; letter-spacing:2px; color:var(--pink); margin-bottom:.5rem; }
+  .why-card .wc-title { font-size:1.05rem; font-weight:700; margin-bottom:.6rem; line-height:1.5; }
+  .why-card .wc-desc { font-size:.88rem; color:var(--muted); line-height:1.7; }
+  .why-card .wc-desc strong { color:var(--text); }
+
+  .why-link { margin-top:1.5rem; padding:1rem 1.2rem; background:rgba(6,182,212,.06); border:1px solid rgba(6,182,212,.2); border-radius:12px; font-size:.88rem; color:var(--muted); line-height:1.7; }
+  .why-link a { color:var(--cyan); font-weight:600; text-decoration:none; border-bottom:1px dashed rgba(6,182,212,.4); }
+  .why-link a:hover { border-bottom-style:solid; }
+
+  /* ===== PERSONA BLOCK ===== */
+  .persona-wrap { background:var(--surface); border:1px solid var(--border); border-radius:20px; padding:2rem; margin-top:2rem; }
+  .persona-head { display:flex; flex-wrap:wrap; align-items:baseline; justify-content:space-between; gap:1rem; margin-bottom:1.5rem; padding-bottom:1.2rem; border-bottom:1px solid var(--border); }
+  .persona-head .p-id { font-family:'Inter'; font-size:.72rem; font-weight:700; letter-spacing:2px; text-transform:uppercase; }
+  .persona-head.insurance .p-id { color:var(--cyan); }
+  .persona-head.clinician .p-id { color:var(--green); }
+  .persona-head .p-title { font-size:1.3rem; font-weight:800; margin-top:.3rem; }
+  .persona-head .p-desc { font-size:.88rem; color:var(--muted); margin-top:.3rem; }
+
+  .persona-tabs { display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; margin-bottom:1.5rem; }
+  .persona-tab { background:var(--surface2); border:1px solid var(--border); border-radius:12px; padding:1rem 1.2rem; }
+  .persona-tab .pt-label { font-size:.68rem; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:var(--dim); margin-bottom:.4rem; }
+  .persona-tab .pt-content { font-size:.88rem; color:var(--text); line-height:1.6; }
+
+  .persona-translate { display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-top:1.5rem; }
+  .pt-col { background:var(--surface2); border:1px solid var(--border); border-radius:12px; padding:1.2rem; position:relative; }
+  .pt-col .pc-label { font-size:.7rem; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; margin-bottom:.7rem; }
+  .pt-col.b2c .pc-label { color:var(--orange); }
+  .pt-col.b2b .pc-label { color:var(--pink); }
+  .pt-col ul { list-style:none; padding:0; margin:0; }
+  .pt-col li { font-size:.88rem; color:var(--text); line-height:1.7; padding:.5rem 0; border-bottom:1px dashed rgba(148,163,184,.1); }
+  .pt-col li:last-child { border-bottom:none; }
+  .pt-col li strong { color:var(--pink); font-weight:600; }
+  .pt-col.b2c li strong { color:var(--orange); }
+
+  .persona-pitch { margin-top:1.5rem; padding:1.3rem 1.5rem; background:linear-gradient(135deg,rgba(236,72,153,.06),rgba(139,92,246,.04)); border:1px solid rgba(236,72,153,.2); border-radius:14px; }
+  .persona-pitch .pp-label { font-size:.7rem; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:var(--pink); margin-bottom:.5rem; }
+  .persona-pitch .pp-body { font-size:.95rem; color:var(--text); line-height:1.8; font-weight:500; }
+  .persona-pitch.clin { background:linear-gradient(135deg,rgba(16,185,129,.06),rgba(6,182,212,.04)); border-color:rgba(16,185,129,.2); }
+  .persona-pitch.clin .pp-label { color:var(--green); }
+
+  .persona-risks { margin-top:1.5rem; font-size:.85rem; color:var(--muted); line-height:1.7; padding-top:1.2rem; border-top:1px dashed var(--border); }
+  .persona-risks strong { color:var(--text); display:block; margin-bottom:.3rem; font-size:.78rem; letter-spacing:1px; text-transform:uppercase; color:var(--dim); }
+
+  /* ===== ROLLOUT ===== */
+  .rollout-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; margin-top:2rem; }
+  .rollout-card { background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:1.6rem; position:relative; }
+  .rollout-card::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; border-top-left-radius:16px; border-top-right-radius:16px; }
+  .rollout-card.p1::before { background:linear-gradient(90deg,var(--cyan),var(--blue)); }
+  .rollout-card.p2::before { background:linear-gradient(90deg,var(--purple),var(--pink)); }
+  .rollout-card.p3::before { background:linear-gradient(90deg,var(--orange),var(--red)); }
+  .rollout-card .r-phase { font-family:'Inter'; font-size:.68rem; font-weight:700; letter-spacing:2px; color:var(--dim); margin-bottom:.4rem; }
+  .rollout-card .r-title { font-size:1.05rem; font-weight:700; margin-bottom:.3rem; }
+  .rollout-card .r-window { font-size:.78rem; color:var(--muted); margin-bottom:1rem; }
+  .rollout-card ul { list-style:none; padding:0; margin:0; }
+  .rollout-card li { font-size:.85rem; color:var(--text); line-height:1.7; padding:.4rem 0 .4rem 1.1rem; position:relative; border-bottom:1px dashed rgba(148,163,184,.1); }
+  .rollout-card li::before { content:'›'; position:absolute; left:0; color:var(--pink); font-weight:700; }
+  .rollout-card li:last-child { border-bottom:none; }
+  .rollout-card.p1 li::before { color:var(--cyan); }
+  .rollout-card.p3 li::before { color:var(--orange); }
+
+  .rollout-kpi { margin-top:2.5rem; background:linear-gradient(135deg,var(--surface),var(--surface2)); border:1px solid var(--border); border-radius:18px; padding:2rem; }
+  .rollout-kpi h3 { font-size:1.1rem; font-weight:700; margin-bottom:1rem; }
+  .rollout-kpi .kpi-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:1rem; }
+  .kpi-item { padding:1rem 1.2rem; background:var(--bg); border:1px solid var(--border); border-radius:12px; }
+  .kpi-item .k-label { font-size:.72rem; font-weight:700; letter-spacing:1.2px; color:var(--dim); text-transform:uppercase; margin-bottom:.3rem; }
+  .kpi-item .k-value { font-size:.92rem; color:var(--text); line-height:1.6; }
+  .kpi-item .k-value strong { color:var(--pink); font-weight:700; }
+
+  /* ===== DOWNLOAD CTA ===== */
+  .dl-cta { background:linear-gradient(135deg,rgba(236,72,153,.08),rgba(139,92,246,.08)); border:1px solid rgba(236,72,153,.2); border-radius:24px; padding:3rem; margin-top:3rem; text-align:center; }
+  .dl-cta h3 { font-size:1.4rem; font-weight:800; margin-bottom:.8rem; }
+  .dl-cta p { font-size:.95rem; color:var(--muted); max-width:620px; margin:0 auto 1.8rem; line-height:1.8; }
+  .dl-btn { display:inline-flex; align-items:center; gap:.6rem; padding:14px 34px; background:linear-gradient(135deg,var(--pink),var(--purple)); color:white; text-decoration:none; border-radius:100px; font-weight:700; font-size:.95rem; transition:transform .3s,box-shadow .3s; box-shadow:0 4px 20px rgba(236,72,153,.3); }
+  .dl-btn:hover { transform:translateY(-2px); box-shadow:0 8px 30px rgba(236,72,153,.5); }
+  .dl-btn svg { width:18px; height:18px; fill:currentColor; }
+  .dl-meta { margin-top:1rem; font-size:.78rem; color:var(--dim); }
+
+  /* ===== FOOTER ===== */
+  .footer { text-align:center; padding:3rem 2rem; color:var(--muted); font-size:.78rem; border-top:1px solid var(--border); margin-top:3rem; }
+  .footer a { color:var(--pink); text-decoration:none; }
+  .footer .f-nav { margin-bottom:1rem; display:flex; gap:1.5rem; justify-content:center; flex-wrap:wrap; }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width:860px) {
+    .persona-tabs { grid-template-columns:1fr; }
+    .persona-translate { grid-template-columns:1fr; }
+    .rollout-grid { grid-template-columns:1fr; }
+    .section { padding:3.5rem 1.2rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== TOP BAR ===== -->
+<div class="top-bar">
+  <a href="index.html" class="home-link">&larr; 포트폴리오 홈</a>
+  <div class="author-name">
+    <span class="dot"></span> 구건우 &mdash; 0차 의료 B2B 확장 제안
+  </div>
+  <a class="linkedin-btn" href="https://www.linkedin.com/in/%EA%B1%B4%EC%9A%B0-%EA%B5%AC-5aa559341/" target="_blank" rel="noopener">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.3 6.5a1.78 1.78 0 01-1.8 1.75zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0013 14.19a.66.66 0 000 .14V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.36.86 3.36 3.66z"/></svg>
+    1촌 신청하기
+  </a>
+</div>
+
+<!-- ===== HERO ===== -->
+<div class="hero">
+  <div class="hero-content">
+    <span class="hero-badge">Portfolio Piece #6 &mdash; B2B Expansion · 구건우</span>
+    <h1>&lsquo;0차 의료&rsquo;를<br>의사와 보험사의 <br style="display:none;">업무 언어로도 번역합니다.</h1>
+    <p class="hero-lead">
+      소비자의 <strong>생활어</strong>로 증명된 0차 의료는, 의사의 <strong>진료창</strong>과 보험사의 <strong>리스크 모델</strong>로 다시 번역될 때 <span class="hl">산업의 공통어</span>가 됩니다. 이 문서는 그 번역의 <strong>첫 버전</strong>입니다.
+    </p>
+    <div class="hero-quote">
+      &ldquo;B2C에서 톤이 증명되면, 보험사&middot;의료진도 그 톤을 차용하기 시작한다. 카테고리 언어는 아래에서 위로 올라가는 힘이다.&rdquo;
+      <cite>&mdash; Portfolio Piece #4 전략서, 방향 01 Category Language 中</cite>
+    </div>
+  </div>
+  <div class="scroll-indicator">
+    아래로 스크롤
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M19 14l-7 7m0 0l-7-7m7 7V3"/></svg>
+  </div>
+</div>
+
+<!-- ===== SECTION 1: Why B2B now ===== -->
+<div class="section" id="why">
+  <span class="section-label">Section 01</span>
+  <h2>왜 지금 <strong>B2B 확장</strong>을 미리 말해 두는가</h2>
+  <p class="subtitle">
+    메디올로지의 당장의 주력은 <strong>B2C 앱 Healthier</strong>입니다. 그럼에도 합류 이전 단계에서 B2B 확장 각도를 한 번 그려 두는 이유는 세 가지입니다.
+  </p>
+
+  <div class="mediology-note">
+    <span class="tag">문서의 위치</span>
+    이 문서는 <strong>제안&middot;실행 지시서가 아닙니다</strong>. Portfolio Piece #3(의료 AI 카테고리 지도)의 우하단 공백을 Healthier가 채운 뒤, 그 증명을 어떤 순서로 산업 쪽 언어로 번역할 수 있을지에 대한 <strong>외부 지원자의 초안</strong>입니다. 내부 우선순위&middot;파트너십 상황에 따라 전제와 수치는 재조정되어야 합니다.
+  </div>
+
+  <div class="why-grid">
+    <div class="why-card">
+      <div class="wc-num">REASON 01</div>
+      <div class="wc-title">&lsquo;0차 의료&rsquo;는 카테고리 언어이기 때문에</div>
+      <div class="wc-desc">
+        대표님이 여신 카테고리는 <strong>소비자에게만 쓰는 단어</strong>로 남으면 3년 뒤에도 검색량 0에 머뭅니다. 기자&middot;보험사&middot;병원이 <strong>같은 단어</strong>를 쓸 때 비로소 SEO&middot;미디어&middot;정책 자산이 됩니다. B2B 번역본은 그 <strong>상식화</strong>의 필수 레일입니다.
+      </div>
+    </div>
+    <div class="why-card">
+      <div class="wc-num">REASON 02</div>
+      <div class="wc-title">의료 AI 9개사 지도의 <br>우하단은 여전히 공백이기 때문에</div>
+      <div class="wc-desc">
+        Portfolio #3에서 확인된 구조 &mdash; 9개사는 <strong>B2B&middot;병원&middot;영상</strong> 중심, 우하단 <strong>B2C&middot;예방&middot;0차</strong>는 메디올로지 1곳. 이 공백은 <strong>B2C→B2B 역방향 진입로</strong>라는 드문 자산이 됩니다. 같은 경로로 역진입한 해외 벤치마크(Noom, Hims &amp; Hers)를 따라 먼저 언어를 설계해 두는 일.
+      </div>
+    </div>
+    <div class="why-card">
+      <div class="wc-num">REASON 03</div>
+      <div class="wc-title">파트너 쪽에서 먼저 물어봤을 때<br>답이 이미 있게 하려는 것</div>
+      <div class="wc-desc">
+        대표님의 공개 인터뷰에서 확인된 <strong>&ldquo;B2B 확장 가능성&rdquo; 언급</strong>. 실제로 제휴 문의가 들어왔을 때, 마케팅 팀이 영업 자료를 <strong>급조</strong>하지 않도록 <strong>번역 가능한 페르소나&middot;KPI&middot;90일 플랜</strong>을 선행 정리해 두는 일.
+      </div>
+    </div>
+  </div>
+
+  <div class="why-link">
+    &mdash; Portfolio Piece #3 <a href="korean_medical_ai_landscape.html">&laquo;국내 의료 AI 9개사 경쟁자&middot;협력자 카테고리 지도&raquo;</a> Section 03 포지셔닝 매트릭스에서, <strong>우하단(B2C&middot;예방 축)</strong>에 점이 메디올로지 1개뿐이었던 바로 그 공백을, 이 문서가 <strong>다음 진행 방향</strong>으로 이어받습니다.
+  </div>
+</div>
+
+<!-- ===== SECTION 2: 보험사 페르소나 ===== -->
+<div class="section" id="insurance">
+  <span class="section-label">Section 02</span>
+  <h2>파트너 페르소나 A &mdash; <strong>보험사</strong></h2>
+  <p class="subtitle">
+    생명&middot;실손&middot;건강증진형 상품을 운영하는 <strong>중견~대형 보험사의 디지털헬스케어 파트너십 팀</strong>. 이 팀은 외부 헬스 앱과의 제휴 여부를 <strong>&ldquo;가입자 리스크를 낮추는가&rdquo;</strong>라는 한 줄로 판단합니다.
+  </p>
+
+  <div class="persona-wrap">
+    <div class="persona-head insurance">
+      <div>
+        <div class="p-id">PERSONA A &middot; INSURER</div>
+        <div class="p-title">디지털헬스 제휴 팀장 김OO 이사</div>
+        <div class="p-desc">40대 후반 &middot; 계리&middot;상품본부 출신 &middot; 연 2~3건의 외부 헬스 앱 제휴 심사 담당</div>
+      </div>
+    </div>
+
+    <div class="persona-tabs">
+      <div class="persona-tab">
+        <div class="pt-label">그가 재는 것</div>
+        <div class="pt-content">가입자의 <strong>사전 행동 변화 → 청구 손실 예측</strong> 연결. 앱 자체가 재미있는지보다, 3년 뒤 loss ratio에 어떤 기여를 하는가.</div>
+      </div>
+      <div class="persona-tab">
+        <div class="pt-label">그가 두려워하는 것</div>
+        <div class="pt-content">&ldquo;의료 정보 플랫폼&rdquo;으로 들어간 파트너사가 <strong>과장 마케팅&middot;허위 기능</strong>으로 역풍을 만들어, 브랜드가 동시에 얻어맞는 상황.</div>
+      </div>
+      <div class="persona-tab">
+        <div class="pt-label">그가 설득되는 순간</div>
+        <div class="pt-content">B2C에서 <strong>톤이 조용하다</strong>는 공개 증거(미디어 보도&middot;NPS&middot;리뷰). 과장 없이 이 톤을 지켜 온 곳이라는 신뢰.</div>
+      </div>
+    </div>
+
+    <div class="persona-translate">
+      <div class="pt-col b2c">
+        <div class="pc-label">소비자 언어 (원본)</div>
+        <ul>
+          <li>&ldquo;새벽 3시 검색창 대신 <strong>헬시어에 질문</strong>&rdquo;</li>
+          <li>&ldquo;엄마가 알아들을 수 있게 <strong>차근차근</strong>&rdquo;</li>
+          <li>&ldquo;약은 있지만, 전 저녁은 <strong>건강하게</strong>&rdquo;</li>
+          <li>&ldquo;검색이 멀어지는 <strong>0차 의료</strong>&rdquo;</li>
+        </ul>
+      </div>
+      <div class="pt-col b2b">
+        <div class="pc-label">보험사 언어 (번역)</div>
+        <ul>
+          <li>가입자의 <strong>검색 불안 지표</strong>를 행동 데이터로 치환</li>
+          <li>시니어 가입자 풀의 <strong>복약 리터러시 개선 지수</strong></li>
+          <li>생활습관 로그 → <strong>만성질환 리스크 델타</strong></li>
+          <li>&lsquo;0차 의료&rsquo; 참여자 풀의 <strong>3년 loss ratio 가설</strong></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="persona-pitch">
+      <div class="pp-label">한 문장 번역 (최종 픽)</div>
+      <div class="pp-body">
+        &ldquo;메디올로지는 가입자의 <strong>새벽 3시 검색</strong>을 <strong>아침 8시 행동</strong>으로 옮기는 소비자 접점을 이미 가지고 있습니다. 우리는 이 접점을 귀사의 <strong>리스크 사전 개선 레이어</strong>로 붙이는 일을 함께할 수 있습니다. 약속하지 않는 것은 &lsquo;치료&rsquo;, 약속할 수 있는 것은 <strong>&lsquo;가입자가 의사 앞에 앉기 전에 쓰는 언어&rsquo;</strong>입니다.&rdquo;
+      </div>
+    </div>
+
+    <div class="persona-risks">
+      <strong>번역 시 피해야 할 것</strong>
+      보험 상품 할인&middot;포인트 적립 같은 <strong>가격 레이어</strong>로 먼저 접근하지 않기. 가격은 설득의 마지막 5%이고, 앞 95%는 &ldquo;이 파트너는 톤이 <strong>조용하다</strong>&rdquo;는 증거.
+    </div>
+  </div>
+</div>
+
+<!-- ===== SECTION 3: 의료진 페르소나 ===== -->
+<div class="section" id="clinician">
+  <span class="section-label">Section 03</span>
+  <h2>파트너 페르소나 B &mdash; <strong>의료진</strong></h2>
+  <p class="subtitle">
+    <strong>3분 진료</strong>에 갇혀 있으면서도, 환자가 진료실에 들어오기 전에 이미 겪은 검색과 자가진단을 알 길이 없는 일차의료 의사들. 이들에게 필요한 건 &ldquo;AI 솔루션&rdquo;이 아니라 <strong>진료 시간을 깎지 않는 맥락 요약</strong>입니다.
+  </p>
+
+  <div class="persona-wrap">
+    <div class="persona-head clinician">
+      <div>
+        <div class="p-id">PERSONA B &middot; CLINICIAN</div>
+        <div class="p-title">동네 의원 원장 박OO 원장</div>
+        <div class="p-desc">50대 초반 &middot; 내과 전문의 &middot; 하루 60~80 케이스 &middot; 환자당 평균 3.2분</div>
+      </div>
+    </div>
+
+    <div class="persona-tabs">
+      <div class="persona-tab">
+        <div class="pt-label">그가 재는 것</div>
+        <div class="pt-content">이 도구가 <strong>3분 진료를 2.5분으로 줄이는가, 3.5분으로 늘리는가</strong>. 답이 &lsquo;늘어난다&rsquo;면 아무리 기능이 좋아도 채택되지 않습니다.</div>
+      </div>
+      <div class="persona-tab">
+        <div class="pt-label">그가 두려워하는 것</div>
+        <div class="pt-content">환자가 앱에서 <strong>오진단 근거</strong>를 가져와 진료실에서 다투게 되는 상황. 책임이 의사에게 넘어오는 구조.</div>
+      </div>
+      <div class="persona-tab">
+        <div class="pt-label">그가 설득되는 순간</div>
+        <div class="pt-content">앱이 <strong>&ldquo;이건 의사에게 가세요&rdquo;</strong>라고 먼저 말한다는 것, 그리고 환자가 가져오는 메모가 <strong>문진을 짧게</strong> 만든다는 것.</div>
+      </div>
+    </div>
+
+    <div class="persona-translate">
+      <div class="pt-col b2c">
+        <div class="pc-label">소비자 언어 (원본)</div>
+        <ul>
+          <li>&ldquo;무섭지 않게 <strong>차근차근</strong> 알려주는 AI&rdquo;</li>
+          <li>&ldquo;병원 가기 전에 <strong>한 번 더</strong> 생각하게 해 주는&rdquo;</li>
+          <li>&ldquo;이건 <strong>병원에서 여쭤보세요</strong>&rdquo;</li>
+          <li>&ldquo;<strong>엄마 대신</strong> 받아 적어 드리는 메모&rdquo;</li>
+        </ul>
+      </div>
+      <div class="pt-col b2b">
+        <div class="pc-label">의료진 언어 (번역)</div>
+        <ul>
+          <li>환자 맥락 <strong>30초 요약 카드</strong> (증상&middot;복용약&middot;검색 히스토리)</li>
+          <li>대기실에서 채워지는 <strong>사전 문진</strong> 자동 정리</li>
+          <li>앱 내부의 <strong>&lsquo;의사에게 가세요&rsquo; 플래그</strong> 로그 공유</li>
+          <li>진료 후 <strong>복약&middot;생활 지침 재번역</strong>을 환자 앱에 재송신</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="persona-pitch clin">
+      <div class="pp-label">한 문장 번역 (최종 픽)</div>
+      <div class="pp-body">
+        &ldquo;메디올로지는 선생님의 <strong>3분 진료</strong> 앞뒤에 놓인 <strong>30분</strong>을 정돈하는 일을 합니다. 진료창 안의 기능이 아니라, 환자가 <strong>진료실에 앉기 전 30초</strong>와 <strong>나간 뒤 24시간</strong>을 대신 써 주는 언어입니다. 선생님이 쓰실 시간은 <strong>그대로 3분</strong>입니다.&rdquo;
+      </div>
+    </div>
+
+    <div class="persona-risks">
+      <strong>번역 시 피해야 할 것</strong>
+      &lsquo;Copilot&rsquo;&middot;&lsquo;AI 진단 보조&rsquo; 같은 기술 단어가 먼저 튀어나오지 않기. 의사는 <strong>기능이 아니라 시간의 감각</strong>으로 파트너십을 판단합니다.
+    </div>
+  </div>
+</div>
+
+<!-- ===== SECTION 4: 90일 롤아웃 ===== -->
+<div class="section" id="rollout">
+  <span class="section-label">Section 04</span>
+  <h2>90일 롤아웃 &mdash; <strong>번역을 실험으로</strong></h2>
+  <p class="subtitle">
+    이 번역이 진짜 움직이는지 보려면, <strong>가장 작은 실험</strong>부터 세 번 반복하는 게 맞습니다. 90일 안에 <strong>1개 보험사 파일럿</strong>과 <strong>3개 의원 소규모 파일럿</strong>을 동시에 돌리는 시간표입니다. 수치는 벤치마크 추정치이며 내부 정합성 기준으로 재보정 필요.
+  </p>
+
+  <div class="rollout-grid">
+    <div class="rollout-card p1">
+      <div class="r-phase">PHASE 01 &middot; DAY 1&ndash;30</div>
+      <div class="r-title">언어 고정 (Lock the Language)</div>
+      <div class="r-window">Day 1 &ndash; 30 &middot; 1달</div>
+      <ul>
+        <li>B2B 번역 워드리스트 내부 확정 (소비자↔보험사↔의료진 3열)</li>
+        <li>1-pager 2종 확정 (보험사용&middot;의료진용 각 A4 1장)</li>
+        <li>파트너 미팅 FAQ 10개 사전 작성 + 대표님 1차 검수</li>
+        <li>지금 문서의 공개&middot;비공개 버전 분리</li>
+      </ul>
+    </div>
+    <div class="rollout-card p2">
+      <div class="r-phase">PHASE 02 &middot; DAY 31&ndash;60</div>
+      <div class="r-title">작은 파일럿 3개 (Seed Pilots)</div>
+      <div class="r-window">Day 31 &ndash; 60 &middot; 1달</div>
+      <ul>
+        <li>보험사 1곳과 <strong>비독점 LOI</strong> 기준 파일럿 스코프 정의</li>
+        <li>동네 의원 3곳과 <strong>사전 문진 카드</strong> 프로토타입 테스트</li>
+        <li>기자 3명과 <strong>&lsquo;0차 의료 산업 공통어&rsquo;</strong> 백그라운드 브리핑</li>
+        <li>영업&middot;CS 응대 스크립트 1차 초안 (번역표 기반)</li>
+      </ul>
+    </div>
+    <div class="rollout-card p3">
+      <div class="r-phase">PHASE 03 &middot; DAY 61&ndash;90</div>
+      <div class="r-title">공개&middot;재번역 (Publish &amp; Reframe)</div>
+      <div class="r-window">Day 61 &ndash; 90 &middot; 1달</div>
+      <ul>
+        <li>파일럿 결과 &rarr; <strong>사내 인사이트 노트 1종</strong></li>
+        <li>공개 가능한 조각은 <strong>블로그&middot;링크드인</strong>으로 재번역</li>
+        <li>B2C 카드뉴스 1종을 &lsquo;0차 의료 산업 용어&rsquo;로 리믹스</li>
+        <li>90일 리뷰 &rarr; Phase 2(6개월) 로드맵 초안</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="rollout-kpi">
+    <h3>90일 KPI 가설</h3>
+    <div class="kpi-grid">
+      <div class="kpi-item">
+        <div class="k-label">언어 반복률</div>
+        <div class="k-value">외부 기사&middot;보도자료 안에서 <strong>&lsquo;0차 의료&rsquo;</strong> 표현이 자체 생성되는 빈도</div>
+      </div>
+      <div class="kpi-item">
+        <div class="k-label">파일럿 전환율</div>
+        <div class="k-value">1차 미팅 &rarr; <strong>LOI&middot;NDA 전환 %</strong> (목표: 보험사 1건, 의원 2건)</div>
+      </div>
+      <div class="kpi-item">
+        <div class="k-label">톤 평판</div>
+        <div class="k-value">파트너 인터뷰 3건 중 <strong>&ldquo;톤이 조용하다&rdquo;</strong> 키워드 언급 횟수</div>
+      </div>
+      <div class="kpi-item">
+        <div class="k-label">문진 단축 가설</div>
+        <div class="k-value">의원 파일럿 내 <strong>환자당 평균 문진 시간</strong> 30초 단축 검증</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SECTION 5: DOWNLOAD CTA ===== -->
+<div class="section" id="download">
+  <span class="section-label">Section 05 &middot; Partner-Transferable</span>
+  <h2>파트너에게 <strong>그대로 넘겨지는</strong> 버전</h2>
+  <p class="subtitle">
+    이 웹페이지는 읽는 사람을 위한 버전이고, 아래 PDF는 <strong>파트너 미팅 자료로 그대로 쓰는 버전</strong>입니다. 페르소나 번역표 + 90일 롤아웃 + KPI 가설을 5쪽 안에 정돈했습니다.
+  </p>
+
+  <div class="dl-cta">
+    <h3>Mediology &middot; 0차 의료 B2B 확장 브리프</h3>
+    <p>
+      보험사 제휴팀장/의원 원장에게 <strong>5분 안에</strong> 공유할 수 있는 <br>
+      &ldquo;번역 완료된 1차 자료&rdquo;입니다.
+    </p>
+    <a class="dl-btn" href="mediology-b2b-expansion.pdf" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+      PDF 다운로드 (A4 &middot; 5p)
+    </a>
+    <div class="dl-meta">공개 자료 기반 외부 지원자 초안 &middot; 내부 전제로 재조정 필요</div>
+  </div>
+</div>
+
+<!-- ===== FOOTER ===== -->
+<div class="footer">
+  <div class="f-nav">
+    <a href="index.html">포트폴리오 홈</a>
+    <a href="korean_medical_ai_landscape.html">이전 편 &middot; 의료 AI 카테고리 지도</a>
+    <a href="strategy.html">전략 브리프</a>
+  </div>
+  <div>Mediology &middot; 0차 의료 B2B 확장 제안서 &middot; Portfolio Piece #6 &middot; 2026</div>
+  <div style="margin-top:.5rem; color:var(--dim);">구건우 &middot; godscience2024@gmail.com</div>
+</div>
+
+</body>
+</html>
