@@ -928,10 +928,10 @@
     /* BENTO */
     .bento {
       display: grid;
-      grid-template-columns: 1.55fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr;
       gap: 1.25rem;
     }
-    @media (max-width: 1040px) { .bento { grid-template-columns: 1.4fr 1fr; } }
+    @media (max-width: 1040px) { .bento { grid-template-columns: 1fr 1fr; } }
     @media (max-width: 760px) { .bento { grid-template-columns: 1fr; } }
 
     .sample-card {
@@ -1672,8 +1672,8 @@
           <div class="eyebrow">Deliverable 04 · Content Samples</div>
           <h2>합류 첫 주,<br>이걸 <em>내고 싶었습니다</em>.</h2>
           <div class="gallery-counter">
-            <span><b>03</b>카드뉴스 세트</span>
-            <span><b>24</b>슬라이드</span>
+            <span><b>04</b>카드뉴스 세트</span>
+            <span><b>32</b>슬라이드</span>
             <span><b>02</b>카피 에셋</span>
           </div>
         </div>
@@ -1683,24 +1683,24 @@
       </div>
 
       <div class="bento">
-        <!-- Card A — Dominant -->
-        <article class="sample-card dominant" data-deck="a" data-title="0차 의료 사전 · Pillar 01">
+        <!-- Card A — Pillar 01 -->
+        <article class="sample-card" data-deck="a" data-title="0차 의료 사전 · Pillar 01">
           <div class="sample-cover">
             <img src="assets/samples/card-a/slide_1_cover.png" alt="0차 의료 사전 커버 슬라이드">
             <div class="sample-overlay">
               <div class="sample-meta">
                 <span class="chip">Card News · 8 Slides</span>
-                <span class="sample-count">01 / 03</span>
+                <span class="sample-count">01 / 04</span>
               </div>
             </div>
           </div>
           <div class="sample-body">
             <div class="sample-label">Pillar 01 · 카테고리 정의</div>
             <h3>지금 병원 가야 할지<br>모르겠다면, 여기부터.</h3>
-            <p>정설아 대표님이 여신 새 카테고리 "0차 의료"를 사람들의 언어로 번역한 8장. 1차 의료 vs 0차 의료 비교 · 왜 이 자리가 비어 있었는가 · Healthier가 이 자리에 오는 이유. 검색 알고리즘 다음엔 <b style="color:#a8e063;font-weight:600;">"이해 알고리즘"</b>이 필요하다는 선언.</p>
+            <p>정설아 대표님이 여신 새 카테고리 "0차 의료"를 사람들의 언어로 번역한 8장. 검색 알고리즘 다음엔 <b style="color:#a8e063;font-weight:600;">"이해 알고리즘"</b>이 필요하다는 선언.</p>
             <div class="sample-cta">
-              <button class="btn-view" type="button">8장 전체 보기</button>
-              <span class="sample-duration">읽기 2분 · IG 9:16</span>
+              <button class="btn-view" type="button">8장 보기</button>
+              <span class="sample-duration">2분</span>
             </div>
           </div>
         </article>
@@ -1712,7 +1712,7 @@
             <div class="sample-overlay">
               <div class="sample-meta">
                 <span class="chip">Card News · 8 Slides</span>
-                <span class="sample-count">02 / 03</span>
+                <span class="sample-count">02 / 04</span>
               </div>
             </div>
           </div>
@@ -1734,7 +1734,7 @@
             <div class="sample-overlay">
               <div class="sample-meta">
                 <span class="chip">Card News · 8 Slides</span>
-                <span class="sample-count">03 / 03</span>
+                <span class="sample-count">03 / 04</span>
               </div>
             </div>
           </div>
@@ -1745,6 +1745,28 @@
             <div class="sample-cta">
               <button class="btn-view" type="button">8장 보기</button>
               <span class="sample-duration">2분</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card D — Pillar 04 · B2B Clinic -->
+        <article class="sample-card" data-deck="d" data-title="진료 전 3분 · Pillar 04 B2B">
+          <div class="sample-cover">
+            <img src="assets/samples/card-d/slide_1_cover.png" alt="환자 도착 전 AI 문진 카드뉴스 커버">
+            <div class="sample-overlay">
+              <div class="sample-meta">
+                <span class="chip">Card News · 8 Slides</span>
+                <span class="sample-count">04 / 04</span>
+              </div>
+            </div>
+          </div>
+          <div class="sample-body">
+            <div class="sample-label">Pillar 04 · B2B 의사·병원</div>
+            <h3>환자의 첫 3분을,<br>의사에게 돌려드립니다.</h3>
+            <p>B2B 진료실 타겟 8장. 환자가 오기 전 AI가 구조화된 문진을 끝내 의사에게 전달 — 의사는 바로 진단 판단에 집중. <b style="color:#a8e063;font-weight:600;">서울대병원·교보생명</b> 검증 데이터로 설계한 진료실 UI 감각.</p>
+            <div class="sample-cta">
+              <button class="btn-view" type="button">8장 보기</button>
+              <span class="sample-duration">2분 · B2B</span>
             </div>
           </div>
         </article>
@@ -2217,6 +2239,19 @@
           'assets/samples/card-c/slide_6_chat_ui.png',
           'assets/samples/card-c/slide_7_before_after.png',
           'assets/samples/card-c/slide_8_ending.png'
+        ]
+      },
+      d: {
+        title: '환자가 오기 전에, 문진은 이미 끝나있습니다 (B2B)',
+        slides: [
+          'assets/samples/card-d/slide_1_cover.png',
+          'assets/samples/card-d/slide_2_five_min_reality.png',
+          'assets/samples/card-d/slide_3_before_arrival.png',
+          'assets/samples/card-d/slide_4_clinician_ui.png',
+          'assets/samples/card-d/slide_5_structured.png',
+          'assets/samples/card-d/slide_6_time_comparison.png',
+          'assets/samples/card-d/slide_7_trust.png',
+          'assets/samples/card-d/slide_8_ending.png'
         ]
       }
     };
